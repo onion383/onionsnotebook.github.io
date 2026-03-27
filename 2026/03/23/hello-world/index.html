@@ -585,8 +585,8 @@
     color: #ff8787 !important;
   }
 
-  /* ===================== ✅ 最终修改：底部版权页（无圆角+文字清晰） ===================== */
-  /* 日间模式：无圆角 + 文字深色清晰可见 */
+  /* ===================== ✅ 终极修复：底部版权页（#footer）文字100%清晰 ===================== */
+  /* 日间模式：无圆角 + 浅蓝背景 + 强制所有文字为深色 */
   html body #footer {
     background: rgba(180, 210, 255, 0.4) !important;
     backdrop-filter: blur(10px) !important;
@@ -594,26 +594,34 @@
     border: 2px solid #c0d1eb !important;
     border-radius: 0 !important; /* 完全去掉圆角 */
     box-shadow: 0 -4px 20px rgba(102, 163, 255, 0.15) !important;
-    color: #2c3e50 !important; /* 文字深色，清晰可见 */
     padding: 1.5rem !important;
     transition: all 0.3s ease !important;
   }
+  /* 强制覆盖#footer下所有子元素文字颜色，确保绝对清晰 */
+  html body #footer,
+  html body #footer * {
+    color: #2c3e50 !important;
+  }
 
-  /* 黑暗模式：无圆角 + 深色统一风格 */
+  /* 黑暗模式：无圆角 + 深色背景 + 强制所有文字为浅色 */
   html[data-theme="dark"] body #footer {
     background: #0a1a2f !important; /* 纯深色，无突兀亮蓝 */
     border-color: rgba(255, 255, 255, 0.1) !important;
     border-radius: 0 !important; /* 完全去掉圆角 */
     box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.35) !important;
+  }
+  /* 强制覆盖黑暗模式下#footer所有子元素文字颜色 */
+  html[data-theme="dark"] body #footer,
+  html[data-theme="dark"] body #footer * {
     color: #f0f0f0 !important;
   }
 
-  /* 链接颜色适配 */
+  /* 链接颜色单独适配（保持和主题一致） */
   html body #footer a {
-    color: #0066cc !important; /* 日间链接深色清晰 */
+    color: #0066cc !important; /* 日间链接深色 */
   }
   html[data-theme="dark"] body #footer a {
-    color: #80b0ff !important; /* 黑暗链接浅色清晰 */
+    color: #80b0ff !important; /* 黑暗链接浅色 */
   }
 
 </style>
