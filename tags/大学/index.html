@@ -144,10 +144,9 @@
 }</script><style>
   /* 每日自动更新必应壁纸 全站背景* /
   #web_bg {
-    /* 必应每日1920×1080高清壁纸 + 你原有的85%白色遮罩 */
-    background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), 
-                url("https://bing.img.run/1920x1080.php") !important;
-    /* 你原有的背景属性完全保留 */
+    /* 必应每日1920×1080高清壁纸 85%白色遮罩 */
+    #web_bg {
+    background: url("https://bing.img.run/1920x1080.php") !important;
     background-size: cover !important;
     background-position: center center !important;
     background-repeat: no-repeat !important;
@@ -161,7 +160,7 @@
     transition: background 0.5s ease !important;
   }
 
-  /* 黑暗模式适配：必应壁纸 + 黑色遮罩，和你原有逻辑完全一致 */
+  /* 黑暗模式适配：必应壁纸  黑色遮罩 */
   html[data-theme="dark"] #web_bg {
     background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), 
                 url("https://bing.img.run/1920x1080.php") !important;
@@ -419,7 +418,13 @@
   }
 
   /*  自定义标题竖线、加粗变红样式  */
-  h1, h2, h3, h4, h5, h6 {
+  /* 👇 只修改这一段！限定：只有文章内的标题才显示彩色竖线 */
+  #article-container h1, 
+  #article-container h2, 
+  #article-container h3, 
+  #article-container h4, 
+  #article-container h5, 
+  #article-container h6 {
     position: relative;
     padding-left: 14px !important;
     margin-top: 0.8em !important;
@@ -428,8 +433,12 @@
     color: #2c3e50 !important;
   }
 
-  h1::before, h2::before, h3::before,
-  h4::before, h5::before, h6::before {
+  #article-container h1::before, 
+  #article-container h2::before, 
+  #article-container h3::before,
+  #article-container h4::before, 
+  #article-container h5::before, 
+  #article-container h6::before {
     content: "";
     position: absolute;
     left: 0;
@@ -440,21 +449,20 @@
     border-radius: 2px;
   }
 
-  h1 { font-size: 1.8em !important; }
-  h1::before { background-color: #ff4d4f; height: 22px; }
+  #article-container h1 { font-size: 1.8em !important; }
+  #article-container h1::before { background-color: #ff4d4f; height: 22px; }
 
-  h2 { font-size: 1.6em !important; }
-  h2::before { background-color: #fa7c00; }
+  #article-container h2 { font-size: 1.6em !important; }
+  #article-container h2::before { background-color: #fa7c00; }
 
-  h3 { font-size: 1.4em !important; }
-  h3::before { background-color: #1677ff; }
+  #article-container h3 { font-size: 1.4em !important; }
+  #article-container h3::before { background-color: #1677ff; }
 
-  h4 { font-size: 1.2em !important; }
-  h4::before { background-color: #722ed1; height: 16px; }
+  #article-container h4 { font-size: 1.2em !important; }
+  #article-container h4::before { background-color: #722ed1; height: 16px; }
 
-  h5 { font-size: 1.2em !important; }
-
-  h6 { font-size: 1.2em !important; }
+  #article-container h5 { font-size: 1.2em !important; }
+  #article-container h6 { font-size: 1.2em !important; }
   strong {
     color: #ff4d4f !important;
     font-weight: 600 !important;
@@ -624,11 +632,10 @@
     animation: none !important;
     transform: none !important;
   }
-  /* ====================================== */
-  /* 移动端专属修复：首页文章卡片 + 齿轮按钮 + 整体布局 */
-  /* ====================================== */
+
+  /* 移动端排版专属修复 */
   @media screen and (max-width: 768px) {
-    /* 1. 修复首页文章卡片布局错乱 */
+    /* 修复首页文章卡片布局错乱 */
     html body #recent-posts .recent-post-item {
       flex-direction: column !important;
       min-height: auto !important;
@@ -637,7 +644,7 @@
       margin-bottom: 1.2rem !important;
     }
 
-    /* 2. 修复文章封面在移动端的显示（全屏宽度，不再挤压内容） */
+    /* 修复文章封面在移动端的显示 */
     html body #recent-posts .recent-post-item .post_cover,
     html body #recent-posts .recent-post-item .post_cover.right {
       position: relative !important;
@@ -655,13 +662,13 @@
       object-fit: cover !important;
     }
 
-    /* 3. 修复文章信息区域，不再被封面挤压 */
+    /* 修复文章信息区域 */
     html body #recent-posts .recent-post-item:has(.post_cover) .recent-post-info {
       padding: 1.2rem !important;
       padding-right: 1.2rem !important;
     }
 
-    /* 4. 修复移动端文字大小，适配手机阅读 */
+    /* 修复移动端文字大小 */
     html body #recent-posts .recent-post-item .recent-post-info .article-title {
       font-size: 1.2rem !important;
     }
@@ -671,7 +678,7 @@
       font-size: 0.95rem !important;
     }
 
-    /* 5. 强制停止齿轮旋转（移动端专属强化） */
+    /* 强制停止齿轮旋转（移动端专属强化） */
     #rightside > div#setting > i.fas.fa-cog.fa-spin,
     #rightside #setting i,
     .fa-cog.fa-spin {
@@ -680,7 +687,7 @@
       transform: rotate(0deg) !important;
     }
 
-    /* 6. 优化移动端右侧悬浮按钮大小和间距 */
+    /* 优化移动端右侧悬浮按钮大小和间距 */
     #rightside {
       right: 10px !important;
       bottom: 10px !important;
@@ -694,12 +701,12 @@
       margin: 5px 0 !important;
     }
 
-    /* 7. 修复文章详情页内边距，适配手机屏幕 */
+    /* 修复文章详情页内边距，适配手机屏幕 */
     #article-container {
       padding: 1rem !important;
     }
 
-    /* 8. 修复分类/归档页移动端布局 */
+    /* 修复分类/归档页移动端布局 */
     html body #content-inner #category,
     html body #content-inner #archive {
       padding: 1rem !important;
@@ -713,11 +720,13 @@
       margin-right: 0.8rem !important;
     }
 
-    /* 9. 修复侧边栏移动端样式 */
+    /*修复侧边栏移动端样式 */
     html body #aside-content .card-widget {
       margin: 0 0.5rem 1rem 0.5rem !important;
     }
   }
+  
+  
 </style>
 <!-- hexo injector head_end start -->
   <!-- 稳定版 KaTeX 样式 -->
@@ -742,7 +751,7 @@
           </div>
           <ul class="card-category-list" id="aside-cat-list">
             <li class="card-category-list-item "><a class="card-category-list-link" href="/onionsnotebook.github.io/categories/%E5%85%B6%E4%BB%96/"><span class="card-category-list-name">其他</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/onionsnotebook.github.io/categories/%E5%A4%A7%E5%AD%A6%E5%9F%BA%E7%A1%80%E8%AF%BE%E7%A8%8B/"><span class="card-category-list-name">大学基础课程</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/onionsnotebook.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%BE%E7%A8%8B/"><span class="card-category-list-name">计算机课程</span><span class="card-category-list-count">3</span></a></li>
-          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/onionsnotebook.github.io/tags/%E5%A4%A7%E5%AD%A6/" style="font-size: 1.5em; color: #99a9bf">大学</a> <a href="/onionsnotebook.github.io/tags/%E9%AB%98%E6%95%B0/" style="font-size: 1.3em; color: #99a1ac">高数</a> <a href="/onionsnotebook.github.io/tags/%E8%8B%B1%E8%AF%AD/" style="font-size: 1.1em; color: #999">英语</a> <a href="/onionsnotebook.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/" style="font-size: 1.3em; color: #99a1ac">计算机</a></div></div><div class="card-widget card-archives">
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/onionsnotebook.github.io/tags/%E5%A4%A7%E5%AD%A6/" style="font-size: 1.5em; color: #99a9bf">大学</a> <a href="/onionsnotebook.github.io/tags/%E8%8B%B1%E8%AF%AD/" style="font-size: 1.1em; color: #999">英语</a> <a href="/onionsnotebook.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/" style="font-size: 1.3em; color: #99a1ac">计算机</a> <a href="/onionsnotebook.github.io/tags/%E9%AB%98%E6%95%B0/" style="font-size: 1.3em; color: #99a1ac">高数</a></div></div><div class="card-widget card-archives">
     <div class="item-headline">
       <i class="fas fa-archive"></i>
       <span>归档</span>
@@ -761,4 +770,4 @@
         </li>
       
     </ul>
-  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">6</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-04-10T15:22:02.335Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By 无聊的小洋葱</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/onionsnotebook.github.io/js/utils.js?v=5.5.4"></script><script src="/onionsnotebook.github.io/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">6</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-04-10T15:49:32.612Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By 无聊的小洋葱</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/onionsnotebook.github.io/js/utils.js?v=5.5.4"></script><script src="/onionsnotebook.github.io/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
