@@ -142,10 +142,8 @@
   isToc: false,
   pageType: 'archive'
 }</script><style>
-  /* 每日自动更新必应壁纸 全站背景* /
+  /* 每日自动更新必应壁纸 全站背景 */
   #web_bg {
-    /* 必应每日1920×1080高清壁纸 85%白色遮罩 */
-    #web_bg {
     background: url("https://bing.img.run/1920x1080.php") !important;
     background-size: cover !important;
     background-position: center center !important;
@@ -160,7 +158,7 @@
     transition: background 0.5s ease !important;
   }
 
-  /* 黑暗模式适配：必应壁纸  黑色遮罩 */
+  /* 黑暗模式适配：必应壁纸 黑色遮罩 */
   html[data-theme="dark"] #web_bg {
     background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), 
                 url("https://bing.img.run/1920x1080.php") !important;
@@ -177,7 +175,6 @@
     background: transparent !important;
   }
 
-  
   /* 首页文章卡片 */
   html body #recent-posts .recent-post-item {
     border: 2px solid #c0d1eb !important;
@@ -241,7 +238,7 @@
     z-index: 2 !important;
   }
 
-  /* 侧边栏卡片  */
+  /* 侧边栏卡片 */
   html body #aside-content .card-widget {
     border: 2px solid #c0d1eb !important;
     background: rgba(180, 210, 255, 0.35) !important;
@@ -253,7 +250,7 @@
     overflow: hidden !important;
   }
 
-  /*  文章详情页+独立页面  */
+  /* 文章详情页+独立页面 */
   html body #content-inner #post.post,
   html body #content-inner #page.page {
     border: 2px solid #c0d1eb !important;
@@ -266,7 +263,7 @@
     overflow: hidden !important;
   }
 
-  /*  悬浮效果统一  */
+  /* 悬浮效果统一 */
   html body #recent-posts .recent-post-item:hover,
   html body #aside-content .card-widget:hover,
   html body #content-inner #post.post:hover,
@@ -277,7 +274,7 @@
     transform: translateY(-2px) !important;
   }
 
-  /*  文章页内层容器透明  */
+  /* 文章页内层容器透明 */
   #post.post > *,
   #page.page > *,
   #article-container,
@@ -292,7 +289,7 @@
     padding: 1.5rem 1.8rem !important;
   }
 
-  /*  首页文章信息区域  */
+  /* 首页文章信息区域 */
   html body #recent-posts .recent-post-item .recent-post-info {
     flex: 1 !important;
     display: flex !important;
@@ -324,7 +321,7 @@
     font-size: 1.05rem !important;
   }
 
-  /*  分类/归档页面  */
+  /* 分类/归档页面 */
   html body #content-inner #category,
   html body #content-inner #archive {
     border: 2px solid #c0d1eb !important;
@@ -406,7 +403,7 @@
     opacity: 0.8;
   }
 
-  /*  分类/归档页面年份标题  */
+  /* 分类/归档页面年份标题 */
   html body #category .article-sort-item.year,
   html body #archive .article-sort-item.year {
     font-size: 1.5rem !important;
@@ -417,8 +414,7 @@
     margin-bottom: 1.2rem !important;
   }
 
-  /*  自定义标题竖线、加粗变红样式  */
-  /* 👇 只修改这一段！限定：只有文章内的标题才显示彩色竖线 */
+  /* 自定义标题竖线、加粗变红样式（仅限文章内） */
   #article-container h1, 
   #article-container h2, 
   #article-container h3, 
@@ -463,12 +459,13 @@
 
   #article-container h5 { font-size: 1.2em !important; }
   #article-container h6 { font-size: 1.2em !important; }
+
   strong {
     color: #ff4d4f !important;
     font-weight: 600 !important;
   }
 
-  /*  移动端适配  */
+  /* 移动端适配 */
   @media screen and (max-width: 768px) {
     html body #recent-posts .recent-post-item {
       flex-direction: column !important;
@@ -486,22 +483,18 @@
       padding: 1rem 1.2rem !important;
       }
   }
-  /* 黑暗模式适配 */
-  
 
-  /* 黑暗模式底层背景 */
+  /* 黑暗模式适配 */
   html[data-theme="dark"] #web_bg {
     background: #0d0d0d !important; 
   }
 
-  /* 黑暗模式-首页文章卡片毛玻璃 */
   html[data-theme="dark"] #recent-posts .recent-post-item {
     background: rgba(0, 30, 60, 0.85) !important;
     border-color: rgba(255, 255, 255, 0.1) !important;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35) !important;
   }
 
-  /* 黑暗模式悬浮蓝光 */
   html[data-theme="dark"] #recent-posts .recent-post-item:hover,
   html[data-theme="dark"] #aside-content .card-widget:hover,
   html[data-theme="dark"] #content-inner #post.post:hover,
@@ -511,7 +504,6 @@
     transform: translateY(-2px) !important;
   }
 
-  /* 黑暗模式-侧边栏卡片毛玻璃 */
   html[data-theme="dark"] #aside-content .card-widget {
     background: rgba(0, 30, 60, 0.85) !important;
     border-color: rgba(255, 255, 255, 0.1) !important;
@@ -519,7 +511,6 @@
     color: #e0e0e0 !important;
   }
 
-  /* 黑暗模式-文章详情页/独立页面 */
   html[data-theme="dark"] #content-inner #post.post,
   html[data-theme="dark"] #content-inner #page.page {
     background: rgba(0, 30, 60, 0.85) !important;
@@ -527,23 +518,23 @@
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35) !important;
   }
 
-  /* 黑暗模式-文字颜色统一变白/浅灰 */
   html[data-theme="dark"] #recent-posts .recent-post-item .recent-post-info .article-title,
   html[data-theme="dark"] #recent-posts .recent-post-item .recent-post-info .article-meta-wrap,
   html[data-theme="dark"] #recent-posts .recent-post-item .recent-post-info .article-meta-wrap a,
   html[data-theme="dark"] #recent-posts .recent-post-item .recent-post-info .content,
-  html[data-theme="dark"] h1, html[data-theme="dark"] h2, 
-  html[data-theme="dark"] h3, html[data-theme="dark"] h4, 
-  html[data-theme="dark"] h5, html[data-theme="dark"] h6 {
+  html[data-theme="dark"] #article-container h1, 
+  html[data-theme="dark"] #article-container h2, 
+  html[data-theme="dark"] #article-container h3, 
+  html[data-theme="dark"] #article-container h4, 
+  html[data-theme="dark"] #article-container h5, 
+  html[data-theme="dark"] #article-container h6 {
     color: #f0f0f0 !important;
   }
 
-  /* 标题hover保持高亮 */
   html[data-theme="dark"] #recent-posts .recent-post-item .recent-post-info .article-title:hover {
     color: #80b0ff !important;
   }
 
-  /*  黑暗模式-分类/归档页面适配 */
   html[data-theme="dark"] #content-inner #category,
   html[data-theme="dark"] #content-inner #archive {
     background: rgba(20, 20, 35, 0.7) !important;
@@ -564,19 +555,16 @@
     border-color: rgba(255, 255, 255, 0.1) !important;
   }
 
-  /* 黑暗模式-自定义标题竖线颜色微调 */
-  html[data-theme="dark"] h1::before { background-color: #ff6b6b; }
-  html[data-theme="dark"] h2::before { background-color: #ffa94d; }
-  html[data-theme="dark"] h3::before { background-color: #4dabf7; }
-  html[data-theme="dark"] h4::before { background-color: #b197fc; }
+  html[data-theme="dark"] #article-container h1::before { background-color: #ff6b6b; }
+  html[data-theme="dark"] #article-container h2::before { background-color: #ffa94d; }
+  html[data-theme="dark"] #article-container h3::before { background-color: #4dabf7; }
+  html[data-theme="dark"] #article-container h4::before { background-color: #b197fc; }
 
-  /* 黑暗模式-加粗文字颜色 */
   html[data-theme="dark"] strong {
     color: #ff8787 !important;
   }
 
-  /*  底部版权页文字 */
-  /* 日间模式（无圆角、浅蓝背景、强制所有文字为深色） */
+  /* 底部版权页文字 */
   html body #footer {
     background: rgba(180, 210, 255, 0.4) !important;
     backdrop-filter: blur(10px) !important;
@@ -587,33 +575,33 @@
     padding: 1.5rem !important;
     transition: all 0.3s ease !important;
   }
-  /* 强制覆盖#footer下所有子元素文字颜色 */
+
   html body #footer,
   html body #footer * {
     color: #2c3e50 !important;
   }
 
-  /* 黑暗模式-（无圆角 、 深色背景 、 强制所有文字为浅色） */
   html[data-theme="dark"] body #footer {
     background: #0a1a2f !important;
     border-color: rgba(255, 255, 255, 0.1) !important;
     border-radius: 0 !important;
     box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.35) !important;
   }
-  /* 强制覆盖黑暗模式下#footer所有子元素文字颜色 */
+
   html[data-theme="dark"] body #footer,
   html[data-theme="dark"] body #footer * {
     color: #f0f0f0 !important;
   }
 
-  /* 链接颜色单独适配 */
   html body #footer a {
     color: #0066cc !important;
   }
+
   html[data-theme="dark"] body #footer a {
     color: #80b0ff !important;
   }
-  /* 强制停止设置齿轮旋转  */
+
+  /* 强制停止设置齿轮旋转 */
   #rightside > div#setting > i.fas.fa-cog.fa-spin,
   #rightside #setting i,
   .rightside-content #setting i,
@@ -627,7 +615,7 @@
     pointer-events: auto !important;
     opacity: 1 !important;
   }
-  /* 禁用主题所有旋转动画 */
+
   *[class*="fa-spin"], *[class*="rotate"] {
     animation: none !important;
     transform: none !important;
@@ -635,7 +623,6 @@
 
   /* 移动端排版专属修复 */
   @media screen and (max-width: 768px) {
-    /* 修复首页文章卡片布局错乱 */
     html body #recent-posts .recent-post-item {
       flex-direction: column !important;
       min-height: auto !important;
@@ -644,7 +631,6 @@
       margin-bottom: 1.2rem !important;
     }
 
-    /* 修复文章封面在移动端的显示 */
     html body #recent-posts .recent-post-item .post_cover,
     html body #recent-posts .recent-post-item .post_cover.right {
       position: relative !important;
@@ -662,13 +648,11 @@
       object-fit: cover !important;
     }
 
-    /* 修复文章信息区域 */
     html body #recent-posts .recent-post-item:has(.post_cover) .recent-post-info {
       padding: 1.2rem !important;
       padding-right: 1.2rem !important;
     }
 
-    /* 修复移动端文字大小 */
     html body #recent-posts .recent-post-item .recent-post-info .article-title {
       font-size: 1.2rem !important;
     }
@@ -678,16 +662,6 @@
       font-size: 0.95rem !important;
     }
 
-    /* 强制停止齿轮旋转（移动端专属强化） */
-    #rightside > div#setting > i.fas.fa-cog.fa-spin,
-    #rightside #setting i,
-    .fa-cog.fa-spin {
-      animation: none !important;
-      -webkit-animation: none !important;
-      transform: rotate(0deg) !important;
-    }
-
-    /* 优化移动端右侧悬浮按钮大小和间距 */
     #rightside {
       right: 10px !important;
       bottom: 10px !important;
@@ -701,12 +675,10 @@
       margin: 5px 0 !important;
     }
 
-    /* 修复文章详情页内边距，适配手机屏幕 */
     #article-container {
       padding: 1rem !important;
     }
 
-    /* 修复分类/归档页移动端布局 */
     html body #content-inner #category,
     html body #content-inner #archive {
       padding: 1rem !important;
@@ -720,14 +692,111 @@
       margin-right: 0.8rem !important;
     }
 
-    /*修复侧边栏移动端样式 */
     html body #aside-content .card-widget {
       margin: 0 0.5rem 1rem 0.5rem !important;
     }
   }
-  
-  
-</style>
+  /* ====================================== */
+  /* 【终极锁死】移动端右侧悬浮按钮 强制归位 */
+  /* ====================================== */
+  @media screen and (max-width: 768px) {
+    /* 1. 根容器：最高权重，强制锁定位置 */
+    html body #rightside.rightside-show {
+      position: fixed !important;
+      right: 12px !important;
+      bottom: 20px !important;
+      left: auto !important;
+      top: auto !important;
+      width: auto !important;
+      height: auto !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      z-index: 999999 !important;
+      transform: none !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      float: none !important;
+    }
+
+    /* 2. 所有按钮：强制统一样式，防止错位 */
+    html body #rightside.rightside-show > div {
+      width: 46px !important;
+      height: 46px !important;
+      min-width: 46px !important;
+      min-height: 46px !important;
+      line-height: 46px !important;
+      font-size: 20px !important;
+      margin: 8px 0 !important;
+      padding: 0 !important;
+      border-radius: 12px !important;
+      border: 1px solid #c0d1eb !important;
+      background: rgba(180, 210, 255, 0.9) !important;
+      backdrop-filter: blur(10px) !important;
+      -webkit-backdrop-filter: blur(10px) !important;
+      box-shadow: 0 3px 12px rgba(102, 163, 255, 0.25) !important;
+      transition: all 0.2s ease !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      float: none !important;
+      position: relative !important;
+      transform: none !important;
+      clear: both !important;
+    }
+
+    /* 3. 齿轮按钮：强制停止旋转 */
+    html body #rightside.rightside-show > div#setting i {
+      animation: none !important;
+      -webkit-animation: none !important;
+      transform: rotate(0deg) !important;
+      transition: none !important;
+    }
+
+    /* 4. 图标：强制居中，颜色统一 */
+    html body #rightside.rightside-show > div > i {
+      color: #2c3e50 !important;
+      font-size: 20px !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      line-height: 1 !important;
+      position: relative !important;
+      top: auto !important;
+      left: auto !important;
+      transform: none !important;
+    }
+
+    /* 5. 黑暗模式适配 */
+    html[data-theme="dark"] body #rightside.rightside-show > div {
+      background: rgba(0, 30, 60, 0.9) !important;
+      border-color: rgba(255, 255, 255, 0.15) !important;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.4) !important;
+    }
+    html[data-theme="dark"] body #rightside.rightside-show > div > i {
+      color: #f0f0f0 !important;
+    }
+  }
+
+  /* 超小屏（<400px）额外适配 */
+  @media screen and (max-width: 400px) {
+    html body #rightside.rightside-show {
+      right: 8px !important;
+      bottom: 15px !important;
+    }
+    html body #rightside.rightside-show > div {
+      width: 42px !important;
+      height: 42px !important;
+      min-width: 42px !important;
+      min-height: 42px !important;
+      line-height: 42px !important;
+      font-size: 18px !important;
+      margin: 6px 0 !important;
+    }
+    html body #rightside.rightside-show > div > i {
+      font-size: 18px !important;
+    }
+  }
+        </style>
 <!-- hexo injector head_end start -->
   <!-- 稳定版 KaTeX 样式 -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
@@ -751,7 +820,7 @@
           </div>
           <ul class="card-category-list" id="aside-cat-list">
             <li class="card-category-list-item "><a class="card-category-list-link" href="/onionsnotebook.github.io/categories/%E5%85%B6%E4%BB%96/"><span class="card-category-list-name">其他</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/onionsnotebook.github.io/categories/%E5%A4%A7%E5%AD%A6%E5%9F%BA%E7%A1%80%E8%AF%BE%E7%A8%8B/"><span class="card-category-list-name">大学基础课程</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/onionsnotebook.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%BE%E7%A8%8B/"><span class="card-category-list-name">计算机课程</span><span class="card-category-list-count">3</span></a></li>
-          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/onionsnotebook.github.io/tags/%E5%A4%A7%E5%AD%A6/" style="font-size: 1.5em; color: #99a9bf">大学</a> <a href="/onionsnotebook.github.io/tags/%E8%8B%B1%E8%AF%AD/" style="font-size: 1.1em; color: #999">英语</a> <a href="/onionsnotebook.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/" style="font-size: 1.3em; color: #99a1ac">计算机</a> <a href="/onionsnotebook.github.io/tags/%E9%AB%98%E6%95%B0/" style="font-size: 1.3em; color: #99a1ac">高数</a></div></div><div class="card-widget card-archives">
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/onionsnotebook.github.io/tags/%E8%8B%B1%E8%AF%AD/" style="font-size: 1.1em; color: #999">英语</a> <a href="/onionsnotebook.github.io/tags/%E5%A4%A7%E5%AD%A6/" style="font-size: 1.5em; color: #99a9bf">大学</a> <a href="/onionsnotebook.github.io/tags/%E9%AB%98%E6%95%B0/" style="font-size: 1.3em; color: #99a1ac">高数</a> <a href="/onionsnotebook.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/" style="font-size: 1.3em; color: #99a1ac">计算机</a></div></div><div class="card-widget card-archives">
     <div class="item-headline">
       <i class="fas fa-archive"></i>
       <span>归档</span>
@@ -770,4 +839,4 @@
         </li>
       
     </ul>
-  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">6</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-04-10T15:49:32.612Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By 无聊的小洋葱</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/onionsnotebook.github.io/js/utils.js?v=5.5.4"></script><script src="/onionsnotebook.github.io/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">6</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-04-10T16:49:55.530Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By 无聊的小洋葱</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/onionsnotebook.github.io/js/utils.js?v=5.5.4"></script><script src="/onionsnotebook.github.io/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
