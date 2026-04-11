@@ -1,13 +1,13 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>搜索 | 小洋葱的笔记本</title><meta name="author" content="无聊的小洋葱"><meta name="copyright" content="无聊的小洋葱"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="const SITE_ROOT &#x3D; &#39;&#x2F;onionsnotebook.github.io&#x2F;&#39;; const SEARCH_XML_PATH &#x3D; &#96;${SITE_ROOT}search.xml&#96;;  document.addEventListener(&#39;DOMContentLoaded&#39;, function() {   const searchInput &#x3D; document.">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>搜索 | 小洋葱的笔记本</title><meta name="author" content="无聊的小洋葱"><meta name="copyright" content="无聊的小洋葱"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="&#x2F;&#x2F; 搜索跳转高亮 + 蓝色闪烁动画（最终稳定版，适配自定义root） document.addEventListener(&#39;DOMContentLoaded&#39;, function () {   const params &#x3D; new URLSearchParams(window.location.search);   const keyword &#x3D; params.get(&#39;h">
 <meta property="og:type" content="website">
 <meta property="og:title" content="搜索">
 <meta property="og:url" content="https://onion383.github.io/search/index.html">
 <meta property="og:site_name" content="小洋葱的笔记本">
-<meta property="og:description" content="const SITE_ROOT &#x3D; &#39;&#x2F;onionsnotebook.github.io&#x2F;&#39;; const SEARCH_XML_PATH &#x3D; &#96;${SITE_ROOT}search.xml&#96;;  document.addEventListener(&#39;DOMContentLoaded&#39;, function() {   const searchInput &#x3D; document.">
+<meta property="og:description" content="&#x2F;&#x2F; 搜索跳转高亮 + 蓝色闪烁动画（最终稳定版，适配自定义root） document.addEventListener(&#39;DOMContentLoaded&#39;, function () {   const params &#x3D; new URLSearchParams(window.location.search);   const keyword &#x3D; params.get(&#39;h">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://onion383.github.io/img/avatar.png">
-<meta property="article:published_time" content="2026-04-11T04:11:33.809Z">
-<meta property="article:modified_time" content="2026-04-11T04:11:33.809Z">
+<meta property="article:published_time" content="2026-04-11T05:46:00.640Z">
+<meta property="article:modified_time" content="2026-04-11T05:46:00.640Z">
 <meta property="article:author" content="无聊的小洋葱">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://onion383.github.io/img/avatar.png"><script type="application/ld+json"></script><link rel="shortcut icon" href="/onionsnotebook.github.io/img/favicon.png"><link rel="canonical" href="https://onion383.github.io/search/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/onionsnotebook.github.io/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
@@ -812,34 +812,69 @@
 </div>
 
 <script>
-const SITE_ROOT = '/onionsnotebook.github.io/';
-const SEARCH_XML_PATH = `${SITE_ROOT}search.xml`;
+// 搜索跳转高亮 + 蓝色闪烁动画（最终稳定版，适配自定义root）
+document.addEventListener('DOMContentLoaded', function () {
+  const params = new URLSearchParams(window.location.search);
+  const keyword = params.get('highlight');
+  if (!keyword) return;
 
+  const articleContainer = document.getElementById('article-container');
+  if (!articleContainer) return;
+
+  const safeKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const regex = new RegExp(safeKeyword, 'gi');
+
+  articleContainer.innerHTML = articleContainer.innerHTML.replace(regex, (match) => {
+    return `<span class="search-highlight-flash">${match}</span>`;
+  });
+
+  setTimeout(() => {
+    const firstHighlight = document.querySelector('.search-highlight-flash');
+    if (firstHighlight) {
+      firstHighlight.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      });
+      void firstHighlight.offsetHeight;
+      firstHighlight.classList.add('flash');
+    }
+  }, 400);
+});
+
+// ======================================
+// 搜索核心代码（适配search.json + 正确路径）
+// ======================================
 document.addEventListener('DOMContentLoaded', function() {
   const searchInput = document.getElementById('manual-search-input');
   const searchResult = document.getElementById('manual-search-result');
   const summaryLength = 150;
+  // ✅ 修正路径（个人主页仓库根路径为 /）
+  const SITE_ROOT = '/';
+  // ✅ 修正为json格式（匹配插件生成的文件）
+  const SEARCH_JSON_PATH = `${SITE_ROOT}search.json`;
 
-  fetch(SEARCH_XML_PATH)
+  // 读取search.json
+  fetch(SEARCH_JSON_PATH)
     .then(res => {
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      return res.text();
+      return res.json();
     })
-    .then(str => {
-      const parser = new DOMParser();
-      const xmlDoc = parser.parseFromString(str, 'text/xml');
-      const articles = Array.from(xmlDoc.querySelectorAll('entry')).map(entry => ({
-        title: entry.querySelector('title').textContent,
-        content: entry.querySelector('content').textContent.replace(/<[^>]+>/g, ''),
-        url: entry.querySelector('url').textContent
+    .then(data => {
+      // 适配json数据结构
+      const articles = data.map(item => ({
+        title: item.title || '',
+        content: (item.content || '').replace(/<[^>]+>/g, ''),
+        url: item.url || ''
       }));
 
+      // 关键词高亮
       function highlightKeyword(text, keyword) {
         if (!keyword.trim()) return text;
         const safeKey = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         return text.replace(new RegExp(safeKey, 'gi'), match => `<span class="search-keyword">${match}</span>`);
       }
 
+      // 搜索逻辑
       function handleSearch(keyword) {
         if (!keyword.trim()) {
           searchResult.innerHTML = '<p class="empty-tip">请输入关键词开始搜索</p>';
@@ -871,11 +906,11 @@ document.addEventListener('DOMContentLoaded', function() {
           }
           
           const summaryHtml = highlightKeyword(summary, keyword);
-          const articleUrl = `${article.url}?highlight=${encodeURIComponent(keyword)}`;
+          const articleUrl = `${articleUrl}?highlight=${encodeURIComponent(keyword)}`;
           
           html += `
             <div class="search-result-item" style="animation-delay: ${(index+1)*0.1}s">
-              <a href="${articleUrl}" class="search-result-title">${titleHtml}</a>
+              <a href="${article.url}?highlight=${encodeURIComponent(keyword)}" class="search-result-title">${titleHtml}</a>
               <p class="search-result-content">${summaryHtml}</p>
             </div>
           `;
@@ -888,7 +923,7 @@ document.addEventListener('DOMContentLoaded', function() {
     })
     .catch(err => {
       searchResult.innerHTML = `<p class="error-tip">搜索加载失败</p>`;
-      console.error(err);
+      console.error('搜索错误：', err);
     });
 });
 </script>
@@ -1048,7 +1083,7 @@ html[data-theme="dark"] .search-result-count {
           </div>
           <ul class="card-category-list" id="aside-cat-list">
             <li class="card-category-list-item "><a class="card-category-list-link" href="/onionsnotebook.github.io/categories/%E5%85%B6%E4%BB%96/"><span class="card-category-list-name">其他</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/onionsnotebook.github.io/categories/%E5%A4%A7%E5%AD%A6%E5%9F%BA%E7%A1%80%E8%AF%BE%E7%A8%8B/"><span class="card-category-list-name">大学基础课程</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/onionsnotebook.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%BE%E7%A8%8B/"><span class="card-category-list-name">计算机课程</span><span class="card-category-list-count">3</span></a></li>
-          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/onionsnotebook.github.io/tags/%E9%AB%98%E6%95%B0/" style="font-size: 1.23em; color: #999ea6">高数</a> <a href="/onionsnotebook.github.io/tags/%E8%8B%B1%E8%AF%AD/" style="font-size: 1.1em; color: #999">英语</a> <a href="/onionsnotebook.github.io/tags/%E5%90%8E%E7%AB%AF/" style="font-size: 1.1em; color: #999">后端</a> <a href="/onionsnotebook.github.io/tags/%E5%A4%A7%E5%AD%A6/" style="font-size: 1.5em; color: #99a9bf">大学</a> <a href="/onionsnotebook.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/" style="font-size: 1.37em; color: #99a4b2">计算机</a></div></div><div class="card-widget card-archives">
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/onionsnotebook.github.io/tags/%E8%8B%B1%E8%AF%AD/" style="font-size: 1.1em; color: #999">英语</a> <a href="/onionsnotebook.github.io/tags/%E5%90%8E%E7%AB%AF/" style="font-size: 1.1em; color: #999">后端</a> <a href="/onionsnotebook.github.io/tags/%E5%A4%A7%E5%AD%A6/" style="font-size: 1.5em; color: #99a9bf">大学</a> <a href="/onionsnotebook.github.io/tags/%E9%AB%98%E6%95%B0/" style="font-size: 1.23em; color: #999ea6">高数</a> <a href="/onionsnotebook.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/" style="font-size: 1.37em; color: #99a4b2">计算机</a></div></div><div class="card-widget card-archives">
     <div class="item-headline">
       <i class="fas fa-archive"></i>
       <span>归档</span>
@@ -1076,4 +1111,4 @@ html[data-theme="dark"] .search-result-count {
         </li>
       
     </ul>
-  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">7</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-04-11T05:39:05.344Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By 无聊的小洋葱</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/onionsnotebook.github.io/js/utils.js?v=5.5.4"></script><script src="/onionsnotebook.github.io/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">7</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-04-11T05:46:20.474Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By 无聊的小洋葱</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/onionsnotebook.github.io/js/utils.js?v=5.5.4"></script><script src="/onionsnotebook.github.io/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
