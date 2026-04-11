@@ -1,13 +1,13 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Express框架笔记 | 小洋葱的笔记本</title><meta name="author" content="无聊的小洋葱"><meta name="copyright" content="无聊的小洋葱"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="该笔记主要记录了英语课上的准备四级考试的笔记（仍在更新）">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Express框架笔记 | 小洋葱的笔记本</title><meta name="author" content="无聊的小洋葱"><meta name="copyright" content="无聊的小洋葱"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="该笔记主要说明了Express框架的一些基本的配置和使用方法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Express框架笔记">
 <meta property="og:url" content="https://onion383.github.io/2026/04/11/Express%20%E6%A1%86%E6%9E%B6%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="小洋葱的笔记本">
-<meta property="og:description" content="该笔记主要记录了英语课上的准备四级考试的笔记（仍在更新）">
+<meta property="og:description" content="该笔记主要说明了Express框架的一些基本的配置和使用方法">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://onion383.github.io/img/avatar.png">
 <meta property="article:published_time" content="2026-04-11T07:00:00.000Z">
-<meta property="article:modified_time" content="2026-04-10T16:57:04.950Z">
+<meta property="article:modified_time" content="2026-04-10T17:01:07.949Z">
 <meta property="article:author" content="无聊的小洋葱">
 <meta property="article:tag" content="后端">
 <meta property="article:tag" content="大学">
@@ -20,7 +20,7 @@
   "url": "https://onion383.github.io/2026/04/11/Express%20%E6%A1%86%E6%9E%B6%E7%AC%94%E8%AE%B0/",
   "image": "https://onion383.github.io/img/avatar.png",
   "datePublished": "2026-04-11T07:00:00.000Z",
-  "dateModified": "2026-04-10T16:57:04.950Z",
+  "dateModified": "2026-04-10T17:01:07.949Z",
   "author": [
     {
       "@type": "Person",
@@ -28,7 +28,7 @@
       "url": "https://onion383.github.io"
     }
   ]
-}</script><link rel="shortcut icon" href="/onionsnotebook.github.io/img/favicon.png"><link rel="canonical" href="https://onion383.github.io/2026/04/11/Express%20%E6%A1%86%E6%9E%B6%E7%AC%94%E8%AE%B0/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/onionsnotebook.github.io/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://onion383.github.io/2026/04/11/Express%20%E6%A1%86%E6%9E%B6%E7%AC%94%E8%AE%B0/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
     (() => {
       
     const saveToLocal = {
@@ -119,7 +119,7 @@
   
     })()
   </script><script>const GLOBAL_CONFIG = {
-  root: '/onionsnotebook.github.io/',
+  root: '/',
   algolia: undefined,
   localSearch: undefined,
   translate: undefined,
@@ -162,6 +162,9 @@
   isToc: true,
   pageType: 'post'
 }</script><style>
+  /* ====================================== */
+  /* 模块1：全局背景与基础样式 */
+  /* ====================================== */
   /* 每日自动更新必应壁纸 全站背景 */
   #web_bg {
     background: url("https://bing.img.run/1920x1080.php") !important;
@@ -178,13 +181,7 @@
     transition: background 0.5s ease !important;
   }
 
-  /* 黑暗模式适配 */
-  html[data-theme="dark"] #web_bg {
-    background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), 
-                url("https://bing.img.run/1920x1080.php") !important;
-  }
-
-  /* 顶部首页大图 */
+  /* 顶部首页大图同步换成必应每日壁纸 */
   #page-header {
     background-image: url("https://bing.img.run/1920x1080.php") !important;
     background-size: cover !important;
@@ -195,7 +192,9 @@
     background: transparent !important;
   }
 
-  /* 首页文章卡片 */
+  /* ====================================== */
+  /* 模块2：首页文章卡片 */
+  /* ====================================== */
   html body #recent-posts .recent-post-item {
     border: 2px solid #c0d1eb !important;
     background: rgba(180, 210, 255, 0.35) !important;
@@ -215,6 +214,7 @@
     float: none !important;
     padding: 0 !important;
     box-sizing: border-box !important;
+    position: relative !important;
   }
 
   html body #recent-posts .recent-post-item .post_cover,
@@ -247,70 +247,9 @@
     transform: scale(1.01) !important;
   }
 
-  html body #recent-posts .recent-post-item {
-    position: relative !important;
-    padding: 0 !important;
-    overflow: hidden !important;
-  }
-
   html body #recent-posts .recent-post-item .recent-post-info {
     position: relative !important;
     z-index: 2 !important;
-  }
-
-  /* 侧边栏卡片 */
-  html body #aside-content .card-widget {
-    border: 2px solid #c0d1eb !important;
-    background: rgba(180, 210, 255, 0.35) !important;
-    backdrop-filter: blur(10px) !important;
-    -webkit-backdrop-filter: blur(10px) !important;
-    border-radius: 12px !important;
-    box-shadow: 0 4px 20px rgba(102, 163, 255, 0.15) !important;
-    transition: all 0.3s ease !important;
-    overflow: hidden !important;
-  }
-
-  /* 文章详情页+独立页面 */
-  html body #content-inner #post.post,
-  html body #content-inner #page.page {
-    border: 2px solid #c0d1eb !important;
-    background: rgba(180, 210, 255, 0.35) !important;
-    backdrop-filter: blur(10px) !important;
-    -webkit-backdrop-filter: blur(10px) !important;
-    border-radius: 12px !important;
-    box-shadow: 0 4px 20px rgba(102, 163, 255, 0.15) !important;
-    transition: all 0.3s ease !important;
-    overflow: hidden !important;
-  }
-
-  /* 悬浮效果统一 */
-  html body #recent-posts .recent-post-item:hover,
-  html body #aside-content .card-widget:hover,
-  html body #content-inner #post.post:hover,
-  html body #content-inner #page.page:hover {
-    border-color: #4080ff !important;
-    background: rgba(180, 210, 255, 0.5) !important;
-    box-shadow: 0 0 16px rgba(64,128,255,0.6), 0 8px 30px rgba(102, 163, 255, 0.25) !important;
-    transform: translateY(-2px) !important;
-  }
-
-  /* 文章页内层容器透明 */
-  #post.post > *,
-  #page.page > *,
-  #article-container,
-  .post-header,
-  .post-content,
-  .post-copyright,
-  .post-footer {
-    background: transparent !important;
-  }
-
-  #article-container {
-    padding: 1.5rem 1.8rem !important;
-  }
-
-  /* 首页文章信息区域 */
-  html body #recent-posts .recent-post-item .recent-post-info {
     flex: 1 !important;
     display: flex !important;
     flex-direction: column !important;
@@ -341,7 +280,53 @@
     font-size: 1.05rem !important;
   }
 
-  /* 分类/归档页面 */
+  /* ====================================== */
+  /* 模块3：侧边栏卡片 */
+  /* ====================================== */
+  html body #aside-content .card-widget {
+    border: 2px solid #c0d1eb !important;
+    background: rgba(180, 210, 255, 0.35) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 20px rgba(102, 163, 255, 0.15) !important;
+    transition: all 0.3s ease !important;
+    overflow: hidden !important;
+  }
+
+  /* ====================================== */
+  /* 模块4：文章详情页+独立页面 */
+  /* ====================================== */
+  html body #content-inner #post.post,
+  html body #content-inner #page.page {
+    border: 2px solid #c0d1eb !important;
+    background: rgba(180, 210, 255, 0.35) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 20px rgba(102, 163, 255, 0.15) !important;
+    transition: all 0.3s ease !important;
+    overflow: hidden !important;
+  }
+
+  /* 文章页内层容器透明 */
+  #post.post > *,
+  #page.page > *,
+  #article-container,
+  .post-header,
+  .post-content,
+  .post-copyright,
+  .post-footer {
+    background: transparent !important;
+  }
+
+  #article-container {
+    padding: 1.5rem 1.8rem !important;
+  }
+
+  /* ====================================== */
+  /* 模块5：分类/归档页面 */
+  /* ====================================== */
   html body #content-inner #category,
   html body #content-inner #archive {
     border: 2px solid #c0d1eb !important;
@@ -423,7 +408,6 @@
     opacity: 0.8;
   }
 
-  /* 分类/归档页面年份标题 */
   html body #category .article-sort-item.year,
   html body #archive .article-sort-item.year {
     font-size: 1.5rem !important;
@@ -434,7 +418,9 @@
     margin-bottom: 1.2rem !important;
   }
 
-  /* 自定义标题竖线、加粗变红样式（仅限文章内） */
+  /* ====================================== */
+  /* 模块6：自定义标题竖线、加粗变红样式 */
+  /* ====================================== */
   #article-container h1, 
   #article-container h2, 
   #article-container h3, 
@@ -485,36 +471,158 @@
     font-weight: 600 !important;
   }
 
-  /* 移动端适配 */
-  @media screen and (max-width: 768px) {
-    html body #recent-posts .recent-post-item {
-      flex-direction: column !important;
-      min-height: auto !important;
-    }
-    html body #recent-posts .recent-post-item .post_cover {
-      width: 100% !important;
-      height: 200px !important;
-      }
-    #article-container {
-      padding: 1rem 1.2rem !important;
-      }
-    html body #content-inner #category,
-    html body #content-inner #archive {
-      padding: 1rem 1.2rem !important;
-      }
+  /* ====================================== */
+  /* 模块7：底部版权页文字 */
+  /* ====================================== */
+  html body #footer {
+    background: rgba(180, 210, 255, 0.4) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border: 2px solid #c0d1eb !important;
+    border-radius: 0 !important;
+    box-shadow: 0 -4px 20px rgba(102, 163, 255, 0.15) !important;
+    padding: 1.5rem !important;
+    transition: all 0.3s ease !important;
   }
 
-  /* 黑暗模式适配 */
+  html body #footer,
+  html body #footer * {
+    color: #2c3e50 !important;
+  }
+
+  html body #footer a {
+    color: #0066cc !important;
+  }
+
+  /* ====================================== */
+  /* 模块8：搜索页面 毛玻璃风格全适配 */
+  /* ====================================== */
+  html body #content-inner #search-page {
+    border: 2px solid #c0d1eb !important;
+    background: rgba(180, 210, 255, 0.35) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 20px rgba(102, 163, 255, 0.15) !important;
+    padding: 1.5rem 2rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  html body #search-page .search-input {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    border: 2px solid #c0d1eb !important;
+    background: rgba(255, 255, 255, 0.85) !important;
+    border-radius: 8px !important;
+    padding: 0.8rem 1rem !important;
+    font-size: 1rem !important;
+    color: #2c3e50 !important;
+    margin-bottom: 1.5rem !important;
+    transition: all 0.3s ease !important;
+  }
+
+  html body #search-page .search-input:focus {
+    border-color: #4080ff !important;
+    box-shadow: 0 0 10px rgba(64, 128, 255, 0.3) !important;
+    outline: none !important;
+  }
+
+  html body #search-page .search-result-count {
+    color: #2c3e50 !important;
+    font-size: 0.95rem !important;
+    margin-bottom: 1rem !important;
+    opacity: 0.85 !important;
+  }
+
+  html body #search-page .search-result-list .search-result-item {
+    border-bottom: 1px dashed rgba(102, 163, 255, 0.3) !important;
+    padding: 1rem 0 !important;
+  }
+
+  html body #search-page .search-result-item .search-result-title {
+    color: #2c3e50 !important;
+    font-weight: 600 !important;
+    font-size: 1.2rem !important;
+    transition: all 0.3s ease !important;
+  }
+
+  html body #search-page .search-result-item .search-result-title:hover {
+    color: #4080ff !important;
+    padding-left: 0.5rem !important;
+  }
+
+  html body #search-page .search-result-item .search-result-content {
+    color: #555555 !important;
+    opacity: 0.85 !important;
+    font-size: 0.95rem !important;
+    margin-top: 0.5rem !important;
+    line-height: 1.6 !important;
+  }
+
+  html body #search-page .search-keyword {
+    color: #ff4d4f !important;
+    font-weight: 700 !important;
+  }
+
+  html body #search-page .search-no-result {
+    color: #555555 !important;
+    text-align: center !important;
+    padding: 2rem 0 !important;
+    font-size: 1rem !important;
+  }
+
+  /* ====================================== */
+  /* 模块9：全局悬浮效果统一 */
+  /* ====================================== */
+  html body #recent-posts .recent-post-item:hover,
+  html body #aside-content .card-widget:hover,
+  html body #content-inner #post.post:hover,
+  html body #content-inner #page.page:hover {
+    border-color: #4080ff !important;
+    background: rgba(180, 210, 255, 0.5) !important;
+    box-shadow: 0 0 16px rgba(64,128,255,0.6), 0 8px 30px rgba(102, 163, 255, 0.25) !important;
+    transform: translateY(-2px) !important;
+  }
+
+  /* ====================================== */
+  /* 模块10：强制停止设置齿轮旋转 */
+  /* ====================================== */
+  #rightside > div#setting > i.fas.fa-cog.fa-spin,
+  #rightside #setting i,
+  .rightside-content #setting i,
+  .fa-cog.fa-spin,
+  [class*="cog"],
+  [class*="spin"] {
+    animation: none !important;
+    -webkit-animation: none !important;
+    transition: none !important;
+    transform: rotate(0deg) !important;
+    pointer-events: auto !important;
+    opacity: 1 !important;
+  }
+
+  /* 禁用主题所有旋转动画 */
+  *[class*="fa-spin"], *[class*="rotate"] {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  /* ====================================== */
+  /* 模块11：黑暗模式适配 */
+  /* ====================================== */
+  /* 黑暗模式底层背景 */
   html[data-theme="dark"] #web_bg {
     background: #0d0d0d !important; 
   }
 
+  /* 黑暗模式-首页文章卡片毛玻璃 */
   html[data-theme="dark"] #recent-posts .recent-post-item {
     background: rgba(0, 30, 60, 0.85) !important;
     border-color: rgba(255, 255, 255, 0.1) !important;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35) !important;
   }
 
+  /* 黑暗模式悬浮蓝光 */
   html[data-theme="dark"] #recent-posts .recent-post-item:hover,
   html[data-theme="dark"] #aside-content .card-widget:hover,
   html[data-theme="dark"] #content-inner #post.post:hover,
@@ -524,6 +632,7 @@
     transform: translateY(-2px) !important;
   }
 
+  /* 黑暗模式-侧边栏卡片毛玻璃 */
   html[data-theme="dark"] #aside-content .card-widget {
     background: rgba(0, 30, 60, 0.85) !important;
     border-color: rgba(255, 255, 255, 0.1) !important;
@@ -531,6 +640,7 @@
     color: #e0e0e0 !important;
   }
 
+  /* 黑暗模式-文章详情页/独立页面 */
   html[data-theme="dark"] #content-inner #post.post,
   html[data-theme="dark"] #content-inner #page.page {
     background: rgba(0, 30, 60, 0.85) !important;
@@ -538,23 +648,23 @@
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35) !important;
   }
 
+  /* 黑暗模式-文字颜色统一变白/浅灰 */
   html[data-theme="dark"] #recent-posts .recent-post-item .recent-post-info .article-title,
   html[data-theme="dark"] #recent-posts .recent-post-item .recent-post-info .article-meta-wrap,
   html[data-theme="dark"] #recent-posts .recent-post-item .recent-post-info .article-meta-wrap a,
   html[data-theme="dark"] #recent-posts .recent-post-item .recent-post-info .content,
-  html[data-theme="dark"] #article-container h1, 
-  html[data-theme="dark"] #article-container h2, 
-  html[data-theme="dark"] #article-container h3, 
-  html[data-theme="dark"] #article-container h4, 
-  html[data-theme="dark"] #article-container h5, 
-  html[data-theme="dark"] #article-container h6 {
+  html[data-theme="dark"] h1, html[data-theme="dark"] h2, 
+  html[data-theme="dark"] h3, html[data-theme="dark"] h4, 
+  html[data-theme="dark"] h5, html[data-theme="dark"] h6 {
     color: #f0f0f0 !important;
   }
 
+  /* 标题hover保持高亮 */
   html[data-theme="dark"] #recent-posts .recent-post-item .recent-post-info .article-title:hover {
     color: #80b0ff !important;
   }
 
+  /* 黑暗模式-分类/归档页面适配 */
   html[data-theme="dark"] #content-inner #category,
   html[data-theme="dark"] #content-inner #archive {
     background: rgba(20, 20, 35, 0.7) !important;
@@ -575,32 +685,18 @@
     border-color: rgba(255, 255, 255, 0.1) !important;
   }
 
+  /* 黑暗模式-自定义标题竖线颜色微调 */
   html[data-theme="dark"] #article-container h1::before { background-color: #ff6b6b; }
   html[data-theme="dark"] #article-container h2::before { background-color: #ffa94d; }
   html[data-theme="dark"] #article-container h3::before { background-color: #4dabf7; }
   html[data-theme="dark"] #article-container h4::before { background-color: #b197fc; }
 
+  /* 黑暗模式-加粗文字颜色 */
   html[data-theme="dark"] strong {
     color: #ff8787 !important;
   }
 
-  /* 底部版权页文字 */
-  html body #footer {
-    background: rgba(180, 210, 255, 0.4) !important;
-    backdrop-filter: blur(10px) !important;
-    -webkit-backdrop-filter: blur(10px) !important;
-    border: 2px solid #c0d1eb !important;
-    border-radius: 0 !important;
-    box-shadow: 0 -4px 20px rgba(102, 163, 255, 0.15) !important;
-    padding: 1.5rem !important;
-    transition: all 0.3s ease !important;
-  }
-
-  html body #footer,
-  html body #footer * {
-    color: #2c3e50 !important;
-  }
-
+  /* 黑暗模式-底部版权页 */
   html[data-theme="dark"] body #footer {
     background: #0a1a2f !important;
     border-color: rgba(255, 255, 255, 0.1) !important;
@@ -613,75 +709,141 @@
     color: #f0f0f0 !important;
   }
 
-  html body #footer a {
-    color: #0066cc !important;
-  }
-
   html[data-theme="dark"] body #footer a {
     color: #80b0ff !important;
   }
 
-  /* 强制停止设置齿轮旋转 */
-  #rightside > div#setting > i.fas.fa-cog.fa-spin,
-  #rightside #setting i,
-  .rightside-content #setting i,
-  .fa-cog.fa-spin,
-  [class*="cog"],
-  [class*="spin"] {
-    animation: none !important;
-    -webkit-animation: none !important;
-    transition: none !important;
-    transform: rotate(0deg) !important;
-    pointer-events: auto !important;
-    opacity: 1 !important;
+  /* 黑暗模式-搜索页面适配 */
+  html[data-theme="dark"] body #content-inner #search-page {
+    background: rgba(0, 30, 60, 0.85) !important;
+    border-color: rgba(255, 255, 255, 0.15) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
   }
 
-  *[class*="fa-spin"], *[class*="rotate"] {
-    animation: none !important;
-    transform: none !important;
+  html[data-theme="dark"] body #search-page .search-input {
+    background: rgba(0, 30, 60, 0.9) !important;
+    border-color: rgba(255, 255, 255, 0.15) !important;
+    color: #f0f0f0 !important;
+  }
+
+  html[data-theme="dark"] body #search-page .search-result-count,
+  html[data-theme="dark"] body #search-page .search-result-item .search-result-title,
+  html[data-theme="dark"] body #search-page .search-no-result {
+    color: #f0f0f0 !important;
+  }
+
+  html[data-theme="dark"] body #search-page .search-result-item .search-result-content {
+    color: #cccccc !important;
   }
 
   /* ====================================== */
-  /* 【极简但有效】移动端按钮修复 */
+  /* 模块12：移动端适配 */
   /* ====================================== */
   @media screen and (max-width: 768px) {
-    /* 1. 强制重置按钮容器 */
-    html body #rightside {
-      position: fixed !important;
-      right: 10px !important;
-      bottom: 20px !important;
-      display: block !important;
-      width: auto !important;
+    /* 修复首页文章卡片布局错乱 */
+    html body #recent-posts .recent-post-item {
+      flex-direction: column !important;
+      min-height: auto !important;
       height: auto !important;
-      z-index: 99999 !important;
-    }
-
-    /* 2. 强制每个按钮单独一行，不挤在一起 */
-    html body #rightside > div {
-      display: block !important;
-      float: none !important;
-      clear: both !important;
-      width: 44px !important;
-      height: 44px !important;
-      line-height: 44px !important;
-      margin: 8px 0 !important;
       padding: 0 !important;
+      margin-bottom: 1.2rem !important;
+      }
+
+    /* 修复文章封面在移动端的显示 */
+    html body #recent-posts .recent-post-item .post_cover,
+    html body #recent-posts .recent-post-item .post_cover.right {
       position: relative !important;
-      top: auto !important;
-      left: auto !important;
+      width: 100% !important;
+      height: 180px !important;
+      max-height: 180px !important;
       right: auto !important;
-      bottom: auto !important;
-      transform: none !important;
+      top: auto !important;
+      border-radius: 8px 8px 0 0 !important;
+      }
+
+    html body #recent-posts .recent-post-item .post_cover img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
     }
 
-    /* 3. 强制图标居中 */
-    html body #rightside > div > i {
-      display: block !important;
-      text-align: center !important;
-      line-height: 44px !important;
-      margin: 0 !important;
-      padding: 0 !important;
+    /* 修复文章信息区域 */
+    html body #recent-posts .recent-post-item:has(.post_cover) .recent-post-info {
+      padding: 1.2rem !important;
+      padding-right: 1.2rem !important;
+      }
+
+    /* 修复移动端文字大小 */
+    html body #recent-posts .recent-post-item .recent-post-info .article-title {
+      font-size: 1.2rem !important;
+      }
+
+    html body #recent-posts .recent-post-item .recent-post-info .article-meta-wrap,
+    html body #recent-posts .recent-post-item .recent-post-info .content {
+      font-size: 0.95rem !important;
+      }
+
+    /* 优化移动端右侧悬浮按钮大小和间距 */
+    #rightside {
+      right: 10px !important;
+      bottom: 10px !important;
     }
+
+    #rightside > div {
+      width: 40px !important;
+      height: 40px !important;
+      line-height: 40px !important;
+      font-size: 18px !important;
+      margin: 5px 0 !important;
+      }
+
+    /* 修复文章详情页内边距，适配手机屏幕 */
+    #article-container {
+      padding: 1rem !important;
+    }
+
+    /* 修复分类/归档页移动端布局 */
+    html body #content-inner #category,
+    html body #content-inner #archive {
+      padding: 1rem !important;
+      margin: 0 0.5rem !important;
+      }
+
+    html body #category .article-sort-item-img,
+    html body #archive .article-sort-item-img {
+      width: 80px !important;
+      height: 60px !important;
+      margin-right: 0.8rem !important;
+      }
+
+    /*修复侧边栏移动端样式 */
+    html body #aside-content .card-widget {
+      margin: 0 0.5rem 1rem 0.5rem !important;
+      }
+
+    /* 搜索页面移动端适配 */
+    html body #content-inner #search-page {
+      padding: 1rem 1.2rem !important;
+      margin: 0 0.5rem 1rem 0.5rem !important;
+      }
+  }
+  
+/* 蓝色搜索高亮 + 闪烁动画（权重拉满） */
+  .search-highlight-flash {
+    color: #4080ff !important;
+    font-weight: 700 !important;
+    background: rgba(64, 128, 255, 0.15) !important;
+    padding: 0 4px !important;
+    border-radius: 3px !important;
+  }
+  /* 蓝色闪烁动画（只闪1次） */
+  .search-highlight-flash.flash {
+    animation: searchFlash 0.7s ease-in-out 1 !important;
+  }
+  @keyframes searchFlash {
+    0% { opacity: 1 !important; background: #4080ff !important; color:#fff !important; }
+    50% { opacity: 0.4 !important; }
+    100% { opacity: 1 !important; background: rgba(64, 128, 255, 0.15) !important; color:#4080ff !important; }
   }
 </style>
 <!-- hexo injector head_end start -->
@@ -699,223 +861,224 @@
     throwOnError: false,
     strict: false
   });"></script>
-  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.1"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/onionsnotebook.github.io/img/avatar.png" onerror="this.onerror=null;this.src='/onionsnotebook.github.io/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/onionsnotebook.github.io/archives/"><div class="headline">文章</div><div class="length-num">7</div></a><a href="/onionsnotebook.github.io/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/onionsnotebook.github.io/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/categories/%E5%A4%A7%E5%AD%A6%E5%9F%BA%E7%A1%80%E8%AF%BE%E7%A8%8B/"><i class="fa-fw fas fa-book"></i><span> 大学基础课程</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%BE%E7%A8%8B/"><i class="fa-fw fas fa-laptop-code"></i><span> 计算机课程</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/categories/%E5%85%B6%E4%BB%96/"><i class="fa-fw fas fa-ellipsis-h"></i><span> 其他</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/about/"><i class="fa-fw fas fa-user"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/onionsnotebook.github.io/img/background.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/onionsnotebook.github.io/"><span class="site-name">小洋葱的笔记本</span></a><a class="nav-page-title" href="/onionsnotebook.github.io/"><span class="site-name">Express框架笔记</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/categories/%E5%A4%A7%E5%AD%A6%E5%9F%BA%E7%A1%80%E8%AF%BE%E7%A8%8B/"><i class="fa-fw fas fa-book"></i><span> 大学基础课程</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%BE%E7%A8%8B/"><i class="fa-fw fas fa-laptop-code"></i><span> 计算机课程</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/categories/%E5%85%B6%E4%BB%96/"><i class="fa-fw fas fa-ellipsis-h"></i><span> 其他</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/about/"><i class="fa-fw fas fa-user"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Express框架笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-04-11T07:00:00.000Z" title="发表于 2026-04-11 15:00:00">2026-04-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-04-10T16:57:04.950Z" title="更新于 2026-04-11 00:57:04">2026-04-11</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/onionsnotebook.github.io/categories/%E5%A4%A7%E5%AD%A6%E5%9F%BA%E7%A1%80%E8%AF%BE%E7%A8%8B/">大学基础课程</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h4 id="前期基本准备"><a href="#前期基本准备" class="headerlink" title="前期基本准备"></a>前期基本准备</h4><ul>
-<li>新建文件夹，初始化项目</li>
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.1"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/search/"><i class="fa-fw fas fa-search"></i><span> 搜索</span></a></div><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/%E5%A4%A7%E5%AD%A6%E5%9F%BA%E7%A1%80%E8%AF%BE%E7%A8%8B/"><i class="fa-fw fas fa-book"></i><span> 大学基础课程</span></a></div><div class="menus_item"><a class="site-page" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%BE%E7%A8%8B/"><i class="fa-fw fas fa-laptop-code"></i><span> 计算机课程</span></a></div><div class="menus_item"><a class="site-page" href="/categories/%E5%85%B6%E4%BB%96/"><i class="fa-fw fas fa-ellipsis-h"></i><span> 其他</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/background.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/avatar.png" alt="Logo"><span class="site-name">小洋葱的笔记本</span></a><a class="nav-page-title" href="/"><span class="site-name">Express框架笔记</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/search/"><i class="fa-fw fas fa-search"></i><span> 搜索</span></a></div><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/%E5%A4%A7%E5%AD%A6%E5%9F%BA%E7%A1%80%E8%AF%BE%E7%A8%8B/"><i class="fa-fw fas fa-book"></i><span> 大学基础课程</span></a></div><div class="menus_item"><a class="site-page" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%BE%E7%A8%8B/"><i class="fa-fw fas fa-laptop-code"></i><span> 计算机课程</span></a></div><div class="menus_item"><a class="site-page" href="/categories/%E5%85%B6%E4%BB%96/"><i class="fa-fw fas fa-ellipsis-h"></i><span> 其他</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Express框架笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-04-11T07:00:00.000Z" title="发表于 2026-04-11 15:00:00">2026-04-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-04-10T17:01:07.949Z" title="更新于 2026-04-11 01:01:07">2026-04-11</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%A4%A7%E5%AD%A6%E5%9F%BA%E7%A1%80%E8%AF%BE%E7%A8%8B/">大学基础课程</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h4 id="前期基本准备"><a href="#前期基本准备" class="headerlink" title="前期基本准备"></a>前期基本准备</h4><ul>
+<li>新建文件夹，初始化项目<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 初始化项目，生成package.<span class="property">json</span> </span><br><span class="line">npm init -y</span><br><span class="line"># 安装express </span><br><span class="line">npm install express</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 初始化项目，生成package.<span class="property">json</span> </span><br><span class="line">npm init -y</span><br><span class="line"># 安装express </span><br><span class="line">npm install express</span><br></pre></td></tr></table></figure>
 <hr>
-<h4 id="编程基本流程"><a href="#编程基本流程" class="headerlink" title="编程基本流程"></a>编程基本流程</h4><p><em><strong>很像一个店装修-开业-服务的过程</strong></em></p>
+<h4 id="编程基本流程"><a href="#编程基本流程" class="headerlink" title="编程基本流程"></a>编程基本流程</h4><p><strong><em>很像一个店装修-开业-服务的过程</em></strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">A( **准备操作** &lt;br&gt; **引入框架** &lt;br&gt;&lt;br&gt; 购买装修材料 ) --&gt; B( **请求和响应函数** &lt;br&gt; **中间件** &lt;br&gt;&lt;br&gt; 装修店铺 )</span><br><span class="line">B --&gt; C( **监听端口** &lt;br&gt;&lt;br&gt; 开张营业 )</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
 <hr>
 <h4 id="准备操作"><a href="#准备操作" class="headerlink" title="准备操作"></a>准备操作</h4><ol>
-<li><p><strong>引入Express框架</strong> <code>const 自定义框架名字 = require(&#39;express&#39;) //引入express框架   </code>const express &#x3D; require(‘express’)&#96;</p>
+<li><p><strong>引入Express框架</strong> <code>const 自定义框架名字 = require(&#39;express&#39;) //引入express框架</code>const express = require(‘express’)`</p>
 <ul>
 <li><code>require</code> 在<code>node.js</code>里面引入框架</li>
 <li><code>const</code> <code>js</code> 变量声明</li>
 </ul>
 </li>
-<li><p><strong>创建一个服务对象</strong>  <code>const 自定义服务对象名 = 自定义框架名字() //创造一个服务器对象叫做app  </code>const app &#x3D; express()&#96;</p>
+<li><p><strong>创建一个服务对象</strong>  <code>const 自定义服务对象名 = 自定义框架名字() //创造一个服务器对象叫做app</code>const app = express()`</p>
 </li>
 <li><p><strong>引入解析体</strong>  </p>
 <ul>
-<li><strong>基本格式</strong> ：<code>自定义服务对象名.use(express.解析体名(设置解析体内部参数));   </code>app.use(express.json());&#x2F;&#x2F;引入解析json的解析体&#96;</li>
+<li><strong>基本格式</strong> ：<code>自定义服务对象名.use(express.解析体名(设置解析体内部参数));</code>app.use(express.json());//引入解析json的解析体`</li>
 <li><strong>常见的解析体</strong><ul>
-<li><strong>解析表单数据</strong><code>express.urlencoded()</code><br> <code>app.use(express.urlencoded(&#123; extended: true &#125;));</code><br> <strong><code>extended</code> 参数</strong>：<br> - <code>true</code>：使用 <code>qs</code> 库解析，支持嵌套对象（如 <code>user[name]=Tom</code>）。<br> - <code>false</code>：使用 Node 原生 <code>querystring</code> 库，仅支持简单键值对。</li>
-<li><strong>解析json数据</strong> ：&#96;app.use(express.json());</li>
-<li><strong>解析二进制数据</strong>：<code>express.raw()</code><br>  <code>// 解析二进制数据（默认仅处理 application/octet-stream 类型） </code> <code>app.use(express.raw(&#123; type: &#39;application/octet-stream&#39; &#125;));</code></li>
-<li><strong>解析纯文本</strong>  <code>express.text()</code><br>  <code>// 解析纯文本数据（默认仅处理 text/plain 类型）``   </code>app.use(express.text({ type: ‘text&#x2F;plain’ }));&#96;</li>
+<li><strong>解析表单数据</strong><code>express.urlencoded()</code><br> <code>app.use(express.urlencoded(&#123; extended: true &#125;));</code><br> <strong><code>extended</code> 参数</strong>：<pre><code> - `true`：使用 `qs` 库解析，支持嵌套对象（如 `user[name]=Tom`）。
+ - `false`：使用 Node 原生 `querystring` 库，仅支持简单键值对。
+</code></pre></li>
+<li><strong>解析json数据</strong> ：`app.use(express.json());</li>
+<li><strong>解析二进制数据</strong>：<code>express.raw()</code><br>  <code>// 解析二进制数据（默认仅处理 application/octet-stream 类型）</code> <code>app.use(express.raw(&#123; type: &#39;application/octet-stream&#39; &#125;));</code></li>
+<li><strong>解析纯文本</strong>  <code>express.text()</code><br>  <code>// 解析纯文本数据（默认仅处理 text/plain 类型）``
+</code>app.use(express.text({ type: ‘text/plain’ }));`</li>
 </ul>
 </li>
 </ul>
 </li>
 </ol>
-<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h4 id="请求和响应函数"><a href="#请求和响应函数" class="headerlink" title="请求和响应函数"></a>请求和响应函数</h4><ol>
-<li><strong>基本的响应和请求函数格式</strong></li>
-</ol>
+<h3 id=""><a href="#" class="headerlink" title=" "></a> </h3><h4 id="请求和响应函数"><a href="#请求和响应函数" class="headerlink" title="请求和响应函数"></a>请求和响应函数</h4><ol>
+<li><p><strong>基本的响应和请求函数格式</strong></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">自定义主服务对象名.响应请求的方法(<span class="string">&#x27;/网址请求路径（路由）&#x27;</span>, <span class="keyword">function</span> (<span class="params">req, res</span>) &#123;</span><br><span class="line">   我是代码</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li><strong>响应请求的方法</strong></li>
+</li>
+<li><p><strong>响应请求的方法</strong></p>
+</li>
 </ol>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">方法</th>
-<th align="center">作用</th>
+<th style="text-align:center">方法</th>
+<th style="text-align:center">作用</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center"><code>get()</code></td>
-<td align="center">获取接受的数据</td>
+<tbody>
+<tr>
+<td style="text-align:center"><code>get()</code></td>
+<td style="text-align:center">获取接受的数据</td>
 </tr>
 <tr>
-<td align="center"><code>post()</code></td>
-<td align="center">发送处理后的数据</td>
+<td style="text-align:center"><code>post()</code></td>
+<td style="text-align:center">发送处理后的数据</td>
 </tr>
 <tr>
-<td align="center"><code>put()</code></td>
-<td align="center">修改&#x2F;更新数据</td>
+<td style="text-align:center"><code>put()</code></td>
+<td style="text-align:center">修改/更新数据</td>
 </tr>
 <tr>
-<td align="center"><code>detele()</code></td>
-<td align="center">删除数据</td>
+<td style="text-align:center"><code>detele()</code></td>
+<td style="text-align:center">删除数据</td>
 </tr>
 <tr>
-<td align="center"><code>ues()</code></td>
-<td align="center">公用的方法</td>
+<td style="text-align:center"><code>ues()</code></td>
+<td style="text-align:center">公用的方法</td>
 </tr>
-<tr>
-<td align="center">3. <strong>接收和请求方法</strong></td>
-<td align="center"></td>
-</tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
+<ol>
+<li><strong>接收和请求方法</strong></li>
+</ol>
 <ul>
 <li><strong>接收的方法</strong> <code>req</code></li>
 </ul>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">方法</th>
-<th align="center">作用</th>
-<th align="center">举例</th>
+<th style="text-align:center">方法</th>
+<th style="text-align:center">作用</th>
+<th style="text-align:center">举例</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center"><code>req.query</code></td>
-<td align="center">获取 URL 问号<code>?</code>后的查询参数</td>
-<td align="center"><code>console.log(req.query)</code></td>
+<tbody>
+<tr>
+<td style="text-align:center"><code>req.query</code></td>
+<td style="text-align:center">获取 URL 问号<code>?</code>后的查询参数</td>
+<td style="text-align:center"><code>console.log(req.query)</code></td>
 </tr>
 <tr>
-<td align="center"><code>req.params</code></td>
-<td align="center">获取路由的动态参数<br> (指定ID的之u按查询)</td>
-<td align="center"><code>console.log(req.params)</code></td>
+<td style="text-align:center"><code>req.params</code></td>
+<td style="text-align:center">获取路由的动态参数<br> (指定ID的之u按查询)</td>
+<td style="text-align:center"><code>console.log(req.params)</code></td>
 </tr>
 <tr>
-<td align="center"><code>req.body</code></td>
-<td align="center">获取前端提交的表单、<code>Json</code> 等参数</td>
-<td align="center"><code>console.log(req.body)</code></td>
+<td style="text-align:center"><code>req.body</code></td>
+<td style="text-align:center">获取前端提交的表单、<code>Json</code> 等参数</td>
+<td style="text-align:center"><code>console.log(req.body)</code></td>
 </tr>
 <tr>
-<td align="center"><code>req.cookies</code></td>
-<td align="center">获取前端的<code>cookies</code></td>
-<td align="center">—</td>
+<td style="text-align:center"><code>req.cookies</code></td>
+<td style="text-align:center">获取前端的<code>cookies</code></td>
+<td style="text-align:center">—-</td>
 </tr>
 <tr>
-<td align="center"><code>req.get()</code></td>
-<td align="center">获取指定的<code>http</code>请求头</td>
-<td align="center"><code>const token = req.get(&#39;Authorization&#39;) // 拿用户的浏览器/设备信息 </code><br><code>const ua = req.get(&#39;User-Agent&#39;)</code></td>
+<td style="text-align:center"><code>req.get()</code></td>
+<td style="text-align:center">获取指定的<code>http</code>请求头</td>
+<td style="text-align:center"><code>const token = req.get(&#39;Authorization&#39;) // 拿用户的浏览器/设备信息</code><br><code>const ua = req.get(&#39;User-Agent&#39;)</code></td>
 </tr>
 <tr>
-<td align="center"><code>req.ip</code></td>
-<td align="center">获取访问者的<code>IP</code></td>
-<td align="center">—-</td>
+<td style="text-align:center"><code>req.ip</code></td>
+<td style="text-align:center">获取访问者的<code>IP</code></td>
+<td style="text-align:center">——</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <ul>
 <li><strong>发送的方法<code>res</code></strong></li>
 </ul>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">方法</th>
-<th align="center">作用</th>
-<th align="center">举例</th>
+<th style="text-align:center">方法</th>
+<th style="text-align:center">作用</th>
+<th style="text-align:center">举例</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center"><code>res.send (&#39; 内容 &#39;)</code></td>
-<td align="center">给前端发送东西（文字）</td>
-<td align="center"><code>res.send(&#39;你好&#39;)</code><br><code> res.send(&#39;&lt;h1&gt;我是标题&lt;/h1&gt;&#39;)</code></td>
+<tbody>
+<tr>
+<td style="text-align:center"><code>res.send (&#39; 内容 &#39;)</code></td>
+<td style="text-align:center">给前端发送东西（文字）</td>
+<td style="text-align:center"><code>res.send(&#39;你好&#39;)</code><br><code>res.send(&#39;&lt;h1&gt;我是标题&lt;/h1&gt;&#39;)</code></td>
 </tr>
 <tr>
-<td align="center"><code>res.json(&#123; ... &#125;)</code></td>
-<td align="center">给前端发送<code>json</code>(作为接口)</td>
-<td align="center"><code>res.json(&#123; name: &quot;张三&quot;, age: 20 &#125;)</code></td>
+<td style="text-align:center"><code>res.json(&#123; ... &#125;)</code></td>
+<td style="text-align:center">给前端发送<code>json</code>(作为接口)</td>
+<td style="text-align:center"><code>res.json(&#123; name: &quot;张三&quot;, age: 20 &#125;)</code></td>
 </tr>
 <tr>
-<td align="center"><code>res.redirect (&#39;/ 地址 &#39;)</code></td>
-<td align="center">跳转到另一个地址</td>
-<td align="center"><code>res.redirect(&#39;/home&#39;)</code></td>
+<td style="text-align:center"><code>res.redirect (&#39;/ 地址 &#39;)</code></td>
+<td style="text-align:center">跳转到另一个地址</td>
+<td style="text-align:center"><code>res.redirect(&#39;/home&#39;)</code></td>
 </tr>
 <tr>
-<td align="center"><code>res.status(200)</code></td>
-<td align="center">设置返回代码</td>
-<td align="center"><code>res.status(404).send(&#39;页面不存在&#39;)</code></td>
+<td style="text-align:center"><code>res.status(200)</code></td>
+<td style="text-align:center">设置返回代码</td>
+<td style="text-align:center"><code>res.status(404).send(&#39;页面不存在&#39;)</code></td>
 </tr>
 <tr>
-<td align="center"><code>res.cookie() / res.clearCookie()</code></td>
-<td align="center">删除浏览器储存的<code>cookie</code></td>
-<td align="center">—-</td>
+<td style="text-align:center"><code>res.cookie() / res.clearCookie()</code></td>
+<td style="text-align:center">删除浏览器储存的<code>cookie</code></td>
+<td style="text-align:center">——</td>
 </tr>
 <tr>
-<td align="center"><code>res.download()</code></td>
-<td align="center">给前端下载文件</td>
-<td align="center"></td>
+<td style="text-align:center"><code>res.download()</code></td>
+<td style="text-align:center">给前端下载文件</td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
-<td align="center"><code>res.sendFile()</code></td>
-<td align="center">给前端发送一个文件</td>
-<td align="center"></td>
+<td style="text-align:center"><code>res.sendFile()</code></td>
+<td style="text-align:center">给前端发送一个文件</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <hr>
 <h4 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h4><ul>
-<li><strong>概念</strong> ：类似于一个检查站，啥东西都要从我这里过</li>
-</ul>
-<h6 id="静态文件管理-express-static"><a href="#静态文件管理-express-static" class="headerlink" title="静态文件管理 express.static"></a>静态文件管理 <code>express.static</code></h6><ul>
+<li><strong>概念</strong> ：类似于一个检查站，啥东西都要从我这里过<h6 id="静态文件管理-express-static"><a href="#静态文件管理-express-static" class="headerlink" title="静态文件管理 express.static"></a>静态文件管理 <code>express.static</code></h6></li>
 <li><strong>中间键注册</strong><br>  <code>自定义服务对象名.use(&#39;访问前缀&#39;, express.static(&#39;静态对象的文件夹名&#39;));</code><br>  <code>app.use(&#39;/public&#39;, express.static(&#39;public&#39;));</code><ul>
 <li><code>express.static</code> <code>express</code> 框架内置函数</li>
 </ul>
 </li>
-<li>后续网页就可以使用静态文件了（图片、CSS）</li>
+<li>后续网页就可以使用静态文件了（图片、CSS） <h6 id="路由模块化-express-Router"><a href="#路由模块化-express-Router" class="headerlink" title="路由模块化 express.Router()"></a>路由模块化 <code>express.Router()</code></h6></li>
 </ul>
-<h6 id="路由模块化-express-Router"><a href="#路由模块化-express-Router" class="headerlink" title="路由模块化 express.Router()"></a>路由模块化 <code>express.Router()</code></h6><ol>
+<ol>
 <li><strong>概念</strong> :</li>
 </ol>
 <ul>
-<li><strong>路由</strong>：前面<code>自定义主服务对象名.响应请求的方法(&#39;/&#39;)</code> 的<code>&#39;&#39;</code>里面的内容，相当于网址&#x2F;路径</li>
+<li><strong>路由</strong>：前面<code>自定义主服务对象名.响应请求的方法(&#39;/&#39;)</code> 的<code>&#39;&#39;</code>里面的内容，相当于网址/路径</li>
 <li><strong>路由模块化</strong>：将不同的服务拆分，由一个主服务分流到其他下属服务的方法</li>
 </ul>
-<ol start="2">
-<li><strong>目录结构</strong></li>
-</ol>
+<ol>
+<li><p><strong>目录结构</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">express-router-demo/   </span><br><span class="line">├── node_modules/       # 自动生成的依赖包(不用管)</span><br><span class="line">├── package.json        # 自动生成的项目配置</span><br><span class="line">├── app.js              # 【主入口文件】：启动服务、挂载路由的总文件 （文件名可自定义）</span><br><span class="line">└── routes/             # 【路由文件夹】：专门放所有拆分的路由文件</span><br><span class="line">    ├── user.js         # (分路由1）用户业务路由：登录、注册、用户信息 （文件名可自定义）</span><br><span class="line">    ├── article.js      # (分路由2）文章业务路由：文章的增删改查</span><br><span class="line">    └── admin.js        # (分路由3）后台管理路由：后台相关接口</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li><strong>主路由的写法</strong> <code>app.js</code></li>
+</li>
+<li><p><strong>主路由的写法</strong> <code>app.js</code></p>
+</li>
 </ol>
 <ul>
 <li>（前面不动）<strong>导入分路由的拆分文件</strong> ： <code>自定义主服务对象名.use(&#39;/分路由拆分请求名&#39;, 分路由拆分服务名);</code></li>
-<li><strong>导入主路由</strong> ：</li>
+<li><strong>导入主路由</strong> ：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">`自定义主服务对象名.get(&#x27;/(这里是根目录的请求，没有子目录)&#x27;, (req, res) =&gt; &#123;</span></span><br><span class="line"><span class="string">  res.send(&#x27;服务器启动成功！路由模块化demo&#x27;);</span></span><br><span class="line"><span class="string">&#125;);</span></span><br></pre></td></tr></table></figure></li>
+<li><strong>示例</strong><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//---------------------准备操作---------------------</span></span><br><span class="line"><span class="comment">// 引入express</span></span><br><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建主app实例</span></span><br><span class="line"><span class="keyword">const</span> app = <span class="title function_">express</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 解析请求体 (必须写在挂载路由之前)</span></span><br><span class="line">app.<span class="title function_">use</span>(express.<span class="title function_">json</span>());</span><br><span class="line">app.<span class="title function_">use</span>(express.<span class="title function_">urlencoded</span>(&#123; <span class="attr">extended</span>: <span class="literal">true</span> &#125;));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//---------------------各种中间间（开始拆分）---------------------</span></span><br><span class="line"><span class="comment">// 引入我们拆分的路由文件</span></span><br><span class="line"><span class="keyword">const</span> userRouter = <span class="built_in">require</span>(<span class="string">&#x27;./routes/user&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> articleRouter = <span class="built_in">require</span>(<span class="string">&#x27;./routes/article&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> adminRouter = <span class="built_in">require</span>(<span class="string">&#x27;./routes/admin&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 【核心步骤】挂载路由到主app上</span></span><br><span class="line"><span class="comment">// 意思：所有以 /user 开头的请求，都交给 userRouter 处理</span></span><br><span class="line">app.<span class="title function_">use</span>(<span class="string">&#x27;/user&#x27;</span>, userRouter);</span><br><span class="line"><span class="comment">// 所有以 /article 开头的请求，都交给 articleRouter 处理</span></span><br><span class="line">app.<span class="title function_">use</span>(<span class="string">&#x27;/article&#x27;</span>, articleRouter);</span><br><span class="line"><span class="comment">// 所有以 /admin 开头的请求，都交给 adminRouter 处理</span></span><br><span class="line">app.<span class="title function_">use</span>(<span class="string">&#x27;/admin&#x27;</span>, adminRouter);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 首页路由（可以直接写在主文件里）</span></span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  res.<span class="title function_">send</span>(<span class="string">&#x27;服务器启动成功！路由模块化demo&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 6. 404处理（必须放在所有路由的最后面）</span></span><br><span class="line">app.<span class="title function_">use</span>(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  res.<span class="title function_">status</span>(<span class="number">404</span>).<span class="title function_">send</span>(<span class="string">&#x27;你访问的接口不存在&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//---------------------监听端口（开始营业）---------------------</span></span><br><span class="line"><span class="comment">// 启动服务器，监听3000端口</span></span><br><span class="line">app.<span class="title function_">listen</span>(<span class="number">3000</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;✅ 服务器启动成功！&#x27;</span>);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;🌐 首页地址：http://localhost:3000&#x27;</span>);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;📌 用户接口示例：http://localhost:3000/user/info&#x27;</span>);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;📌 文章接口示例：http://localhost:3000/article/list&#x27;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">`自定义主服务对象名.get(&#x27;/(这里是根目录的请求，没有子目录)&#x27;, (req, res) =&gt; &#123;</span></span><br><span class="line"><span class="string">  res.send(&#x27;服务器启动成功！路由模块化demo&#x27;);</span></span><br><span class="line"><span class="string">&#125;);</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li><strong>示例</strong></li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//---------------------准备操作---------------------</span></span><br><span class="line"><span class="comment">// 引入express</span></span><br><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建主app实例</span></span><br><span class="line"><span class="keyword">const</span> app = <span class="title function_">express</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 解析请求体 (必须写在挂载路由之前)</span></span><br><span class="line">app.<span class="title function_">use</span>(express.<span class="title function_">json</span>());</span><br><span class="line">app.<span class="title function_">use</span>(express.<span class="title function_">urlencoded</span>(&#123; <span class="attr">extended</span>: <span class="literal">true</span> &#125;));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//---------------------各种中间间（开始拆分）---------------------</span></span><br><span class="line"><span class="comment">// 引入我们拆分的路由文件</span></span><br><span class="line"><span class="keyword">const</span> userRouter = <span class="built_in">require</span>(<span class="string">&#x27;./routes/user&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> articleRouter = <span class="built_in">require</span>(<span class="string">&#x27;./routes/article&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> adminRouter = <span class="built_in">require</span>(<span class="string">&#x27;./routes/admin&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 【核心步骤】挂载路由到主app上</span></span><br><span class="line"><span class="comment">// 意思：所有以 /user 开头的请求，都交给 userRouter 处理</span></span><br><span class="line">app.<span class="title function_">use</span>(<span class="string">&#x27;/user&#x27;</span>, userRouter);</span><br><span class="line"><span class="comment">// 所有以 /article 开头的请求，都交给 articleRouter 处理</span></span><br><span class="line">app.<span class="title function_">use</span>(<span class="string">&#x27;/article&#x27;</span>, articleRouter);</span><br><span class="line"><span class="comment">// 所有以 /admin 开头的请求，都交给 adminRouter 处理</span></span><br><span class="line">app.<span class="title function_">use</span>(<span class="string">&#x27;/admin&#x27;</span>, adminRouter);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 首页路由（可以直接写在主文件里）</span></span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  res.<span class="title function_">send</span>(<span class="string">&#x27;服务器启动成功！路由模块化demo&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 6. 404处理（必须放在所有路由的最后面）</span></span><br><span class="line">app.<span class="title function_">use</span>(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  res.<span class="title function_">status</span>(<span class="number">404</span>).<span class="title function_">send</span>(<span class="string">&#x27;你访问的接口不存在&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//---------------------监听端口（开始营业）---------------------</span></span><br><span class="line"><span class="comment">// 启动服务器，监听3000端口</span></span><br><span class="line">app.<span class="title function_">listen</span>(<span class="number">3000</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;✅ 服务器启动成功！&#x27;</span>);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;🌐 首页地址：http://localhost:3000&#x27;</span>);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;📌 用户接口示例：http://localhost:3000/user/info&#x27;</span>);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;📌 文章接口示例：http://localhost:3000/article/list&#x27;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
+<ol>
 <li><strong>分路由的写法</strong> <code>XXX.js</code></li>
 </ol>
 <ul>
-<li><strong>写法</strong> ：<br>  将<code>自定义服务名</code>更改为<code>router</code> （不可更改）其他不变<br>  导出路由对象： <code>module.exports = router; </code> 将分服务返回链接主服务</li>
+<li><strong>写法</strong> ：<br>  将<code>自定义服务名</code>更改为<code>router</code> （不可更改）其他不变<br>  导出路由对象： <code>module.exports = router;</code> 将分服务返回链接主服务</li>
 <li><strong>路径的处理</strong> ：路径会变成<code>/主路由服务名/分路由服务名/分路由请求</code></li>
-<li><strong>示例</strong></li>
+<li><strong>示例</strong><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//-------------像主路由一样导入必要的框架----------</span></span><br><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> router = express.<span class="title class_">Router</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 接口地址：最终拼接成 /article/list</span></span><br><span class="line">router.<span class="title function_">get</span>(<span class="string">&#x27;/list&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  res.<span class="title function_">json</span>(&#123;</span><br><span class="line">    <span class="attr">code</span>: <span class="number">200</span>,</span><br><span class="line">    <span class="attr">data</span>: [</span><br><span class="line">      &#123; <span class="attr">id</span>: <span class="number">1</span>, <span class="attr">title</span>: <span class="string">&#x27;Express入门教程&#x27;</span>, <span class="attr">content</span>: <span class="string">&#x27;路由模块化&#x27;</span> &#125;,</span><br><span class="line">      &#123; <span class="attr">id</span>: <span class="number">2</span>, <span class="attr">title</span>: <span class="string">&#x27;Node.js基础&#x27;</span>, <span class="attr">content</span>: <span class="string">&#x27;req和res&#x27;</span> &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 接口地址：最终拼接成 /article/detail/123</span></span><br><span class="line">router.<span class="title function_">get</span>(<span class="string">&#x27;/detail/:id&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  res.<span class="title function_">send</span>(<span class="string">`文章ID：<span class="subst">$&#123;req.params.id&#125;</span> 的详情页`</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 接口地址：最终拼接成 /article/add</span></span><br><span class="line">router.<span class="title function_">post</span>(<span class="string">&#x27;/add&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  res.<span class="title function_">send</span>(<span class="string">&#x27;新增文章成功&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = router; <span class="comment">//导出路由对象（必不可少）</span></span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//-------------像主路由一样导入必要的框架----------</span></span><br><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> router = express.<span class="title class_">Router</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 接口地址：最终拼接成 /article/list</span></span><br><span class="line">router.<span class="title function_">get</span>(<span class="string">&#x27;/list&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  res.<span class="title function_">json</span>(&#123;</span><br><span class="line">    <span class="attr">code</span>: <span class="number">200</span>,</span><br><span class="line">    <span class="attr">data</span>: [</span><br><span class="line">      &#123; <span class="attr">id</span>: <span class="number">1</span>, <span class="attr">title</span>: <span class="string">&#x27;Express入门教程&#x27;</span>, <span class="attr">content</span>: <span class="string">&#x27;路由模块化&#x27;</span> &#125;,</span><br><span class="line">      &#123; <span class="attr">id</span>: <span class="number">2</span>, <span class="attr">title</span>: <span class="string">&#x27;Node.js基础&#x27;</span>, <span class="attr">content</span>: <span class="string">&#x27;req和res&#x27;</span> &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 接口地址：最终拼接成 /article/detail/123</span></span><br><span class="line">router.<span class="title function_">get</span>(<span class="string">&#x27;/detail/:id&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  res.<span class="title function_">send</span>(<span class="string">`文章ID：<span class="subst">$&#123;req.params.id&#125;</span> 的详情页`</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 接口地址：最终拼接成 /article/add</span></span><br><span class="line">router.<span class="title function_">post</span>(<span class="string">&#x27;/add&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  res.<span class="title function_">send</span>(<span class="string">&#x27;新增文章成功&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = router; <span class="comment">//导出路由对象（必不可少）</span></span><br></pre></td></tr></table></figure>
-
 <div class="note success flat"><p>分路由像主路由一样是一个独立小服务，可以有自己的中间件和业务逻辑</p>
 <h4 id="监听函数"><a href="#监听函数" class="headerlink" title="监听函数"></a>监听函数</h4><ol>
-<li><strong>监听函数写法</strong></li>
+<li><strong>监听函数写法</strong><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app.<span class="title function_">listen</span>(监听端口号,主机名, <span class="function">() =&gt;</span> &#123; </span><br><span class="line">	我是代码;<span class="comment">//回调函数</span></span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure></li>
 </ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app.<span class="title function_">listen</span>(监听端口号,主机名, <span class="function">() =&gt;</span> &#123; </span><br><span class="line">	我是代码;<span class="comment">//回调函数</span></span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure>
 <ul>
 <li><strong>监听端口号</strong> 相当于门牌号，请求要去那个门牌号才可以进行<br>  <strong>范围</strong> ：<code>0-65535</code> <code>1024-49151</code>（推荐）</li>
 <li><strong>主机名（IP)</strong> 相当于地址 ,请求要去正确的地址才能办事</li>
 </ul>
 </div>
-
 <hr>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://onion383.github.io">无聊的小洋葱</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://onion383.github.io/2026/04/11/Express%20%E6%A1%86%E6%9E%B6%E7%AC%94%E8%AE%B0/">https://onion383.github.io/2026/04/11/Express%20%E6%A1%86%E6%9E%B6%E7%AC%94%E8%AE%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://onion383.github.io" target="_blank">小洋葱的笔记本</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/onionsnotebook.github.io/tags/%E5%A4%A7%E5%AD%A6/">大学</a><a class="post-meta__tags" href="/onionsnotebook.github.io/tags/%E5%90%8E%E7%AB%AF/">后端</a><a class="post-meta__tags" href="/onionsnotebook.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a></div><div class="post-share"><div class="social-share" data-image="/onionsnotebook.github.io/img/avatar.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/onionsnotebook.github.io/2026/03/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0/" title="数据结构笔记"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">数据结构笔记</div></div><div class="info-2"><div class="info-item-1">先导课考核要求   考核方法 评价标准 权重（%）    期中考试 参考答案及评分标准 13   平时作业 独立按时完成作业，根据作业参考答案评定成绩。 12   实验报告 能够分析问题，设计算法，独立实现程序，运行结果正确，按照要求完成实验报告。实验报告须有详细的设计说明和代码注释，根据实验报告规范性和完成质量评定成绩。 15   闭卷 参考答案及评分标准 60     第一章 概论1.1 数据结构概述数据结构的概念 基础概念   数据：计算机可识别、存储和加工的信息载体  文字、表格、图像等  *数据的组成（从大到小） 数据项：具有独立意义的不可分割最小单位 学生记录中的“姓名”字段 数据元素：数据的基本单位，作为整体处理  如学生记录 数据对象：相同类型数据元素的集合。   数据结构组成：   数据逻辑结构：从逻辑关系描述数据 数据存储结构：逻辑结构在储存（映像）。 数据运算：对数据施加的操作（检索、插入、删除等）。  数据结构的组成1.数据逻辑结构 常见的逻辑  集合：元素同属一个集合，无其他关系。 线性结构：元素间一对一关系  如学生成绩表 树形结构：元素间一对多关系 ...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/onionsnotebook.github.io/2026/03/24/Markdown%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" title="Markdown极简使用方法"><img class="cover" src="/onionsnotebook.github.io/img/postbackground/Markdown%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B%E8%83%8C%E6%99%AF%E5%9B%BE.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-24</div><div class="info-item-2">Markdown极简使用方法</div></div><div class="info-2"><div class="info-item-1">Markdown使用方法 该笔记内容主要适用于Obsidian笔记软件，其他Markdown笔记软件的写法可能会有细微的差别。 该笔记在说明格式的符号后会有显示效果，方便看到显示效果。       目录Markdown介绍Markdown基本用法Mermaid 图表拓展：Markdown数学公式拓展：Markdown简单的化学式 Markdown介绍 Markdown是一种轻量化标记语言，它旨在通过一些简单的符号来快速排版文本，减少频繁设置格式的情况来提升写作的专注度，非常适合作为笔记格式使用。 Markdown的文件拓展名为.md 在输入符号时，都需要切换到英文符号输入。   Markdown基本用法行内排版 斜体 *我是示例* 我是示例 粗体 **我是示例**  我是示例 删除线 ~~我是示例~~  我是示例 斜体+粗体 ***我是示例***   我是示例 标黄 &lt;mark style=&quot;background-color: rgba(255, 235, 59, 0.4); padding: 0 3px; border-radius: 2px;&quot;&gt...</div></div></div></a><a class="pagination-related" href="/onionsnotebook.github.io/2026/03/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0/" title="数据结构笔记"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-26</div><div class="info-item-2">数据结构笔记</div></div><div class="info-2"><div class="info-item-1">先导课考核要求   考核方法 评价标准 权重（%）    期中考试 参考答案及评分标准 13   平时作业 独立按时完成作业，根据作业参考答案评定成绩。 12   实验报告 能够分析问题，设计算法，独立实现程序，运行结果正确，按照要求完成实验报告。实验报告须有详细的设计说明和代码注释，根据实验报告规范性和完成质量评定成绩。 15   闭卷 参考答案及评分标准 60     第一章 概论1.1 数据结构概述数据结构的概念 基础概念   数据：计算机可识别、存储和加工的信息载体  文字、表格、图像等  *数据的组成（从大到小） 数据项：具有独立意义的不可分割最小单位 学生记录中的“姓名”字段 数据元素：数据的基本单位，作为整体处理  如学生记录 数据对象：相同类型数据元素的集合。   数据结构组成：   数据逻辑结构：从逻辑关系描述数据 数据存储结构：逻辑结构在储存（映像）。 数据运算：对数据施加的操作（检索、插入、删除等）。  数据结构的组成1.数据逻辑结构 常见的逻辑  集合：元素同属一个集合，无其他关系。 线性结构：元素间一对一关系  如学生成绩表 树形结构：元素间一对多关系 ...</div></div></div></a><a class="pagination-related" href="/onionsnotebook.github.io/2026/03/24/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B0/" title="高等数学笔记"><img class="cover" src="/onionsnotebook.github.io/img/postbackground/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B0%E8%83%8C%E6%99%AF%E5%9B%BE.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-24</div><div class="info-item-2">高等数学笔记</div></div><div class="info-2"><div class="info-item-1">考核标准   考核项目 分值(%) 备注    平时作业 20 迟交分数最高为69   期中考试 15    思政考核 5    期末考试 60 分数要大于45,否则成绩无效    第八章 向量代数与空间几何第一节 向量及其线性运算向量的基础概念1.各种向量 向量 ： 大小+方向 自由向量 ：方向可改变 相等向量 ：大小方向相同 单位向量 ：模长为1 零向量 ：模长为0 方向任意 共面向量 ：共起点  2. 向量的夹角 范围 $0\leq x\leq\pi$ 共线向量 夹角为 0 或者$\pi$   向量的运算1. 运算 加法 ：三角形法则 首尾相接 $\overrightarrow{AB}+\overrightarrow{BC}=\overrightarrow{AC}$  平行四边形法则 同起点，以两向量为邻边作平行四边形，对角线为和 减法 ：三角形逆法则  $\overrightarrow{AB}-\overrightarrow{AC}=\overrightarrow{CB}$ 数乘运算 结果为向量 模直接相乘，符号与方向有关    模 $|\lambda\vec{a}|=|...</div></div></div></a><a class="pagination-related" href="/onionsnotebook.github.io/2026/03/24/HTML%E8%AF%AD%E8%A8%80%E7%AC%94%E8%AE%B0/" title="HTML语言笔记"><img class="cover" src="/onionsnotebook.github.io/img/postbackground/HTML%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B%E8%83%8C%E6%99%AF%E5%9B%BE.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-24</div><div class="info-item-2">HTML语言笔记</div></div><div class="info-2"><div class="info-item-1">HTML语言笔记 HTML内容繁杂且细碎，这里只是列举常见的内容 Markdown也支持部分网页效果，该笔记在说明格式的符号后会有显示效果，方便看到显示效果。     目录HTML介绍HTML(5)基本组成HTML元素HTML5新元素（简要介绍）HTML CSS （简要介绍)HTML里的JavaScript （简要介绍) HTML介绍 当你在浏览器的网页右键打开检查时，你会不会好奇网页是什么内容？  （来自青柠起始页的网页界面）（对了这个起始页非常好用） HTML全称为超文本标记语言。大部分网页用HTML显示内容，而且不只是在浏览器的网页，甚至在一些手机上的app都能看到HTML的身影。 虽然现在AI可以很容易的生成一个网页，但是学习HTML可以方便修改AI生成的网页，并对后面JavaScript,网页爬虫 等等的学习很有帮助。   HTML（5）基本组成html基本概念 元素： 为网页的基本组成单元 格式为&lt;标签内容&gt;我是元素内容&lt;/后标签内容&gt; 属性： 元素的一些选项和设置，组合可以实现不同功能 元素属性名=&quot;属性值&quot;  在后面有较...</div></div></div></a><a class="pagination-related" href="/onionsnotebook.github.io/2026/03/25/%E8%8B%B1%E8%AF%AD%E5%9B%9B%E7%BA%A7%E7%AC%94%E8%AE%B0/" title="英语四级笔记"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-25</div><div class="info-item-2">英语四级笔记</div></div><div class="info-2"><div class="info-item-1">先导课四级考试试卷结构   试卷结构 测试内容 测试题型 题目数量 分值比例 每小题分值 部分小计    写作 写作 短文写作 1 15% 106.5 106.5   听力理解 短篇新闻 选择题（单选题） 7 7% 7.1 248.5    长对话 选择题（单选题） 8 8% 7.1 —    听力篇章 选择题（单选题） 10 20% 14.2 —   阅读理解 词汇理解 选词填空 10 5% 3.55 248.5    长篇阅读 匹配 10 10% 7.1 —    仔细阅读 选择题（单选题） 10 20% 14.2 —   翻译 汉译英 段落翻译 1 15% 106.5 106.5   总计 - - 57 100% 710 710   考核方式   考核形式 评价标准 权重    考勤（百分制） 无故旷课（无法提供辅导员签字的请假条）1次扣10分，迟到和早退1次扣5分；无故旷课累计3次以上取消期末考试资格 0.05   课堂表现（百分制） 积极完成课堂活动 0.10   听力（百分制） 《新视野大学英语视听说教程》听力练习正确率（校园，8单元，每个单元做5篇，取最高成绩） 0...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/onionsnotebook.github.io/img/avatar.png" onerror="this.onerror=null;this.src='/onionsnotebook.github.io/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">无聊的小洋葱</div><div class="author-info-description">这里会分享一些我学过的东西</div><div class="site-data"><a href="/onionsnotebook.github.io/archives/"><div class="headline">文章</div><div class="length-num">7</div></a><a href="/onionsnotebook.github.io/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/onionsnotebook.github.io/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" href="https://github.com/onion383" target="_blank" rel="noopener"><span>点我跳转</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">祝贺网页创立成功
-</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%8D%E6%9C%9F%E5%9F%BA%E6%9C%AC%E5%87%86%E5%A4%87"><span class="toc-number">1.</span> <span class="toc-text">前期基本准备</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%B5%81%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">编程基本流程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E6%93%8D%E4%BD%9C"><span class="toc-number">3.</span> <span class="toc-text">准备操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">4.</span> <span class="toc-text"></span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E5%92%8C%E5%93%8D%E5%BA%94%E5%87%BD%E6%95%B0"><span class="toc-number">4.1.</span> <span class="toc-text">请求和响应函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-number">4.2.</span> <span class="toc-text">中间件</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86-express-static"><span class="toc-number">4.2.1.</span> <span class="toc-text">静态文件管理 express.static</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%9D%97%E5%8C%96-express-Router"><span class="toc-number">4.2.2.</span> <span class="toc-text">路由模块化 express.Router()</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%91%E5%90%AC%E5%87%BD%E6%95%B0"><span class="toc-number">4.3.</span> <span class="toc-text">监听函数</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/onionsnotebook.github.io/2026/04/11/Express%20%E6%A1%86%E6%9E%B6%E7%AC%94%E8%AE%B0/" title="Express框架笔记">Express框架笔记</a><time datetime="2026-04-11T07:00:00.000Z" title="发表于 2026-04-11 15:00:00">2026-04-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/onionsnotebook.github.io/2026/03/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0/" title="数据结构笔记">数据结构笔记</a><time datetime="2026-03-26T07:00:00.000Z" title="发表于 2026-03-26 15:00:00">2026-03-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/onionsnotebook.github.io/2026/03/25/%E8%8B%B1%E8%AF%AD%E5%9B%9B%E7%BA%A7%E7%AC%94%E8%AE%B0/" title="英语四级笔记">英语四级笔记</a><time datetime="2026-03-25T07:00:00.000Z" title="发表于 2026-03-25 15:00:00">2026-03-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/onionsnotebook.github.io/2026/03/24/HTML%E8%AF%AD%E8%A8%80%E7%AC%94%E8%AE%B0/" title="HTML语言笔记"><img src="/onionsnotebook.github.io/img/postbackground/HTML%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B%E8%83%8C%E6%99%AF%E5%9B%BE.jpg" onerror="this.onerror=null;this.src='/onionsnotebook.github.io/img/404.jpg'" alt="HTML语言笔记"/></a><div class="content"><a class="title" href="/onionsnotebook.github.io/2026/03/24/HTML%E8%AF%AD%E8%A8%80%E7%AC%94%E8%AE%B0/" title="HTML语言笔记">HTML语言笔记</a><time datetime="2026-03-24T10:00:00.000Z" title="发表于 2026-03-24 18:00:00">2026-03-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/onionsnotebook.github.io/2026/03/24/Markdown%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" title="Markdown极简使用方法"><img src="/onionsnotebook.github.io/img/postbackground/Markdown%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B%E8%83%8C%E6%99%AF%E5%9B%BE.jpg" onerror="this.onerror=null;this.src='/onionsnotebook.github.io/img/404.jpg'" alt="Markdown极简使用方法"/></a><div class="content"><a class="title" href="/onionsnotebook.github.io/2026/03/24/Markdown%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" title="Markdown极简使用方法">Markdown极简使用方法</a><time datetime="2026-03-24T07:00:00.000Z" title="发表于 2026-03-24 15:00:00">2026-03-24</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By 无聊的小洋葱</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/onionsnotebook.github.io/js/utils.js?v=5.5.4"></script><script src="/onionsnotebook.github.io/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://onion383.github.io">无聊的小洋葱</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://onion383.github.io/2026/04/11/Express%20%E6%A1%86%E6%9E%B6%E7%AC%94%E8%AE%B0/">https://onion383.github.io/2026/04/11/Express%20%E6%A1%86%E6%9E%B6%E7%AC%94%E8%AE%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://onion383.github.io" target="_blank">小洋葱的笔记本</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%90%8E%E7%AB%AF/">后端</a><a class="post-meta__tags" href="/tags/%E5%A4%A7%E5%AD%A6/">大学</a><a class="post-meta__tags" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a></div><div class="post-share"><div class="social-share" data-image="/img/avatar.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/03/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0/" title="数据结构笔记"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">数据结构笔记</div></div><div class="info-2"><div class="info-item-1">先导课考核要求    考核方法 评价标准 权重（%）     期中考试 参考答案及评分标准 13   平时作业 独立按时完成作业，根据作业参考答案评定成绩。 12   实验报告 能够分析问题，设计算法，独立实现程序，运行结果正确，按照要求完成实验报告。实验报告须有详细的设计说明和代码注释，根据实验报告规范性和完成质量评定成绩。 15   闭卷 参考答案及评分标准 60     —-第一章 概论1.1 数据结构概述数据结构的概念 基础概念   数据：计算机可识别、存储和加工的信息载体  文字、表格、图像等  *数据的组成（从大到小） 数据项：具有独立意义的不可分割最小单位 学生记录中的“姓名”字段 数据元素：数据的基本单位，作为整体处理  如学生记录 数据对象：相同类型数据元素的集合。   数据结构组成： 数据逻辑结构：从逻辑关系描述数据 数据存储结构：逻辑结构在储存（映像）。 数据运算：对数据施加的操作（检索、插入、删除等）。    数据结构的组成1.数据逻辑结构 常见的逻辑  集合：元素同属一个集合，无其他关系。 线性结构：元素间一对一关系  如学生成绩表 树形结构：元素间一对...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2026/03/24/Markdown%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" title="Markdown极简使用方法"><img class="cover" src="/img/postbackground/Markdown%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B%E8%83%8C%E6%99%AF%E5%9B%BE.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-24</div><div class="info-item-2">Markdown极简使用方法</div></div><div class="info-2"><div class="info-item-1">Markdown使用方法 该笔记内容主要适用于Obsidian笔记软件，其他Markdown笔记软件的写法可能会有细微的差别。 该笔记在说明格式的符号后会有显示效果，方便看到显示效果。    目录Markdown介绍Markdown基本用法Mermaid 图表拓展：Markdown数学公式拓展：Markdown简单的化学式 Markdown介绍 Markdown是一种轻量化标记语言，它旨在通过一些简单的符号来快速排版文本，减少频繁设置格式的情况来提升写作的专注度，非常适合作为笔记格式使用。 Markdown的文件拓展名为.md 在输入符号时，都需要切换到英文符号输入。   Markdown基本用法行内排版 斜体 *我是示例* 我是示例 粗体 **我是示例** 我是示例 删除线 ~~我是示例~~ 我是示例 斜体+粗体 ***我是示例***  我是示例 标黄 &lt;mark style=&quot;background-color: rgba(255, 235, 59, 0.4); padding: 0 3px; border-radius: 2px;&quot;&gt;我是示例&...</div></div></div></a><a class="pagination-related" href="/2026/03/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0/" title="数据结构笔记"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-26</div><div class="info-item-2">数据结构笔记</div></div><div class="info-2"><div class="info-item-1">先导课考核要求    考核方法 评价标准 权重（%）     期中考试 参考答案及评分标准 13   平时作业 独立按时完成作业，根据作业参考答案评定成绩。 12   实验报告 能够分析问题，设计算法，独立实现程序，运行结果正确，按照要求完成实验报告。实验报告须有详细的设计说明和代码注释，根据实验报告规范性和完成质量评定成绩。 15   闭卷 参考答案及评分标准 60     —-第一章 概论1.1 数据结构概述数据结构的概念 基础概念   数据：计算机可识别、存储和加工的信息载体  文字、表格、图像等  *数据的组成（从大到小） 数据项：具有独立意义的不可分割最小单位 学生记录中的“姓名”字段 数据元素：数据的基本单位，作为整体处理  如学生记录 数据对象：相同类型数据元素的集合。   数据结构组成： 数据逻辑结构：从逻辑关系描述数据 数据存储结构：逻辑结构在储存（映像）。 数据运算：对数据施加的操作（检索、插入、删除等）。    数据结构的组成1.数据逻辑结构 常见的逻辑  集合：元素同属一个集合，无其他关系。 线性结构：元素间一对一关系  如学生成绩表 树形结构：元素间一对...</div></div></div></a><a class="pagination-related" href="/2026/03/24/HTML%E8%AF%AD%E8%A8%80%E7%AC%94%E8%AE%B0/" title="HTML语言笔记"><img class="cover" src="/img/postbackground/HTML%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B%E8%83%8C%E6%99%AF%E5%9B%BE.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-24</div><div class="info-item-2">HTML语言笔记</div></div><div class="info-2"><div class="info-item-1">HTML语言笔记 HTML内容繁杂且细碎，这里只是列举常见的内容 Markdown也支持部分网页效果，该笔记在说明格式的符号后会有显示效果，方便看到显示效果。    目录HTML介绍HTML(5)基本组成HTML元素HTML5新元素（简要介绍）HTML CSS （简要介绍)HTML里的JavaScript （简要介绍) HTML介绍 当你在浏览器的网页右键打开检查时，你会不会好奇网页是什么内容？  （来自青柠起始页的网页界面）（对了这个起始页非常好用） HTML全称为超文本标记语言。大部分网页用HTML显示内容，而且不只是在浏览器的网页，甚至在一些手机上的app都能看到HTML的身影。 虽然现在AI可以很容易的生成一个网页，但是学习HTML可以方便修改AI生成的网页，并对后面JavaScript,网页爬虫 等等的学习很有帮助。   HTML（5）基本组成html基本概念 元素： 为网页的基本组成单元 格式为&lt;标签内容&gt;我是元素内容&lt;/后标签内容&gt; 属性： 元素的一些选项和设置，组合可以实现不同功能 元素属性名=&quot;属性值&quot; 在后面有较为详...</div></div></div></a><a class="pagination-related" href="/2026/03/24/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B0/" title="高等数学笔记"><img class="cover" src="/img/postbackground/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B0%E8%83%8C%E6%99%AF%E5%9B%BE.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-24</div><div class="info-item-2">高等数学笔记</div></div><div class="info-2"><div class="info-item-1">考核标准    考核项目 分值(%) 备注     平时作业 20 迟交分数最高为69   期中考试 15    思政考核 5    期末考试 60 分数要大于45,否则成绩无效      第八章 向量代数与空间几何第一节 向量及其线性运算向量的基础概念1.各种向量 向量 ： 大小+方向 自由向量 ：方向可改变 相等向量 ：大小方向相同 单位向量 ：模长为1 零向量 ：模长为0 方向任意 共面向量 ：共起点2. 向量的夹角 范围 $0\leq x\leq\pi$ 共线向量 夹角为 0 或者$\pi$   向量的运算1. 运算 加法 ：三角形法则 首尾相接 $\overrightarrow{AB}+\overrightarrow{BC}=\overrightarrow{AC}$  平行四边形法则 同起点，以两向量为邻边作平行四边形，对角线为和  减法 ：三角形逆法则  $\overrightarrow{AB}-\overrightarrow{AC}=\overrightarrow{CB}$ 数乘运算 结果为向量 模直接相乘，符号与方向有关    模 $|\lambda\vec{a}...</div></div></div></a><a class="pagination-related" href="/2026/03/25/%E8%8B%B1%E8%AF%AD%E5%9B%9B%E7%BA%A7%E7%AC%94%E8%AE%B0/" title="英语四级笔记"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-25</div><div class="info-item-2">英语四级笔记</div></div><div class="info-2"><div class="info-item-1">先导课四级考试试卷结构    试卷结构 测试内容 测试题型 题目数量 分值比例 每小题分值 部分小计     写作 写作 短文写作 1 15% 106.5 106.5   听力理解 短篇新闻 选择题（单选题） 7 7% 7.1 248.5    长对话 选择题（单选题） 8 8% 7.1 —-    听力篇章 选择题（单选题） 10 20% 14.2 —-   阅读理解 词汇理解 选词填空 10 5% 3.55 248.5    长篇阅读 匹配 10 10% 7.1 —-    仔细阅读 选择题（单选题） 10 20% 14.2 —-   翻译 汉译英 段落翻译 1 15% 106.5 106.5   总计 - - 57 100% 710 710     考核方式    考核形式 评价标准 权重     考勤（百分制） 无故旷课（无法提供辅导员签字的请假条）1次扣10分，迟到和早退1次扣5分；无故旷课累计3次以上取消期末考试资格 0.05   课堂表现（百分制） 积极完成课堂活动 0.10   听力（百分制） 《新视野大学英语视听说教程》听力练习正确率（校园，8单元，每个单元做5...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">无聊的小洋葱</div><div class="author-info-description">这里会分享一些我学过的东西</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" href="https://github.com/onion383" target="_blank" rel="noopener"><span>点我跳转</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">祝贺网页创立成功
+</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%8D%E6%9C%9F%E5%9F%BA%E6%9C%AC%E5%87%86%E5%A4%87"><span class="toc-number">1.</span> <span class="toc-text">前期基本准备</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%B5%81%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">编程基本流程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E6%93%8D%E4%BD%9C"><span class="toc-number">3.</span> <span class="toc-text">准备操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">4.</span> <span class="toc-text"> </span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E5%92%8C%E5%93%8D%E5%BA%94%E5%87%BD%E6%95%B0"><span class="toc-number">4.1.</span> <span class="toc-text">请求和响应函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-number">4.2.</span> <span class="toc-text">中间件</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86-express-static"><span class="toc-number">4.2.1.</span> <span class="toc-text">静态文件管理 express.static</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%9D%97%E5%8C%96-express-Router"><span class="toc-number">4.2.2.</span> <span class="toc-text">路由模块化 express.Router()</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%91%E5%90%AC%E5%87%BD%E6%95%B0"><span class="toc-number">4.3.</span> <span class="toc-text">监听函数</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/11/Express%20%E6%A1%86%E6%9E%B6%E7%AC%94%E8%AE%B0/" title="Express框架笔记">Express框架笔记</a><time datetime="2026-04-11T07:00:00.000Z" title="发表于 2026-04-11 15:00:00">2026-04-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0/" title="数据结构笔记">数据结构笔记</a><time datetime="2026-03-26T07:00:00.000Z" title="发表于 2026-03-26 15:00:00">2026-03-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/25/%E8%8B%B1%E8%AF%AD%E5%9B%9B%E7%BA%A7%E7%AC%94%E8%AE%B0/" title="英语四级笔记">英语四级笔记</a><time datetime="2026-03-25T07:00:00.000Z" title="发表于 2026-03-25 15:00:00">2026-03-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/03/24/HTML%E8%AF%AD%E8%A8%80%E7%AC%94%E8%AE%B0/" title="HTML语言笔记"><img src="/img/postbackground/HTML%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B%E8%83%8C%E6%99%AF%E5%9B%BE.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="HTML语言笔记"/></a><div class="content"><a class="title" href="/2026/03/24/HTML%E8%AF%AD%E8%A8%80%E7%AC%94%E8%AE%B0/" title="HTML语言笔记">HTML语言笔记</a><time datetime="2026-03-24T10:00:00.000Z" title="发表于 2026-03-24 18:00:00">2026-03-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/03/24/Markdown%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" title="Markdown极简使用方法"><img src="/img/postbackground/Markdown%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B%E8%83%8C%E6%99%AF%E5%9B%BE.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Markdown极简使用方法"/></a><div class="content"><a class="title" href="/2026/03/24/Markdown%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" title="Markdown极简使用方法">Markdown极简使用方法</a><time datetime="2026-03-24T07:00:00.000Z" title="发表于 2026-03-24 15:00:00">2026-03-24</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By 无聊的小洋葱</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script src="/js/global.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
