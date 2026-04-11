@@ -144,9 +144,6 @@
   isToc: false,
   pageType: 'page'
 }</script><style>
-  /* ====================================== */
-  /* 模块1：全局背景与基础样式 */
-  /* ====================================== */
   /* 每日自动更新必应壁纸 全站背景 */
   #web_bg {
     background: url("https://bing.img.run/1920x1080.php") !important;
@@ -163,6 +160,12 @@
     transition: background 0.5s ease !important;
   }
 
+  /* 黑暗模式适配：必应壁纸  黑色遮罩 */
+  html[data-theme="dark"] #web_bg {
+    background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), 
+                url("https://bing.img.run/1920x1080.php") !important;
+  }
+
   /* 顶部首页大图同步换成必应每日壁纸 */
   #page-header {
     background-image: url("https://bing.img.run/1920x1080.php") !important;
@@ -174,9 +177,8 @@
     background: transparent !important;
   }
 
-  /* ====================================== */
-  /* 模块2：首页文章卡片 */
-  /* ====================================== */
+  
+  /* 首页文章卡片 */
   html body #recent-posts .recent-post-item {
     border: 2px solid #c0d1eb !important;
     background: rgba(180, 210, 255, 0.35) !important;
@@ -196,7 +198,6 @@
     float: none !important;
     padding: 0 !important;
     box-sizing: border-box !important;
-    position: relative !important;
   }
 
   html body #recent-posts .recent-post-item .post_cover,
@@ -229,9 +230,70 @@
     transform: scale(1.01) !important;
   }
 
+  html body #recent-posts .recent-post-item {
+    position: relative !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+
   html body #recent-posts .recent-post-item .recent-post-info {
     position: relative !important;
     z-index: 2 !important;
+  }
+
+  /* 侧边栏卡片  */
+  html body #aside-content .card-widget {
+    border: 2px solid #c0d1eb !important;
+    background: rgba(180, 210, 255, 0.35) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 20px rgba(102, 163, 255, 0.15) !important;
+    transition: all 0.3s ease !important;
+    overflow: hidden !important;
+  }
+
+  /*  文章详情页+独立页面  */
+  html body #content-inner #post.post,
+  html body #content-inner #page.page {
+    border: 2px solid #c0d1eb !important;
+    background: rgba(180, 210, 255, 0.35) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 20px rgba(102, 163, 255, 0.15) !important;
+    transition: all 0.3s ease !important;
+    overflow: hidden !important;
+  }
+
+  /*  悬浮效果统一  */
+  html body #recent-posts .recent-post-item:hover,
+  html body #aside-content .card-widget:hover,
+  html body #content-inner #post.post:hover,
+  html body #content-inner #page.page:hover {
+    border-color: #4080ff !important;
+    background: rgba(180, 210, 255, 0.5) !important;
+    box-shadow: 0 0 16px rgba(64,128,255,0.6), 0 8px 30px rgba(102, 163, 255, 0.25) !important;
+    transform: translateY(-2px) !important;
+  }
+
+  /*  文章页内层容器透明  */
+  #post.post > *,
+  #page.page > *,
+  #article-container,
+  .post-header,
+  .post-content,
+  .post-copyright,
+  .post-footer {
+    background: transparent !important;
+  }
+
+  #article-container {
+    padding: 1.5rem 1.8rem !important;
+  }
+
+  /*  首页文章信息区域  */
+  html body #recent-posts .recent-post-item .recent-post-info {
     flex: 1 !important;
     display: flex !important;
     flex-direction: column !important;
@@ -262,53 +324,7 @@
     font-size: 1.05rem !important;
   }
 
-  /* ====================================== */
-  /* 模块3：侧边栏卡片 */
-  /* ====================================== */
-  html body #aside-content .card-widget {
-    border: 2px solid #c0d1eb !important;
-    background: rgba(180, 210, 255, 0.35) !important;
-    backdrop-filter: blur(10px) !important;
-    -webkit-backdrop-filter: blur(10px) !important;
-    border-radius: 12px !important;
-    box-shadow: 0 4px 20px rgba(102, 163, 255, 0.15) !important;
-    transition: all 0.3s ease !important;
-    overflow: hidden !important;
-  }
-
-  /* ====================================== */
-  /* 模块4：文章详情页+独立页面 */
-  /* ====================================== */
-  html body #content-inner #post.post,
-  html body #content-inner #page.page {
-    border: 2px solid #c0d1eb !important;
-    background: rgba(180, 210, 255, 0.35) !important;
-    backdrop-filter: blur(10px) !important;
-    -webkit-backdrop-filter: blur(10px) !important;
-    border-radius: 12px !important;
-    box-shadow: 0 4px 20px rgba(102, 163, 255, 0.15) !important;
-    transition: all 0.3s ease !important;
-    overflow: hidden !important;
-  }
-
-  /* 文章页内层容器透明 */
-  #post.post > *,
-  #page.page > *,
-  #article-container,
-  .post-header,
-  .post-content,
-  .post-copyright,
-  .post-footer {
-    background: transparent !important;
-  }
-
-  #article-container {
-    padding: 1.5rem 1.8rem !important;
-  }
-
-  /* ====================================== */
-  /* 模块5：分类/归档页面 */
-  /* ====================================== */
+  /*  分类/归档页面  */
   html body #content-inner #category,
   html body #content-inner #archive {
     border: 2px solid #c0d1eb !important;
@@ -390,6 +406,7 @@
     opacity: 0.8;
   }
 
+  /*  分类/归档页面年份标题  */
   html body #category .article-sort-item.year,
   html body #archive .article-sort-item.year {
     font-size: 1.5rem !important;
@@ -400,9 +417,8 @@
     margin-bottom: 1.2rem !important;
   }
 
-  /* ====================================== */
-  /* 模块6：自定义标题竖线、加粗变红样式 */
-  /* ====================================== */
+  /*  自定义标题竖线、加粗变红样式  */
+  /* 👇 只修改这一段！限定：只有文章内的标题才显示彩色竖线 */
   #article-container h1, 
   #article-container h2, 
   #article-container h3, 
@@ -447,151 +463,32 @@
 
   #article-container h5 { font-size: 1.2em !important; }
   #article-container h6 { font-size: 1.2em !important; }
-
   strong {
     color: #ff4d4f !important;
     font-weight: 600 !important;
   }
 
-  /* ====================================== */
-  /* 模块7：底部版权页文字 */
-  /* ====================================== */
-  html body #footer {
-    background: rgba(180, 210, 255, 0.4) !important;
-    backdrop-filter: blur(10px) !important;
-    -webkit-backdrop-filter: blur(10px) !important;
-    border: 2px solid #c0d1eb !important;
-    border-radius: 0 !important;
-    box-shadow: 0 -4px 20px rgba(102, 163, 255, 0.15) !important;
-    padding: 1.5rem !important;
-    transition: all 0.3s ease !important;
+  /*  移动端适配  */
+  @media screen and (max-width: 768px) {
+    html body #recent-posts .recent-post-item {
+      flex-direction: column !important;
+      min-height: auto !important;
+    }
+    html body #recent-posts .recent-post-item .post_cover {
+      width: 100% !important;
+      height: 200px !important;
+      }
+    #article-container {
+      padding: 1rem 1.2rem !important;
+      }
+    html body #content-inner #category,
+    html body #content-inner #archive {
+      padding: 1rem 1.2rem !important;
+      }
   }
+  /* 黑暗模式适配 */
+  
 
-  html body #footer,
-  html body #footer * {
-    color: #2c3e50 !important;
-  }
-
-  html body #footer a {
-    color: #0066cc !important;
-  }
-
-  /* ====================================== */
-  /* 模块8：搜索页面 毛玻璃风格全适配 */
-  /* ====================================== */
-  html body #content-inner #search-page {
-    border: 2px solid #c0d1eb !important;
-    background: rgba(180, 210, 255, 0.35) !important;
-    backdrop-filter: blur(10px) !important;
-    -webkit-backdrop-filter: blur(10px) !important;
-    border-radius: 12px !important;
-    box-shadow: 0 4px 20px rgba(102, 163, 255, 0.15) !important;
-    padding: 1.5rem 2rem !important;
-    margin-bottom: 1.5rem !important;
-  }
-
-  html body #search-page .search-input {
-    width: 100% !important;
-    box-sizing: border-box !important;
-    border: 2px solid #c0d1eb !important;
-    background: rgba(255, 255, 255, 0.85) !important;
-    border-radius: 8px !important;
-    padding: 0.8rem 1rem !important;
-    font-size: 1rem !important;
-    color: #2c3e50 !important;
-    margin-bottom: 1.5rem !important;
-    transition: all 0.3s ease !important;
-  }
-
-  html body #search-page .search-input:focus {
-    border-color: #4080ff !important;
-    box-shadow: 0 0 10px rgba(64, 128, 255, 0.3) !important;
-    outline: none !important;
-  }
-
-  html body #search-page .search-result-count {
-    color: #2c3e50 !important;
-    font-size: 0.95rem !important;
-    margin-bottom: 1rem !important;
-    opacity: 0.85 !important;
-  }
-
-  html body #search-page .search-result-list .search-result-item {
-    border-bottom: 1px dashed rgba(102, 163, 255, 0.3) !important;
-    padding: 1rem 0 !important;
-  }
-
-  html body #search-page .search-result-item .search-result-title {
-    color: #2c3e50 !important;
-    font-weight: 600 !important;
-    font-size: 1.2rem !important;
-    transition: all 0.3s ease !important;
-  }
-
-  html body #search-page .search-result-item .search-result-title:hover {
-    color: #4080ff !important;
-    padding-left: 0.5rem !important;
-  }
-
-  html body #search-page .search-result-item .search-result-content {
-    color: #555555 !important;
-    opacity: 0.85 !important;
-    font-size: 0.95rem !important;
-    margin-top: 0.5rem !important;
-    line-height: 1.6 !important;
-  }
-
-  html body #search-page .search-keyword {
-    color: #ff4d4f !important;
-    font-weight: 700 !important;
-  }
-
-  html body #search-page .search-no-result {
-    color: #555555 !important;
-    text-align: center !important;
-    padding: 2rem 0 !important;
-    font-size: 1rem !important;
-  }
-
-  /* ====================================== */
-  /* 模块9：全局悬浮效果统一 */
-  /* ====================================== */
-  html body #recent-posts .recent-post-item:hover,
-  html body #aside-content .card-widget:hover,
-  html body #content-inner #post.post:hover,
-  html body #content-inner #page.page:hover {
-    border-color: #4080ff !important;
-    background: rgba(180, 210, 255, 0.5) !important;
-    box-shadow: 0 0 16px rgba(64,128,255,0.6), 0 8px 30px rgba(102, 163, 255, 0.25) !important;
-    transform: translateY(-2px) !important;
-  }
-
-  /* ====================================== */
-  /* 模块10：强制停止设置齿轮旋转 */
-  /* ====================================== */
-  #rightside > div#setting > i.fas.fa-cog.fa-spin,
-  #rightside #setting i,
-  .rightside-content #setting i,
-  .fa-cog.fa-spin,
-  [class*="cog"],
-  [class*="spin"] {
-    animation: none !important;
-    -webkit-animation: none !important;
-    transition: none !important;
-    transform: rotate(0deg) !important;
-    pointer-events: auto !important;
-    opacity: 1 !important;
-  }
-
-  /* 禁用主题所有旋转动画 */
-  *[class*="fa-spin"], *[class*="rotate"] {
-    animation: none !important;
-    transform: none !important;
-  }
-
-  /* ====================================== */
-  /* 模块11：黑暗模式适配 */
-  /* ====================================== */
   /* 黑暗模式底层背景 */
   html[data-theme="dark"] #web_bg {
     background: #0d0d0d !important; 
@@ -635,9 +532,12 @@
   html[data-theme="dark"] #recent-posts .recent-post-item .recent-post-info .article-meta-wrap,
   html[data-theme="dark"] #recent-posts .recent-post-item .recent-post-info .article-meta-wrap a,
   html[data-theme="dark"] #recent-posts .recent-post-item .recent-post-info .content,
-  html[data-theme="dark"] h1, html[data-theme="dark"] h2, 
-  html[data-theme="dark"] h3, html[data-theme="dark"] h4, 
-  html[data-theme="dark"] h5, html[data-theme="dark"] h6 {
+  html[data-theme="dark"] #article-container h1, 
+  html[data-theme="dark"] #article-container h2, 
+  html[data-theme="dark"] #article-container h3, 
+  html[data-theme="dark"] #article-container h4, 
+  html[data-theme="dark"] #article-container h5, 
+  html[data-theme="dark"] #article-container h6 {
     color: #f0f0f0 !important;
   }
 
@@ -646,7 +546,7 @@
     color: #80b0ff !important;
   }
 
-  /* 黑暗模式-分类/归档页面适配 */
+  /*  黑暗模式-分类/归档页面适配 */
   html[data-theme="dark"] #content-inner #category,
   html[data-theme="dark"] #content-inner #archive {
     background: rgba(20, 20, 35, 0.7) !important;
@@ -668,59 +568,130 @@
   }
 
   /* 黑暗模式-自定义标题竖线颜色微调 */
+  /* 自定义标题竖线、加粗变红样式 */
+  /* 👇 只修改这一段！限定：只有文章内的标题才显示彩色竖线 */
+  #article-container h1, 
+  #article-container h2, 
+  #article-container h3, 
+  #article-container h4, 
+  #article-container h5, 
+  #article-container h6 {
+    position: relative;
+    padding-left: 14px !important;
+    margin-top: 0.8em !important;
+    margin-bottom: 0.4em !important;
+    font-weight: 600 !important;
+    color: #34495e !important;
+  }
+
+  #article-container h1::before, 
+  #article-container h2::before, 
+  #article-container h3::before,
+  #article-container h4::before, 
+  #article-container h5::before, 
+  #article-container h6::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 18px;
+    border-radius: 2px;
+  }
+
+  #article-container h1 { font-size: 1.8em !important; }
+  #article-container h1::before { background-color: #ff4d4f; height: 22px; }
+
+  #article-container h2 { font-size: 1.6em !important; }
+  #article-container h2::before { background-color: #fa7c00; }
+
+  #article-container h3 { font-size: 1.4em !important; }
+  #article-container h3::before { background-color: #1677ff; }
+
+  #article-container h4 { font-size: 1.2em !important; }
+  #article-container h4::before { background-color: #722ed1; height: 16px; }
+
+  #article-container h5 { font-size: 1.2em !important; }
+  #article-container h6 { font-size: 1.2em !important; }ore { background-color: #b197fc; }
+
+  /* 黑暗模式：文章标题文字 + 彩色短线自动适配 */
+  html[data-theme="dark"] #article-container h1,
+  html[data-theme="dark"] #article-container h2,
+  html[data-theme="dark"] #article-container h3,
+  html[data-theme="dark"] #article-container h4,
+  html[data-theme="dark"] #article-container h5,
+  html[data-theme="dark"] #article-container h6 {
+    color: #e8e8e8 !important;
+  }
   html[data-theme="dark"] #article-container h1::before { background-color: #ff6b6b; }
   html[data-theme="dark"] #article-container h2::before { background-color: #ffa94d; }
   html[data-theme="dark"] #article-container h3::before { background-color: #4dabf7; }
   html[data-theme="dark"] #article-container h4::before { background-color: #b197fc; }
-
-  /* 黑暗模式-加粗文字颜色 */
-  html[data-theme="dark"] strong {
-    color: #ff8787 !important;
+          /* 黑暗模式-加粗文字颜色 */
+          html[data-theme="dark"] strong {
+            color: #ff8787 !important;
   }
 
-  /* 黑暗模式-底部版权页 */
+  /*  底部版权页文字 */
+  /* 日间模式（无圆角、浅蓝背景、强制所有文字为深色） */
+  html body #footer {
+    background: rgba(180, 210, 255, 0.4) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border: 2px solid #c0d1eb !important;
+    border-radius: 0 !important;
+    box-shadow: 0 -4px 20px rgba(102, 163, 255, 0.15) !important;
+    padding: 1.5rem !important;
+    transition: all 0.3s ease !important;
+  }
+  /* 强制覆盖#footer下所有子元素文字颜色 */
+  html body #footer,
+  html body #footer * {
+    color: #2c3e50 !important;
+  }
+
+  /* 黑暗模式-（无圆角 、 深色背景 、 强制所有文字为浅色） */
   html[data-theme="dark"] body #footer {
     background: #0a1a2f !important;
     border-color: rgba(255, 255, 255, 0.1) !important;
     border-radius: 0 !important;
     box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.35) !important;
   }
-
+  /* 强制覆盖黑暗模式下#footer所有子元素文字颜色 */
   html[data-theme="dark"] body #footer,
   html[data-theme="dark"] body #footer * {
     color: #f0f0f0 !important;
   }
 
+  /* 链接颜色单独适配 */
+  html body #footer a {
+    color: #0066cc !important;
+  }
   html[data-theme="dark"] body #footer a {
     color: #80b0ff !important;
   }
-
-  /* 黑暗模式-搜索页面适配 */
-  html[data-theme="dark"] body #content-inner #search-page {
-    background: rgba(0, 30, 60, 0.85) !important;
-    border-color: rgba(255, 255, 255, 0.15) !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+  /* 强制停止设置齿轮旋转  */
+  #rightside > div#setting > i.fas.fa-cog.fa-spin,
+  #rightside #setting i,
+  .rightside-content #setting i,
+  .fa-cog.fa-spin,
+  [class*="cog"],
+  [class*="spin"] {
+    animation: none !important;
+    -webkit-animation: none !important;
+    transition: none !important;
+    transform: rotate(0deg) !important;
+    pointer-events: auto !important;
+    opacity: 1 !important;
+  }
+  /* 禁用主题所有旋转动画 */
+  *[class*="fa-spin"], *[class*="rotate"] {
+    animation: none !important;
+    transform: none !important;
   }
 
-  html[data-theme="dark"] body #search-page .search-input {
-    background: rgba(0, 30, 60, 0.9) !important;
-    border-color: rgba(255, 255, 255, 0.15) !important;
-    color: #f0f0f0 !important;
-  }
-
-  html[data-theme="dark"] body #search-page .search-result-count,
-  html[data-theme="dark"] body #search-page .search-result-item .search-result-title,
-  html[data-theme="dark"] body #search-page .search-no-result {
-    color: #f0f0f0 !important;
-  }
-
-  html[data-theme="dark"] body #search-page .search-result-item .search-result-content {
-    color: #cccccc !important;
-  }
-
-  /* ====================================== */
-  /* 模块12：移动端适配 */
-  /* ====================================== */
+  /* 移动端排版专属修复 */
   @media screen and (max-width: 768px) {
     /* 修复首页文章卡片布局错乱 */
     html body #recent-posts .recent-post-item {
@@ -729,7 +700,7 @@
       height: auto !important;
       padding: 0 !important;
       margin-bottom: 1.2rem !important;
-      }
+    }
 
     /* 修复文章封面在移动端的显示 */
     html body #recent-posts .recent-post-item .post_cover,
@@ -741,7 +712,7 @@
       right: auto !important;
       top: auto !important;
       border-radius: 8px 8px 0 0 !important;
-      }
+    }
 
     html body #recent-posts .recent-post-item .post_cover img {
       width: 100% !important;
@@ -753,17 +724,26 @@
     html body #recent-posts .recent-post-item:has(.post_cover) .recent-post-info {
       padding: 1.2rem !important;
       padding-right: 1.2rem !important;
-      }
+    }
 
     /* 修复移动端文字大小 */
     html body #recent-posts .recent-post-item .recent-post-info .article-title {
       font-size: 1.2rem !important;
-      }
+    }
 
     html body #recent-posts .recent-post-item .recent-post-info .article-meta-wrap,
     html body #recent-posts .recent-post-item .recent-post-info .content {
       font-size: 0.95rem !important;
-      }
+    }
+
+    /* 强制停止齿轮旋转（移动端专属强化） */
+    #rightside > div#setting > i.fas.fa-cog.fa-spin,
+    #rightside #setting i,
+    .fa-cog.fa-spin {
+      animation: none !important;
+      -webkit-animation: none !important;
+      transform: rotate(0deg) !important;
+    }
 
     /* 优化移动端右侧悬浮按钮大小和间距 */
     #rightside {
@@ -777,7 +757,7 @@
       line-height: 40px !important;
       font-size: 18px !important;
       margin: 5px 0 !important;
-      }
+    }
 
     /* 修复文章详情页内边距，适配手机屏幕 */
     #article-container {
@@ -789,45 +769,21 @@
     html body #content-inner #archive {
       padding: 1rem !important;
       margin: 0 0.5rem !important;
-      }
+    }
 
     html body #category .article-sort-item-img,
     html body #archive .article-sort-item-img {
       width: 80px !important;
       height: 60px !important;
       margin-right: 0.8rem !important;
-      }
+    }
 
     /*修复侧边栏移动端样式 */
     html body #aside-content .card-widget {
       margin: 0 0.5rem 1rem 0.5rem !important;
-      }
-
-    /* 搜索页面移动端适配 */
-    html body #content-inner #search-page {
-      padding: 1rem 1.2rem !important;
-      margin: 0 0.5rem 1rem 0.5rem !important;
-      }
+    }
   }
   
-/* 蓝色搜索高亮 + 闪烁动画（权重拉满） */
-  .search-highlight-flash {
-    color: #4080ff !important;
-    font-weight: 700 !important;
-    background: rgba(64, 128, 255, 0.15) !important;
-    padding: 0 4px !important;
-    border-radius: 3px !important;
-  }
-  /* 蓝色闪烁动画（只闪1次） */
-  .search-highlight-flash.flash {
-    animation: searchFlash 0.7s ease-in-out 1 !important;
-  }
-  @keyframes searchFlash {
-    0% { opacity: 1 !important; background: #4080ff !important; color:#fff !important; }
-    50% { opacity: 0.4 !important; }
-    100% { opacity: 1 !important; background: rgba(64, 128, 255, 0.15) !important; color:#4080ff !important; }
-  }
-
   
 </style>
 <!-- hexo injector head_end start -->
@@ -845,7 +801,7 @@
     throwOnError: false,
     strict: false
   });"></script>
-  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.1"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/onionsnotebook.github.io/img/avatar.png" onerror="this.onerror=null;this.src='/onionsnotebook.github.io/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/onionsnotebook.github.io/archives/"><div class="headline">文章</div><div class="length-num">7</div></a><a href="/onionsnotebook.github.io/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/onionsnotebook.github.io/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/search/"><i class="fa-fw fas fa-search"></i><span> 搜索</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/categories/%E5%A4%A7%E5%AD%A6%E5%9F%BA%E7%A1%80%E8%AF%BE%E7%A8%8B/"><i class="fa-fw fas fa-book"></i><span> 大学基础课程</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%BE%E7%A8%8B/"><i class="fa-fw fas fa-laptop-code"></i><span> 计算机课程</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/categories/%E5%85%B6%E4%BB%96/"><i class="fa-fw fas fa-ellipsis-h"></i><span> 其他</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/about/"><i class="fa-fw fas fa-user"></i><span> 关于我</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header" style="background-image: url(/onionsnotebook.github.io/img/background.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/onionsnotebook.github.io/"><img class="site-icon" src="/onionsnotebook.github.io/img/avatar.png" alt="Logo"><span class="site-name">小洋葱的笔记本</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/search/"><i class="fa-fw fas fa-search"></i><span> 搜索</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/categories/%E5%A4%A7%E5%AD%A6%E5%9F%BA%E7%A1%80%E8%AF%BE%E7%A8%8B/"><i class="fa-fw fas fa-book"></i><span> 大学基础课程</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%BE%E7%A8%8B/"><i class="fa-fw fas fa-laptop-code"></i><span> 计算机课程</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/categories/%E5%85%B6%E4%BB%96/"><i class="fa-fw fas fa-ellipsis-h"></i><span> 其他</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/about/"><i class="fa-fw fas fa-user"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="page-site-info"><h1 id="site-title">about</h1></div></header><main class="layout" id="content-inner"><div id="page"><div class="container" id="article-container"><h1 id="你好，欢迎来到我的网站"><a href="#你好，欢迎来到我的网站" class="headerlink" title="你好，欢迎来到我的网站"></a>你好，欢迎来到我的网站</h1><p>我是一名工业软件专业的在读大学生，在这里会分享我做的笔记</p>
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.1"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/onionsnotebook.github.io/img/avatar.png" onerror="this.onerror=null;this.src='/onionsnotebook.github.io/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/onionsnotebook.github.io/archives/"><div class="headline">文章</div><div class="length-num">7</div></a><a href="/onionsnotebook.github.io/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/onionsnotebook.github.io/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/search/"><i class="fa-fw fas fa-search"></i><span> 搜索</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/categories/%E5%A4%A7%E5%AD%A6%E5%9F%BA%E7%A1%80%E8%AF%BE%E7%A8%8B/"><i class="fa-fw fas fa-book"></i><span> 大学基础课程</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%BE%E7%A8%8B/"><i class="fa-fw fas fa-laptop-code"></i><span> 计算机课程</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/categories/%E5%85%B6%E4%BB%96/"><i class="fa-fw fas fa-ellipsis-h"></i><span> 其他</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/about/"><i class="fa-fw fas fa-user"></i><span> 关于我</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header" style="background-image: url(/onionsnotebook.github.io/img/background.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/onionsnotebook.github.io/"><span class="site-name">小洋葱的笔记本</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/search/"><i class="fa-fw fas fa-search"></i><span> 搜索</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/categories/%E5%A4%A7%E5%AD%A6%E5%9F%BA%E7%A1%80%E8%AF%BE%E7%A8%8B/"><i class="fa-fw fas fa-book"></i><span> 大学基础课程</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%BE%E7%A8%8B/"><i class="fa-fw fas fa-laptop-code"></i><span> 计算机课程</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/categories/%E5%85%B6%E4%BB%96/"><i class="fa-fw fas fa-ellipsis-h"></i><span> 其他</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/about/"><i class="fa-fw fas fa-user"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="page-site-info"><h1 id="site-title">about</h1></div></header><main class="layout" id="content-inner"><div id="page"><div class="container" id="article-container"><h1 id="你好，欢迎来到我的网站"><a href="#你好，欢迎来到我的网站" class="headerlink" title="你好，欢迎来到我的网站"></a>你好，欢迎来到我的网站</h1><p>我是一名工业软件专业的在读大学生，在这里会分享我做的笔记</p>
 </div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/onionsnotebook.github.io/img/avatar.png" onerror="this.onerror=null;this.src='/onionsnotebook.github.io/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">无聊的小洋葱</div><div class="author-info-description">这里会分享一些我学过的东西</div><div class="site-data"><a href="/onionsnotebook.github.io/archives/"><div class="headline">文章</div><div class="length-num">7</div></a><a href="/onionsnotebook.github.io/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/onionsnotebook.github.io/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" href="https://github.com/onion383" target="_blank" rel="noopener"><span>点我跳转</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">祝贺网页创立成功
 </div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/onionsnotebook.github.io/2026/04/11/Express%20%E6%A1%86%E6%9E%B6%E7%AC%94%E8%AE%B0/" title="Express框架笔记">Express框架笔记</a><time datetime="2026-04-11T07:00:00.000Z" title="发表于 2026-04-11 15:00:00">2026-04-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/onionsnotebook.github.io/2026/03/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0/" title="数据结构笔记">数据结构笔记</a><time datetime="2026-03-26T07:00:00.000Z" title="发表于 2026-03-26 15:00:00">2026-03-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/onionsnotebook.github.io/2026/03/25/%E8%8B%B1%E8%AF%AD%E5%9B%9B%E7%BA%A7%E7%AC%94%E8%AE%B0/" title="英语四级笔记">英语四级笔记</a><time datetime="2026-03-25T07:00:00.000Z" title="发表于 2026-03-25 15:00:00">2026-03-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/onionsnotebook.github.io/2026/03/24/HTML%E8%AF%AD%E8%A8%80%E7%AC%94%E8%AE%B0/" title="HTML语言笔记"><img src="/onionsnotebook.github.io/img/postbackground/HTML%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B%E8%83%8C%E6%99%AF%E5%9B%BE.jpg" onerror="this.onerror=null;this.src='/onionsnotebook.github.io/img/404.jpg'" alt="HTML语言笔记"/></a><div class="content"><a class="title" href="/onionsnotebook.github.io/2026/03/24/HTML%E8%AF%AD%E8%A8%80%E7%AC%94%E8%AE%B0/" title="HTML语言笔记">HTML语言笔记</a><time datetime="2026-03-24T10:00:00.000Z" title="发表于 2026-03-24 18:00:00">2026-03-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/onionsnotebook.github.io/2026/03/24/Markdown%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" title="Markdown极简使用方法"><img src="/onionsnotebook.github.io/img/postbackground/Markdown%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B%E8%83%8C%E6%99%AF%E5%9B%BE.jpg" onerror="this.onerror=null;this.src='/onionsnotebook.github.io/img/404.jpg'" alt="Markdown极简使用方法"/></a><div class="content"><a class="title" href="/onionsnotebook.github.io/2026/03/24/Markdown%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" title="Markdown极简使用方法">Markdown极简使用方法</a><time datetime="2026-03-24T07:00:00.000Z" title="发表于 2026-03-24 15:00:00">2026-03-24</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
@@ -854,7 +810,7 @@
           </div>
           <ul class="card-category-list" id="aside-cat-list">
             <li class="card-category-list-item "><a class="card-category-list-link" href="/onionsnotebook.github.io/categories/%E5%85%B6%E4%BB%96/"><span class="card-category-list-name">其他</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/onionsnotebook.github.io/categories/%E5%A4%A7%E5%AD%A6%E5%9F%BA%E7%A1%80%E8%AF%BE%E7%A8%8B/"><span class="card-category-list-name">大学基础课程</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/onionsnotebook.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%BE%E7%A8%8B/"><span class="card-category-list-name">计算机课程</span><span class="card-category-list-count">3</span></a></li>
-          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/onionsnotebook.github.io/tags/%E5%90%8E%E7%AB%AF/" style="font-size: 1.1em; color: #999">后端</a> <a href="/onionsnotebook.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/" style="font-size: 1.37em; color: #99a4b2">计算机</a> <a href="/onionsnotebook.github.io/tags/%E8%8B%B1%E8%AF%AD/" style="font-size: 1.1em; color: #999">英语</a> <a href="/onionsnotebook.github.io/tags/%E5%A4%A7%E5%AD%A6/" style="font-size: 1.5em; color: #99a9bf">大学</a> <a href="/onionsnotebook.github.io/tags/%E9%AB%98%E6%95%B0/" style="font-size: 1.23em; color: #999ea6">高数</a></div></div><div class="card-widget card-archives">
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/onionsnotebook.github.io/tags/%E9%AB%98%E6%95%B0/" style="font-size: 1.23em; color: #999ea6">高数</a> <a href="/onionsnotebook.github.io/tags/%E8%8B%B1%E8%AF%AD/" style="font-size: 1.1em; color: #999">英语</a> <a href="/onionsnotebook.github.io/tags/%E5%90%8E%E7%AB%AF/" style="font-size: 1.1em; color: #999">后端</a> <a href="/onionsnotebook.github.io/tags/%E5%A4%A7%E5%AD%A6/" style="font-size: 1.5em; color: #99a9bf">大学</a> <a href="/onionsnotebook.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/" style="font-size: 1.37em; color: #99a4b2">计算机</a></div></div><div class="card-widget card-archives">
     <div class="item-headline">
       <i class="fas fa-archive"></i>
       <span>归档</span>
@@ -882,4 +838,4 @@
         </li>
       
     </ul>
-  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">7</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-04-11T03:30:38.822Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By 无聊的小洋葱</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/onionsnotebook.github.io/js/utils.js?v=5.5.4"></script><script src="/onionsnotebook.github.io/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script src="/js/global.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">7</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-04-11T05:39:05.344Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By 无聊的小洋葱</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/onionsnotebook.github.io/js/utils.js?v=5.5.4"></script><script src="/onionsnotebook.github.io/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
