@@ -483,24 +483,6 @@
     font-weight: 600 !important;
   }
 
-  /*  移动端适配  */
-  @media screen and (max-width: 768px) {
-    html body #recent-posts .recent-post-item {
-      flex-direction: column !important;
-      min-height: auto !important;
-    }
-    html body #recent-posts .recent-post-item .post_cover {
-      width: 100% !important;
-      height: 200px !important;
-      }
-    #article-container {
-      padding: 1rem 1.2rem !important;
-      }
-    html body #content-inner #category,
-    html body #content-inner #archive {
-      padding: 1rem 1.2rem !important;
-      }
-  }
   /* 黑暗模式适配 */
   
 
@@ -628,7 +610,7 @@
   #article-container h4::before { background-color: #722ed1; height: 16px; }
 
   #article-container h5 { font-size: 1.2em !important; }
-  #article-container h6 { font-size: 1.2em !important; }ore { background-color: #b197fc; }
+  #article-container h6 { font-size: 1.2em !important; }
 
   /* 黑暗模式：文章标题文字 + 彩色短线自动适配 */
   html[data-theme="dark"] #article-container h1,
@@ -774,10 +756,28 @@
       margin: 5px 0 !important;
     }
 
-    /* 修复文章详情页内边距，适配手机屏幕 */
+    /* 修复文章详情页内边距+字体大小适配 */
     #article-container {
       padding: 1rem !important;
+      font-size: 16px !important;
+      line-height: 1.6 !important;
     }
+    
+    /* 移动端标题字体缩小 */
+    #article-container h1 { font-size: 1.5em !important; }
+    #article-container h2 { font-size: 1.3em !important; }
+    #article-container h3 { font-size: 1.2em !important; }
+    #article-container h4 { font-size: 1.1em !important; }
+    
+    /* 移动端标题彩色竖线适配缩小 */
+    #article-container h1::before,
+    #article-container h2::before,
+    #article-container h3::before,
+    #article-container h4::before {
+      width: 3px !important;
+      height: 14px !important;
+    }
+    #article-container h1::before { height: 16px !important; }
 
     /* 修复分类/归档页移动端布局 */
     html body #content-inner #category,
