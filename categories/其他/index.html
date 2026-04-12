@@ -142,574 +142,111 @@
   isToc: false,
   pageType: 'category'
 }</script><style>
-  /* 每日自动更新必应壁纸 全站背景 */
+  /* 全局固定样式 */
+
+  /* ==============================================
+     强制移除深色模式下的所有背景变暗效果（V1/V2通用）
+     ============================================== */
+  html[data-theme="dark"] #web_bg {
+    /* 确保只显示纯壁纸，没有任何渐变、颜色叠加 */
+    background: url("https://bing.img.run/1920x1080.php") center/cover no-repeat fixed !important;
+    background-color: transparent !important;
+    filter: brightness(1) !important;
+    opacity: 1 !important;
+  }
+
+  /* 如果主题对body或html设置了背景色，也一并重置 */
+  html[data-theme="dark"],
+  html[data-theme="dark"] body {
+    background-color: transparent !important;
+  }
+
+  /* 防止主题给背景容器加额外的遮罩层 */
+  html[data-theme="dark"] #web_bg::before,
+  html[data-theme="dark"] #web_bg::after {
+    display: none !important;
+  }
+  html, body, #layout, #body-wrap, #page-header:before {
+    background: transparent !important;
+  }
   #web_bg {
-    background: url("https://bing.img.run/1920x1080.php") !important;
-    background-size: cover !important;
-    background-position: center center !important;
-    background-repeat: no-repeat !important;
-    background-attachment: fixed !important;
     position: fixed !important;
     width: 100% !important;
     height: 100% !important;
     top: 0 !important;
     left: 0 !important;
-    z-index: -1 !important;
-    transition: background 0.5s ease !important;
-  }
-
-  /* 黑暗模式适配：必应壁纸  黑色遮罩 */
-  html[data-theme="dark"] #web_bg {
-    background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), 
-                url("https://bing.img.run/1920x1080.php") !important;
-  }
-
-  /* 顶部首页大图同步换成必应每日壁纸 */
-  #page-header {
-    background-image: url("https://bing.img.run/1920x1080.php") !important;
     background-size: cover !important;
-    background-position: center !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important;
+    transition: background 0.3s ease !important;
+    z-index: -999 !important;
   }
-
-  html body #body-wrap {
-    background: transparent !important;
+  #theme-switch-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: var(--btn-bg);
+    color: var(--font-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 6px 0;
+    border: none;
+    box-shadow: var(--card-box-shadow);
   }
-
-  
-  /* 首页文章卡片 */
-  html body #recent-posts .recent-post-item {
-    border: 2px solid #c0d1eb !important;
-    background: rgba(180, 210, 255, 0.35) !important;
-    backdrop-filter: blur(10px) !important;
-    -webkit-backdrop-filter: blur(10px) !important;
-    border-radius: 12px !important;
-    box-shadow: 0 4px 20px rgba(102, 163, 255, 0.15) !important;
-    transition: all 0.3s ease !important;
-    overflow: hidden !important;
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: stretch !important;
-    width: 100% !important;
-    height: auto !important;
-    min-height: 220px !important;
-    margin-bottom: 1.5rem !important;
-    float: none !important;
-    padding: 0 !important;
-    box-sizing: border-box !important;
+  #theme-switch-btn:hover {
+    background: var(--btn-hover-color);
+    color: var(--white);
+    transform: scale(1.05);
   }
-
-  html body #recent-posts .recent-post-item .post_cover,
-  html body #recent-posts .recent-post-item .post_cover.right {
-    width: 40% !important;
-    height: 100% !important;
-    min-height: 100% !important;
-    max-height: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    position: absolute !important;
-    top: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
-    border-radius: 0 !important;
-    overflow: hidden !important;
-    z-index: 1 !important;
+  #rightside .fa-cog.fa-spin {
+    animation: none !important;
+    transform: rotate(0deg) !important;
   }
-
-  html body #recent-posts .recent-post-item .post_cover img,
-  html body #recent-posts .recent-post-item .post_cover.right img {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    object-position: center !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    border: none !important;
-    display: block !important;
-    transform: scale(1.01) !important;
+  .search-highlight {
+    background: #0066ff !important;
+    color: white !important;
+    padding: 2px 4px !important;
+    border-radius: 3px !important;
+    font-weight: bold !important;
   }
-
-  html body #recent-posts .recent-post-item {
-    position: relative !important;
-    padding: 0 !important;
-    overflow: hidden !important;
-  }
-
-  html body #recent-posts .recent-post-item .recent-post-info {
-    position: relative !important;
-    z-index: 2 !important;
-  }
-
-  /* 侧边栏卡片  */
-  html body #aside-content .card-widget {
-    border: 2px solid #c0d1eb !important;
-    background: rgba(180, 210, 255, 0.35) !important;
-    backdrop-filter: blur(10px) !important;
-    -webkit-backdrop-filter: blur(10px) !important;
-    border-radius: 12px !important;
-    box-shadow: 0 4px 20px rgba(102, 163, 255, 0.15) !important;
-    transition: all 0.3s ease !important;
-    overflow: hidden !important;
-  }
-
-  /*  文章详情页+独立页面  */
-  html body #content-inner #post.post,
-  html body #content-inner #page.page {
-    border: 2px solid #c0d1eb !important;
-    background: rgba(180, 210, 255, 0.35) !important;
-    backdrop-filter: blur(10px) !important;
-    -webkit-backdrop-filter: blur(10px) !important;
-    border-radius: 12px !important;
-    box-shadow: 0 4px 20px rgba(102, 163, 255, 0.15) !important;
-    transition: all 0.3s ease !important;
-    overflow: hidden !important;
-  }
-
-  /*  悬浮效果统一  */
-  html body #recent-posts .recent-post-item:hover,
-  html body #aside-content .card-widget:hover,
-  html body #content-inner #post.post:hover,
-  html body #content-inner #page.page:hover {
-    border-color: #4080ff !important;
-    background: rgba(180, 210, 255, 0.5) !important;
-    box-shadow: 0 0 16px rgba(64,128,255,0.6), 0 8px 30px rgba(102, 163, 255, 0.25) !important;
-    transform: translateY(-2px) !important;
-  }
-
-  /*  文章页内层容器透明  */
-  #post.post > *,
-  #page.page > *,
-  #article-container,
-  .post-header,
-  .post-content,
-  .post-copyright,
-  .post-footer {
-    background: transparent !important;
-  }
-
   #article-container {
     padding: 1.5rem 1.8rem !important;
   }
 
-  /*  首页文章信息区域  */
-  html body #recent-posts .recent-post-item .recent-post-info {
-    flex: 1 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    padding: 1.2rem 1.8rem !important;
-    background: transparent !important;
+  /* ==============================================
+     强制背景填满屏幕（cover），无任何覆盖
+     ============================================== */
+  html body #web_bg {
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important;
   }
 
-  html body #recent-posts .recent-post-item:has(.post_cover) .recent-post-info {
-    padding-right: 42% !important;
+  /* 移动端滚动优化 */
+  @media screen and (max-width: 768px) {
+    html body #web_bg {
+      background-attachment: scroll !important;
+    }
   }
 
-  html body #recent-posts .recent-post-item .recent-post-info .article-title {
-    color: #2c3e50 !important;
-    font-size: 1.4rem !important;
-    font-weight: 600 !important;
-    margin-bottom: 0.8rem !important;
-  }
-
-  html body #recent-posts .recent-post-item .recent-post-info .article-title:hover {
-    color: #4080ff !important;
-  }
-
-  html body #recent-posts .recent-post-item .recent-post-info .article-meta-wrap,
-  html body #recent-posts .recent-post-item .recent-post-info .content {
-    color: #555555 !important;
-    opacity: 0.85;
-    font-size: 1.05rem !important;
-  }
-
-  /*  分类/归档页面  */
-  html body #content-inner #category,
-  html body #content-inner #archive {
-    border: 2px solid #c0d1eb !important;
-    background: rgba(180, 210, 255, 0.35) !important;
-    backdrop-filter: blur(10px) !important;
-    -webkit-backdrop-filter: blur(10px) !important;
-    border-radius: 12px !important;
-    box-shadow: 0 4px 20px rgba(102, 163, 255, 0.15) !important;
-    padding: 1.5rem 2rem !important;
-    overflow: hidden !important;
-  }
-
-  html body #category .article-sort-item,
-  html body #archive .article-sort-item {
-    border: none !important;
-    background: transparent !important;
-    box-shadow: none !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    display: flex !important;
-    flex-direction: row !important;
-    width: 100% !important;
-    height: auto !important;
-    min-height: 100px !important;
-    margin-bottom: 1rem !important;
-    padding: 0.8rem 0 !important;
-    align-items: center !important;
-    border-bottom: 1px dashed rgba(102, 163, 255, 0.3) !important;
-  }
-
-  html body #category .article-sort-item:last-child,
-  html body #archive .article-sort-item:last-child {
-    border-bottom: none !important;
-  }
-
-  html body #category .article-sort-item-img,
-  html body #archive .article-sort-item-img {
-    width: 120px !important;
-    flex-shrink: 0 !important;
-    height: 90px !important;
-    margin-right: 1.2rem !important;
-    overflow: hidden !important;
-    border-radius: 8px !important;
-  }
-
-  html body #category .article-sort-item-img img,
-  html body #archive .article-sort-item-img img {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-  }
-
-  html body #category .article-sort-item-info,
-  html body #archive .article-sort-item-info {
-    flex: 1 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    background: transparent !important;
-  }
-
-  html body #category .article-sort-item-title,
-  html body #archive .article-sort-item-title {
-    color: #2c3e50 !important;
-    font-size: 1.25rem !important;
-    font-weight: 600 !important;
-    margin-bottom: 0.4rem !important;
-  }
-
-  html body #category .article-sort-item-title:hover,
-  html body #archive .article-sort-item-title:hover {
-    color: #4080ff !important;
-  }
-
-  html body #category .article-sort-item-time,
-  html body #archive .article-sort-item-time {
-    color: #555555 !important;
-    font-size: 0.95rem !important;
-    opacity: 0.8;
-  }
-
-  /*  分类/归档页面年份标题  */
-  html body #category .article-sort-item.year,
-  html body #archive .article-sort-item.year {
-    font-size: 1.5rem !important;
-    font-weight: 700 !important;
-    color: #4080ff !important;
-    padding-bottom: 0.5rem !important;
-    border-bottom: 2px solid #c0d1eb !important;
-    margin-bottom: 1.2rem !important;
-  }
-
-  /*  自定义标题竖线、加粗变红样式  */
-  #article-container h1, 
-  #article-container h2, 
-  #article-container h3, 
-  #article-container h4, 
-  #article-container h5, 
-  #article-container h6 {
-    position: relative;
-    padding-left: 16px !important;
-    margin-top: 0.8em !important;
-    margin-bottom: 0.4em !important;
-    font-weight: 600 !important;
-    color: #2c3e50 !important;
-  }
-
-  #article-container h1::before, 
-  #article-container h2::before, 
-  #article-container h3::before,
-  #article-container h4::before, 
-  #article-container h5::before, 
-  #article-container h6::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 3px;
-    height: 22px;
-    border-radius: 2px;
-  }
-
-  #article-container h1 { font-size: 2.0em !important; }
-  #article-container h1::before { background-color: #ff4d4f; height: 24px; }
-
-  #article-container h2 { font-size: 1.8em !important; }
-  #article-container h2::before { background-color: #fa7c00; }
-
-  #article-container h3 { font-size: 1.6em !important; }
-  #article-container h3::before { background-color: #1677ff; }
-
-  #article-container h4 { font-size: 1.4em !important; }
-  #article-container h4::before { background-color: #722ed1; height: 20px; }
-
-  #article-container h5 { font-size: 1.3em !important; }
-  #article-container h5::before { background-color: #722ed1; }
-
-  #article-container h6 { font-size: 1.2em !important; }
-  #article-container h6::before { background-color: #722ed1; }
-  
-  strong {
-    color: #ff4d4f !important;
-    font-weight: 600 !important;
-  }
-
-  /* 黑暗模式适配 */
-  html[data-theme="dark"] #web_bg {
-    background: #0d0d0d !important; 
-  }
-
-  html[data-theme="dark"] #recent-posts .recent-post-item {
-    background: rgba(0, 30, 60, 0.85) !important;
-    border-color: rgba(255, 255, 255, 0.1) !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35) !important;
-  }
-
-  html[data-theme="dark"] #recent-posts .recent-post-item:hover,
-  html[data-theme="dark"] #aside-content .card-widget:hover,
-  html[data-theme="dark"] #content-inner #post.post:hover,
-  html[data-theme="dark"] #content-inner #page.page:hover {
-    background: rgba(0, 30, 60, 0.85) !important;
-    box-shadow: 0 0 16px rgba(128,170,255,0.6), 0 8px 30px rgba(0,0,0,0.45) !important;
-    transform: translateY(-2px) !important;
-  }
-
-  html[data-theme="dark"] #aside-content .card-widget {
-    background: rgba(0, 30, 60, 0.85) !important;
-    border-color: rgba(255, 255, 255, 0.1) !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35) !important;
-    color: #e0e0e0 !important;
-  }
-
-  html[data-theme="dark"] #content-inner #post.post,
-  html[data-theme="dark"] #content-inner #page.page {
-    background: rgba(0, 30, 60, 0.85) !important;
-    border-color: rgba(255, 255, 255, 0.1) !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35) !important;
-  }
-
-  html[data-theme="dark"] #recent-posts .recent-post-item .recent-post-info .article-title,
-  html[data-theme="dark"] #recent-posts .recent-post-item .recent-post-info .article-meta-wrap,
-  html[data-theme="dark"] #recent-posts .recent-post-item .recent-post-info .article-meta-wrap a,
-  html[data-theme="dark"] #recent-posts .recent-post-item .recent-post-info .content,
-  html[data-theme="dark"] #article-container h1, 
-  html[data-theme="dark"] #article-container h2, 
-  html[data-theme="dark"] #article-container h3, 
-  html[data-theme="dark"] #article-container h4, 
-  html[data-theme="dark"] #article-container h5, 
-  html[data-theme="dark"] #article-container h6 {
-    color: #f0f0f0 !important;
-  }
-
-  html[data-theme="dark"] #recent-posts .recent-post-item .recent-post-info .article-title:hover {
-    color: #80b0ff !important;
-  }
-
-  html[data-theme="dark"] #content-inner #category,
-  html[data-theme="dark"] #content-inner #archive {
-    background: rgba(20, 20, 35, 0.7) !important;
-    border-color: rgba(255, 255, 255, 0.1) !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35) !important;
-  }
-
-  html[data-theme="dark"] #category .article-sort-item-title,
-  html[data-theme="dark"] #archive .article-sort-item-title,
-  html[data-theme="dark"] #category .article-sort-item-time,
-  html[data-theme="dark"] #archive .article-sort-item-time {
-    color: #f0f0f0 !important;
-  }
-
-  html[data-theme="dark"] #category .article-sort-item.year,
-  html[data-theme="dark"] #archive .article-sort-item.year {
-    color: #80b0ff !important;
-    border-color: rgba(255, 255, 255, 0.1) !important;
-  }
-
-  html[data-theme="dark"] #article-container h1,
-  html[data-theme="dark"] #article-container h2,
-  html[data-theme="dark"] #article-container h3,
-  html[data-theme="dark"] #article-container h4,
-  html[data-theme="dark"] #article-container h5,
-  html[data-theme="dark"] #article-container h6 {
-    color: #e8e8e8 !important;
-  }
-  html[data-theme="dark"] #article-container h1::before { background-color: #ff6b6b; }
-  html[data-theme="dark"] #article-container h2::before { background-color: #ffa94d; }
-  html[data-theme="dark"] #article-container h3::before { background-color: #4dabf7; }
-  html[data-theme="dark"] #article-container h4::before { background-color: #b197fc; }
-  html[data-theme="dark"] strong {
-    color: #ff8787 !important;
-  }
-
-  /* 底部版权 */
-  html body #footer {
-    background: rgba(180, 210, 255, 0.4) !important;
-    backdrop-filter: blur(10px) !important;
-    -webkit-backdrop-filter: blur(10px) !important;
-    border: 2px solid #c0d1eb !important;
-    border-radius: 0 !important;
-    box-shadow: 0 -4px 20px rgba(102, 163, 255, 0.15) !important;
-    padding: 1.5rem !important;
-    transition: all 0.3s ease !important;
-  }
-  html body #footer,
-  html body #footer * {
-    color: #2c3e50 !important;
-  }
-
+  /* V2 深色页脚强化覆盖 */
   html[data-theme="dark"] body #footer {
     background: #0a1a2f !important;
     border-color: rgba(255, 255, 255, 0.1) !important;
-    border-radius: 0 !important;
     box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.35) !important;
   }
   html[data-theme="dark"] body #footer,
   html[data-theme="dark"] body #footer * {
     color: #f0f0f0 !important;
   }
-  html body #footer a {
-    color: #0066cc !important;
-  }
   html[data-theme="dark"] body #footer a {
     color: #80b0ff !important;
-  }
-
-  /* 停止齿轮旋转 */
-  #rightside > div#setting > i.fas.fa-cog.fa-spin,
-  #rightside #setting i,
-  .fa-cog.fa-spin {
-    animation: none !important;
-    -webkit-animation: none !important;
-    transform: rotate(0deg) !important;
-  }
-  *[class*="fa-spin"], *[class*="rotate"] {
-    animation: none !important;
-    transform: none !important;
-  }
-
-  /* 移动端专属修复 */
-  @media screen and (max-width: 768px) {
-    html body #recent-posts .recent-post-item {
-      flex-direction: column !important;
-      min-height: auto !important;
-      height: auto !important;
-      padding: 0 !important;
-      margin-bottom: 1.2rem !important;
-    }
-    html body #recent-posts .recent-post-item .post_cover,
-    html body #recent-posts .recent-post-item .post_cover.right {
-      position: relative !important;
-      width: 100% !important;
-      height: 180px !important;
-      max-height: 180px !important;
-      right: auto !important;
-      top: auto !important;
-      border-radius: 8px 8px 0 0 !important;
-    }
-    html body #recent-posts .recent-post-item .post_cover img {
-      width: 100% !important;
-      height: 100% !important;
-      object-fit: cover !important;
-    }
-    html body #recent-posts .recent-post-item:has(.post_cover) .recent-post-info {
-      padding: 1.2rem !important;
-      padding-right: 1.2rem !important;
-    }
-    html body #recent-posts .recent-post-item .recent-post-info .article-title {
-      font-size: 1.2rem !important;
-    }
-    html body #recent-posts .recent-post-item .recent-post-info .article-meta-wrap,
-    html body #recent-posts .recent-post-item .recent-post-info .content {
-      font-size: 0.95rem !important;
-    }
-
-    /* 只修复右侧按钮定位 + 弹窗不重叠，其余不动 */
-    #rightside {
-      right: 10px !important;
-      bottom: 15px !important;
-    }
-    #rightside > div {
-      margin: 6px 0 !important;
-      position: static !important;
-      float: none !important;
-    }
-    #rightside-config {
-      right: 50px !important;
-      bottom: 0 !important;
-      z-index: 9999 !important;
-    }
-    #rightside-config.show {
-      display: flex !important;
-      flex-direction: column !important;
-      gap: 6px !important;
-    }
-
-    #article-container {
-      padding: 1rem !important;
-      font-size: 11px !important;
-      line-height: 1.6 !important;
-    }
-    #article-container h1 { font-size: 1.4em !important; }
-    #article-container h2 { font-size: 1.3em !important; }
-    #article-container h3 { font-size: 1.2em !important; }
-    #article-container h4 { font-size: 1.1em !important; }
-    #article-container h5 { font-size: 1.0em !important; }
-    #article-container h6 { font-size: 0.9em !important; }
-    
-    #article-container h1::before,
-    #article-container h2::before,
-    #article-container h3::before,
-    #article-container h4::before,
-    #article-container h5::before,
-    #article-container h6::before {
-      width: 2px !important;
-      height: 14px !important;
-    }
-
-    html body #content-inner #category,
-    html body #content-inner #archive {
-      padding: 1rem !important;
-      margin: 0 0.5rem !important;
-    }
-    html body #category .article-sort-item-img,
-    html body #archive .article-sort-item-img {
-      width: 80px !important;
-      height: 60px !important;
-      margin-right: 0.8rem !important;
-    }
-    html body #aside-content .card-widget {
-      margin: 0 0.5rem 1rem 0.5rem !important;
-    }
-  }
-  
-  /* 搜索高亮 */
-  .search-highlight {
-    background: #007bff !important;
-    color: white !important;
-    padding: 2px 4px !important;
-    border-radius: 3px !important;
-    font-weight: bold !important;
-  }
-
-  #article-container {
-    padding: 1.5rem 1.8rem !important;
-    font-size: 18px !important;
-    line-height: 1.5 !important;
   }
   
 </style>
@@ -728,23 +265,14 @@
     throwOnError: false,
     strict: false
   });"></script>
-  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.1"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/onionsnotebook.github.io/img/avatar.png" onerror="this.onerror=null;this.src='/onionsnotebook.github.io/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/onionsnotebook.github.io/archives/"><div class="headline">文章</div><div class="length-num">7</div></a><a href="/onionsnotebook.github.io/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/onionsnotebook.github.io/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/search/"><i class="fa-fw fas fa-search"></i><span> 搜索</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/categories/%E5%A4%A7%E5%AD%A6%E5%9F%BA%E7%A1%80%E8%AF%BE%E7%A8%8B/"><i class="fa-fw fas fa-book"></i><span> 大学基础课程</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%BE%E7%A8%8B/"><i class="fa-fw fas fa-laptop-code"></i><span> 计算机课程</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/categories/%E5%85%B6%E4%BB%96/"><i class="fa-fw fas fa-ellipsis-h"></i><span> 其他</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/about/"><i class="fa-fw fas fa-user"></i><span> 关于我</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header" style="background-image: url(/onionsnotebook.github.io/img/background.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/onionsnotebook.github.io/"><img class="site-icon" src="/onionsnotebook.github.io/img/avatar.png" alt="Logo"><span class="site-name">小洋葱的笔记本</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/search/"><i class="fa-fw fas fa-search"></i><span> 搜索</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/categories/%E5%A4%A7%E5%AD%A6%E5%9F%BA%E7%A1%80%E8%AF%BE%E7%A8%8B/"><i class="fa-fw fas fa-book"></i><span> 大学基础课程</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%BE%E7%A8%8B/"><i class="fa-fw fas fa-laptop-code"></i><span> 计算机课程</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/categories/%E5%85%B6%E4%BB%96/"><i class="fa-fw fas fa-ellipsis-h"></i><span> 其他</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/about/"><i class="fa-fw fas fa-user"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="page-site-info"><h1 id="site-title">其他</h1></div></header><main class="layout" id="content-inner"><div id="category"><div class="article-sort-title">分类 - 其他</div><div class="article-sort"><div class="article-sort-item year">2026</div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2026-03-23T15:49:35.067Z" title="发表于 2026-03-23 23:49:35">2026-03-23</time></div><a class="article-sort-item-title" href="/onionsnotebook.github.io/2026/03/23/hello-world/" title="Hello World">Hello World</a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/onionsnotebook.github.io/img/avatar.png" onerror="this.onerror=null;this.src='/onionsnotebook.github.io/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">无聊的小洋葱</div><div class="author-info-description">这里会分享一些我学过的东西</div><div class="site-data"><a href="/onionsnotebook.github.io/archives/"><div class="headline">文章</div><div class="length-num">7</div></a><a href="/onionsnotebook.github.io/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/onionsnotebook.github.io/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" href="https://github.com/onion383" target="_blank" rel="noopener"><span>点我跳转</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">版本信息-最近更新 <br>
- V 1.2 2026.4.11 <br>
-新增 支持Obsidan代码提示块自动转换 <br>
-新增 支持统计网站运营时间 <br>
-新增 支持搜索全文标题并自动跳转 <br>
-新增 新增标签页图标、快捷返回栏 <br>
-改进 设置齿轮不旋转 <br>
-改进 移动端设置按钮偏移 <br>
-改进 改进字体大小，提升阅读体验 <br>
-</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/onionsnotebook.github.io/2026/04/11/Express%20%E6%A1%86%E6%9E%B6%E7%AC%94%E8%AE%B0/" title="Express框架笔记">Express框架笔记</a><time datetime="2026-04-11T07:00:00.000Z" title="发表于 2026-04-11 15:00:00">2026-04-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/onionsnotebook.github.io/2026/03/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0/" title="数据结构笔记">数据结构笔记</a><time datetime="2026-03-26T07:00:00.000Z" title="发表于 2026-03-26 15:00:00">2026-03-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/onionsnotebook.github.io/2026/03/25/%E8%8B%B1%E8%AF%AD%E5%9B%9B%E7%BA%A7%E7%AC%94%E8%AE%B0/" title="英语四级笔记">英语四级笔记</a><time datetime="2026-03-25T07:00:00.000Z" title="发表于 2026-03-25 15:00:00">2026-03-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/onionsnotebook.github.io/2026/03/24/HTML%E8%AF%AD%E8%A8%80%E7%AC%94%E8%AE%B0/" title="HTML语言笔记"><img src="/onionsnotebook.github.io/img/postbackground/HTML%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B%E8%83%8C%E6%99%AF%E5%9B%BE.jpg" onerror="this.onerror=null;this.src='/onionsnotebook.github.io/img/404.jpg'" alt="HTML语言笔记"/></a><div class="content"><a class="title" href="/onionsnotebook.github.io/2026/03/24/HTML%E8%AF%AD%E8%A8%80%E7%AC%94%E8%AE%B0/" title="HTML语言笔记">HTML语言笔记</a><time datetime="2026-03-24T10:00:00.000Z" title="发表于 2026-03-24 18:00:00">2026-03-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/onionsnotebook.github.io/2026/03/24/Markdown%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" title="Markdown极简使用方法"><img src="/onionsnotebook.github.io/img/postbackground/Markdown%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B%E8%83%8C%E6%99%AF%E5%9B%BE.jpg" onerror="this.onerror=null;this.src='/onionsnotebook.github.io/img/404.jpg'" alt="Markdown极简使用方法"/></a><div class="content"><a class="title" href="/onionsnotebook.github.io/2026/03/24/Markdown%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" title="Markdown极简使用方法">Markdown极简使用方法</a><time datetime="2026-03-24T07:00:00.000Z" title="发表于 2026-03-24 15:00:00">2026-03-24</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.1"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/onionsnotebook.github.io/img/avatar.png" onerror="this.onerror=null;this.src='/onionsnotebook.github.io/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/onionsnotebook.github.io/archives/"><div class="headline">文章</div><div class="length-num">7</div></a><a href="/onionsnotebook.github.io/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/onionsnotebook.github.io/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/search/"><i class="fa-fw fas fa-search"></i><span> 搜索</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/categories/%E5%A4%A7%E5%AD%A6%E5%9F%BA%E7%A1%80%E8%AF%BE%E7%A8%8B/"><i class="fa-fw fas fa-book"></i><span> 大学基础课程</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%BE%E7%A8%8B/"><i class="fa-fw fas fa-laptop-code"></i><span> 计算机课程</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/categories/%E5%85%B6%E4%BB%96/"><i class="fa-fw fas fa-ellipsis-h"></i><span> 其他</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/about/"><i class="fa-fw fas fa-user"></i><span> 关于我</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header" style="background-image: url(/onionsnotebook.github.io/img/background.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/onionsnotebook.github.io/"><img class="site-icon" src="/onionsnotebook.github.io/img/avatar.png" alt="Logo"><span class="site-name">小洋葱的笔记本</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/search/"><i class="fa-fw fas fa-search"></i><span> 搜索</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/categories/%E5%A4%A7%E5%AD%A6%E5%9F%BA%E7%A1%80%E8%AF%BE%E7%A8%8B/"><i class="fa-fw fas fa-book"></i><span> 大学基础课程</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%BE%E7%A8%8B/"><i class="fa-fw fas fa-laptop-code"></i><span> 计算机课程</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/categories/%E5%85%B6%E4%BB%96/"><i class="fa-fw fas fa-ellipsis-h"></i><span> 其他</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/about/"><i class="fa-fw fas fa-user"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="page-site-info"><h1 id="site-title">其他</h1></div></header><main class="layout" id="content-inner"><div id="category"><div class="article-sort-title">分类 - 其他</div><div class="article-sort"><div class="article-sort-item year">2026</div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2026-03-23T15:49:35.067Z" title="发表于 2026-03-23 23:49:35">2026-03-23</time></div><a class="article-sort-item-title" href="/onionsnotebook.github.io/2026/03/23/hello-world/" title="Hello World">Hello World</a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/onionsnotebook.github.io/img/avatar.png" onerror="this.onerror=null;this.src='/onionsnotebook.github.io/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">无聊的小洋葱</div><div class="author-info-description">这里会分享一些我学过的东西</div><div class="site-data"><a href="/onionsnotebook.github.io/archives/"><div class="headline">文章</div><div class="length-num">7</div></a><a href="/onionsnotebook.github.io/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/onionsnotebook.github.io/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" href="https://github.com/onion383" target="_blank" rel="noopener"><span>点我跳转</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/onionsnotebook.github.io/2026/04/11/Express%20%E6%A1%86%E6%9E%B6%E7%AC%94%E8%AE%B0/" title="Express框架笔记">Express框架笔记</a><time datetime="2026-04-11T07:00:00.000Z" title="发表于 2026-04-11 15:00:00">2026-04-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/onionsnotebook.github.io/2026/03/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0/" title="数据结构笔记">数据结构笔记</a><time datetime="2026-03-26T07:00:00.000Z" title="发表于 2026-03-26 15:00:00">2026-03-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/onionsnotebook.github.io/2026/03/25/%E8%8B%B1%E8%AF%AD%E5%9B%9B%E7%BA%A7%E7%AC%94%E8%AE%B0/" title="英语四级笔记">英语四级笔记</a><time datetime="2026-03-25T07:00:00.000Z" title="发表于 2026-03-25 15:00:00">2026-03-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/onionsnotebook.github.io/2026/03/24/HTML%E8%AF%AD%E8%A8%80%E7%AC%94%E8%AE%B0/" title="HTML语言笔记"><img src="/onionsnotebook.github.io/img/postbackground/HTML%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B%E8%83%8C%E6%99%AF%E5%9B%BE.jpg" onerror="this.onerror=null;this.src='/onionsnotebook.github.io/img/404.jpg'" alt="HTML语言笔记"/></a><div class="content"><a class="title" href="/onionsnotebook.github.io/2026/03/24/HTML%E8%AF%AD%E8%A8%80%E7%AC%94%E8%AE%B0/" title="HTML语言笔记">HTML语言笔记</a><time datetime="2026-03-24T10:00:00.000Z" title="发表于 2026-03-24 18:00:00">2026-03-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/onionsnotebook.github.io/2026/03/24/Markdown%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" title="Markdown极简使用方法"><img src="/onionsnotebook.github.io/img/postbackground/Markdown%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B%E8%83%8C%E6%99%AF%E5%9B%BE.jpg" onerror="this.onerror=null;this.src='/onionsnotebook.github.io/img/404.jpg'" alt="Markdown极简使用方法"/></a><div class="content"><a class="title" href="/onionsnotebook.github.io/2026/03/24/Markdown%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" title="Markdown极简使用方法">Markdown极简使用方法</a><time datetime="2026-03-24T07:00:00.000Z" title="发表于 2026-03-24 15:00:00">2026-03-24</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             
           </div>
           <ul class="card-category-list" id="aside-cat-list">
             <li class="card-category-list-item "><a class="card-category-list-link" href="/onionsnotebook.github.io/categories/%E5%85%B6%E4%BB%96/"><span class="card-category-list-name">其他</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/onionsnotebook.github.io/categories/%E5%A4%A7%E5%AD%A6%E5%9F%BA%E7%A1%80%E8%AF%BE%E7%A8%8B/"><span class="card-category-list-name">大学基础课程</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/onionsnotebook.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%BE%E7%A8%8B/"><span class="card-category-list-name">计算机课程</span><span class="card-category-list-count">3</span></a></li>
-          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/onionsnotebook.github.io/tags/%E8%8B%B1%E8%AF%AD/" style="font-size: 1.1em; color: #999">英语</a> <a href="/onionsnotebook.github.io/tags/%E5%A4%A7%E5%AD%A6/" style="font-size: 1.5em; color: #99a9bf">大学</a> <a href="/onionsnotebook.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/" style="font-size: 1.37em; color: #99a4b2">计算机</a> <a href="/onionsnotebook.github.io/tags/%E5%90%8E%E7%AB%AF/" style="font-size: 1.1em; color: #999">后端</a> <a href="/onionsnotebook.github.io/tags/%E9%AB%98%E6%95%B0/" style="font-size: 1.23em; color: #999ea6">高数</a></div></div><div class="card-widget card-archives">
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/onionsnotebook.github.io/tags/%E5%90%8E%E7%AB%AF/" style="font-size: 1.1em; color: #999">后端</a> <a href="/onionsnotebook.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/" style="font-size: 1.37em; color: #99a4b2">计算机</a> <a href="/onionsnotebook.github.io/tags/%E5%A4%A7%E5%AD%A6/" style="font-size: 1.5em; color: #99a9bf">大学</a> <a href="/onionsnotebook.github.io/tags/%E9%AB%98%E6%95%B0/" style="font-size: 1.23em; color: #999ea6">高数</a> <a href="/onionsnotebook.github.io/tags/%E8%8B%B1%E8%AF%AD/" style="font-size: 1.1em; color: #999">英语</a></div></div><div class="card-widget card-archives">
     <div class="item-headline">
       <i class="fas fa-archive"></i>
       <span>归档</span>
@@ -772,4 +300,1120 @@
         </li>
       
     </ul>
-  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">7</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-04-11T12:37:33.767Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By 无聊的小洋葱</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/onionsnotebook.github.io/js/utils.js?v=5.5.4"></script><script src="/onionsnotebook.github.io/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script src="/onionsnotebook.github.io/js/global.js"></script><script src="/onionsnotebook.github.io/js/runtime.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">7</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-04-12T16:51:55.238Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By 无聊的小洋葱</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/onionsnotebook.github.io/js/utils.js?v=5.5.4"></script><script src="/onionsnotebook.github.io/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script src="/onionsnotebook.github.io/js/global.js"></script><script src="/onionsnotebook.github.io/js/runtime.js"></script><script>
+  (function() {
+    const STORAGE_KEY = 'blog-theme-version';
+    const THEME_STYLE_ID = 'blog-dynamic-theme-style';
+    const DEFAULT_THEME = 'v1';
+
+    // ==============================================
+    // V1 经典原版（100%还原旧版，修正日间背景为渐变）
+    // ==============================================
+    const V1_THEME_CSS = `
+      /* V1 背景：日间渐变 / 夜间纯黑 */
+      html[data-theme="light"] #web_bg {
+        background: linear-gradient(135deg, #f0f7ff 0%, #e6f0ff 100%) !important;
+      }
+      html[data-theme="dark"] #web_bg {
+        background: #0d0d0d !important;
+      }
+      /* 顶部 header 使用必应壁纸（日间/夜间相同） */
+      #page-header {
+        background-image: url("https://bing.img.run/1920x1080.php") !important;
+        background-size: cover !important;
+        background-position: center !important;
+      }
+
+      html body #body-wrap {
+        background: transparent !important;
+      }
+
+      /* 首页文章卡片 */
+      html body #recent-posts .recent-post-item {
+        border: 2px solid #c0d1eb !important;
+        background: rgba(180, 210, 255, 0.35) !important;
+        backdrop-filter: blur(10px) !important;
+        -webkit-backdrop-filter: blur(10px) !important;
+        border-radius: 12px !important;
+        box-shadow: 0 4px 20px rgba(102, 163, 255, 0.15) !important;
+        transition: all 0.3s ease !important;
+        overflow: hidden !important;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: stretch !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 220px !important;
+        margin-bottom: 1.5rem !important;
+        float: none !important;
+        padding: 0 !important;
+        box-sizing: border-box !important;
+      }
+
+      html body #recent-posts .recent-post-item .post_cover,
+      html body #recent-posts .recent-post-item .post_cover.right {
+        width: 40% !important;
+        height: 100% !important;
+        min-height: 100% !important;
+        max-height: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        position: absolute !important;
+        top: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        border-radius: 0 !important;
+        overflow: hidden !important;
+        z-index: 1 !important;
+      }
+
+      html body #recent-posts .recent-post-item .post_cover img,
+      html body #recent-posts .recent-post-item .post_cover.right img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        object-position: center !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: none !important;
+        display: block !important;
+        transform: scale(1.01) !important;
+      }
+
+      html body #recent-posts .recent-post-item {
+        position: relative !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+      }
+
+      html body #recent-posts .recent-post-item .recent-post-info {
+        position: relative !important;
+        z-index: 2 !important;
+      }
+
+      /* 侧边栏卡片 */
+      html body #aside-content .card-widget {
+        border: 2px solid #c0d1eb !important;
+        background: rgba(180, 210, 255, 0.35) !important;
+        backdrop-filter: blur(10px) !important;
+        -webkit-backdrop-filter: blur(10px) !important;
+        border-radius: 12px !important;
+        box-shadow: 0 4px 20px rgba(102, 163, 255, 0.15) !important;
+        transition: all 0.3s ease !important;
+        overflow: hidden !important;
+      }
+
+      /* 文章详情页+独立页面 */
+      html body #content-inner #post.post,
+      html body #content-inner #page.page {
+        border: 2px solid #c0d1eb !important;
+        background: rgba(180, 210, 255, 0.35) !important;
+        backdrop-filter: blur(10px) !important;
+        -webkit-backdrop-filter: blur(10px) !important;
+        border-radius: 12px !important;
+        box-shadow: 0 4px 20px rgba(102, 163, 255, 0.15) !important;
+        transition: all 0.3s ease !important;
+        overflow: hidden !important;
+      }
+
+      /* 悬浮效果 */
+      html body #recent-posts .recent-post-item:hover,
+      html body #aside-content .card-widget:hover,
+      html body #content-inner #post.post:hover,
+      html body #content-inner #page.page:hover {
+        border-color: #4080ff !important;
+        background: rgba(180, 210, 255, 0.5) !important;
+        box-shadow: 0 0 16px rgba(64,128,255,0.6), 0 8px 30px rgba(102, 163, 255, 0.25) !important;
+        transform: translateY(-2px) !important;
+      }
+
+      #post.post > *,
+      #page.page > *,
+      #article-container,
+      .post-header,
+      .post-content,
+      .post-copyright,
+      .post-footer {
+        background: transparent !important;
+      }
+
+      #article-container {
+        padding: 1.5rem 1.8rem !important;
+      }
+
+      /* 首页文章信息区域 */
+      html body #recent-posts .recent-post-item .recent-post-info {
+        flex: 1 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        padding: 1.2rem 1.8rem !important;
+        background: transparent !important;
+      }
+
+      html body #recent-posts .recent-post-item:has(.post_cover) .recent-post-info {
+        padding-right: 42% !important;
+      }
+
+      html body #recent-posts .recent-post-item .recent-post-info .article-title {
+        color: #2c3e50 !important;
+        font-size: 1.4rem !important;
+        font-weight: 600 !important;
+        margin-bottom: 0.8rem !important;
+      }
+
+      html body #recent-posts .recent-post-item .recent-post-info .article-title:hover {
+        color: #4080ff !important;
+      }
+
+      html body #recent-posts .recent-post-item .recent-post-info .article-meta-wrap,
+      html body #recent-posts .recent-post-item .recent-post-info .content {
+        color: #555555 !important;
+        opacity: 0.85;
+        font-size: 1.05rem !important;
+      }
+
+      /* 分类/归档页面 */
+      html body #content-inner #category,
+      html body #content-inner #archive {
+        border: 2px solid #c0d1eb !important;
+        background: rgba(180, 210, 255, 0.35) !important;
+        backdrop-filter: blur(10px) !important;
+        -webkit-backdrop-filter: blur(10px) !important;
+        border-radius: 12px !important;
+        box-shadow: 0 4px 20px rgba(102, 163, 255, 0.15) !important;
+        padding: 1.5rem 2rem !important;
+        overflow: hidden !important;
+      }
+
+      html body #category .article-sort-item,
+      html body #archive .article-sort-item {
+        border: none !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        display: flex !important;
+        flex-direction: row !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 100px !important;
+        margin-bottom: 1rem !important;
+        padding: 0.8rem 0 !important;
+        align-items: center !important;
+        border-bottom: 1px dashed rgba(102, 163, 255, 0.3) !important;
+      }
+
+      html body #category .article-sort-item:last-child,
+      html body #archive .article-sort-item:last-child {
+        border-bottom: none !important;
+      }
+
+      html body #category .article-sort-item-img,
+      html body #archive .article-sort-item-img {
+        width: 120px !important;
+        flex-shrink: 0 !important;
+        height: 90px !important;
+        margin-right: 1.2rem !important;
+        overflow: hidden !important;
+        border-radius: 8px !important;
+      }
+
+      html body #category .article-sort-item-img img,
+      html body #archive .article-sort-item-img img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+      }
+
+      html body #category .article-sort-item-info,
+      html body #archive .article-sort-item-info {
+        flex: 1 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        background: transparent !important;
+      }
+
+      html body #category .article-sort-item-title,
+      html body #archive .article-sort-item-title {
+        color: #2c3e50 !important;
+        font-size: 1.25rem !important;
+        font-weight: 600 !important;
+        margin-bottom: 0.4rem !important;
+      }
+
+      html body #category .article-sort-item-title:hover,
+      html body #archive .article-sort-item-title:hover {
+        color: #4080ff !important;
+      }
+
+      html body #category .article-sort-item-time,
+      html body #archive .article-sort-item-time {
+        color: #555555 !important;
+        font-size: 0.95rem !important;
+        opacity: 0.8;
+      }
+
+      html body #category .article-sort-item.year,
+      html body #archive .article-sort-item.year {
+        font-size: 1.5rem !important;
+        font-weight: 700 !important;
+        color: #4080ff !important;
+        padding-bottom: 0.5rem !important;
+        border-bottom: 2px solid #c0d1eb !important;
+        margin-bottom: 1.2rem !important;
+      }
+
+      /* 标题样式 */
+      #article-container h1, #article-container h2, #article-container h3, #article-container h4, #article-container h5, #article-container h6 {
+        position: relative;
+        padding-left: 16px !important;
+        margin-top: 0.8em !important;
+        margin-bottom: 0.4em !important;
+        font-weight: 600 !important;
+        color: #2c3e50 !important;
+      }
+
+      #article-container h1::before, #article-container h2::before, #article-container h3::before, #article-container h4::before, #article-container h5::before, #article-container h6::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 3px;
+        height: 22px;
+        border-radius: 2px;
+      }
+
+      #article-container h1 { font-size: 2.0em !important; }
+      #article-container h1::before { background-color: #ff4d4f; height: 24px; }
+      #article-container h2 { font-size: 1.8em !important; }
+      #article-container h2::before { background-color: #fa7c00; }
+      #article-container h3 { font-size: 1.6em !important; }
+      #article-container h3::before { background-color: #1677ff; }
+      #article-container h4 { font-size: 1.4em !important; }
+      #article-container h4::before { background-color: #722ed1; height: 20px; }
+      #article-container h5 { font-size: 1.3em !important; }
+      #article-container h5::before { background-color: #722ed1; }
+      #article-container h6 { font-size: 1.2em !important; }
+      #article-container h6::before { background-color: #722ed1; }
+
+      strong {
+        color: #ff4d4f !important;
+        font-weight: 600 !important;
+      }
+
+      /* 深色模式 */
+      html[data-theme="dark"] #web_bg {
+        background: #0d0d0d !important;
+      }
+
+      html[data-theme="dark"] #recent-posts .recent-post-item {
+        background: rgba(0, 30, 60, 0.85) !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35) !important;
+      }
+
+      html[data-theme="dark"] #recent-posts .recent-post-item:hover,
+      html[data-theme="dark"] #aside-content .card-widget:hover,
+      html[data-theme="dark"] #content-inner #post.post:hover,
+      html[data-theme="dark"] #content-inner #page.page:hover {
+        background: rgba(0, 30, 60, 0.85) !important;
+        box-shadow: 0 0 16px rgba(128,170,255,0.6), 0 8px 30px rgba(0,0,0,0.45) !important;
+        transform: translateY(-2px) !important;
+      }
+
+      html[data-theme="dark"] #aside-content .card-widget {
+        background: rgba(0, 30, 60, 0.85) !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35) !important;
+        color: #e0e0e0 !important;
+      }
+
+      html[data-theme="dark"] #content-inner #post.post,
+      html[data-theme="dark"] #content-inner #page.page {
+        background: rgba(0, 30, 60, 0.85) !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35) !important;
+      }
+
+      html[data-theme="dark"] #recent-posts .recent-post-item .recent-post-info .article-title,
+      html[data-theme="dark"] #recent-posts .recent-post-item .recent-post-info .article-meta-wrap,
+      html[data-theme="dark"] #recent-posts .recent-post-item .recent-post-info .article-meta-wrap a,
+      html[data-theme="dark"] #recent-posts .recent-post-item .recent-post-info .content,
+      html[data-theme="dark"] #article-container h1, 
+      html[data-theme="dark"] #article-container h2, 
+      html[data-theme="dark"] #article-container h3, 
+      html[data-theme="dark"] #article-container h4, 
+      html[data-theme="dark"] #article-container h5, 
+      html[data-theme="dark"] #article-container h6 {
+        color: #f0f0f0 !important;
+      }
+
+      html[data-theme="dark"] #recent-posts .recent-post-item .recent-post-info .article-title:hover {
+        color: #80b0ff !important;
+      }
+
+      html[data-theme="dark"] #content-inner #category,
+      html[data-theme="dark"] #content-inner #archive {
+        background: rgba(20, 20, 35, 0.7) !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35) !important;
+      }
+
+      html[data-theme="dark"] #category .article-sort-item-title,
+      html[data-theme="dark"] #archive .article-sort-item-title,
+      html[data-theme="dark"] #category .article-sort-item-time,
+      html[data-theme="dark"] #archive .article-sort-item-time {
+        color: #f0f0f0 !important;
+      }
+
+      html[data-theme="dark"] #category .article-sort-item.year,
+      html[data-theme="dark"] #archive .article-sort-item.year {
+        color: #80b0ff !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+      }
+
+      html[data-theme="dark"] #article-container h1,
+      html[data-theme="dark"] #article-container h2,
+      html[data-theme="dark"] #article-container h3,
+      html[data-theme="dark"] #article-container h4,
+      html[data-theme="dark"] #article-container h5,
+      html[data-theme="dark"] #article-container h6 {
+        color: #e8e8e8 !important;
+      }
+      html[data-theme="dark"] #article-container h1::before { background-color: #ff6b6b; }
+      html[data-theme="dark"] #article-container h2::before { background-color: #ffa94d; }
+      html[data-theme="dark"] #article-container h3::before { background-color: #4dabf7; }
+      html[data-theme="dark"] #article-container h4::before { background-color: #b197fc; }
+      html[data-theme="dark"] strong {
+        color: #ff8787 !important;
+      }
+
+      /* 页脚 */
+      html body #footer {
+        background: rgba(180, 210, 255, 0.4) !important;
+        backdrop-filter: blur(10px) !important;
+        -webkit-backdrop-filter: blur(10px) !important;
+        border: 2px solid #c0d1eb !important;
+        border-radius: 0 !important;
+        box-shadow: 0 -4px 20px rgba(102, 163, 255, 0.15) !important;
+        padding: 1.5rem !important;
+        transition: all 0.3s ease !important;
+      }
+      html body #footer,
+      html body #footer * {
+        color: #2c3e50 !important;
+      }
+      html body #footer a {
+        color: #0066cc !important;
+      }
+
+      html[data-theme="dark"] body #footer {
+        background: #0a1a2f !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+        border-radius: 0 !important;
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.35) !important;
+      }
+      html[data-theme="dark"] body #footer,
+      html[data-theme="dark"] body #footer * {
+        color: #f0f0f0 !important;
+      }
+      html[data-theme="dark"] body #footer a {
+        color: #80b0ff !important;
+      }
+
+      /* 移动端 */
+      @media screen and (max-width: 768px) {
+        html body #recent-posts .recent-post-item {
+          flex-direction: column !important;
+          min-height: auto !important;
+          height: auto !important;
+          padding: 0 !important;
+          margin-bottom: 1.2rem !important;
+        }
+        html body #recent-posts .recent-post-item .post_cover,
+        html body #recent-posts .recent-post-item .post_cover.right {
+          position: relative !important;
+          width: 100% !important;
+          height: 180px !important;
+          max-height: 180px !important;
+          right: auto !important;
+          top: auto !important;
+          border-radius: 8px 8px 0 0 !important;
+        }
+        html body #recent-posts .recent-post-item .post_cover img {
+          width: 100% !important;
+          height: 100% !important;
+          object-fit: cover !important;
+        }
+        html body #recent-posts .recent-post-item:has(.post_cover) .recent-post-info {
+          padding: 1.2rem !important;
+          padding-right: 1.2rem !important;
+        }
+        html body #recent-posts .recent-post-item .recent-post-info .article-title {
+          font-size: 1.2rem !important;
+        }
+        html body #recent-posts .recent-post-item .recent-post-info .article-meta-wrap,
+        html body #recent-posts .recent-post-item .recent-post-info .content {
+          font-size: 0.95rem !important;
+        }
+
+        #rightside {
+          right: 10px !important;
+          bottom: 15px !important;
+        }
+        #rightside > div {
+          margin: 6px 0 !important;
+          position: static !important;
+          float: none !important;
+        }
+        #rightside-config {
+          right: 50px !important;
+          bottom: 0 !important;
+          z-index: 9999 !important;
+        }
+        #rightside-config.show {
+          display: flex !important;
+          flex-direction: column !important;
+          gap: 6px !important;
+        }
+
+        #article-container {
+          padding: 1rem !important;
+          font-size: 11px !important;
+          line-height: 1.6 !important;
+        }
+        #article-container h1 { font-size: 1.4em !important; }
+        #article-container h2 { font-size: 1.3em !important; }
+        #article-container h3 { font-size: 1.2em !important; }
+        #article-container h4 { font-size: 1.1em !important; }
+        #article-container h5 { font-size: 1.0em !important; }
+        #article-container h6 { font-size: 0.9em !important; }
+
+        #article-container h1::before,
+        #article-container h2::before,
+        #article-container h3::before,
+        #article-container h4::before,
+        #article-container h5::before,
+        #article-container h6::before {
+          width: 2px !important;
+          height: 14px !important;
+        }
+
+        html body #content-inner #category,
+        html body #content-inner #archive {
+          padding: 1rem !important;
+          margin: 0 0.5rem !important;
+        }
+        html body #category .article-sort-item-img,
+        html body #archive .article-sort-item-img {
+          width: 80px !important;
+          height: 60px !important;
+          margin-right: 0.8rem !important;
+        }
+        html body #aside-content .card-widget {
+          margin: 0 0.5rem 1rem 0.5rem !important;
+        }
+      }
+
+      .search-highlight {
+        background: #007bff !important;
+        color: white !important;
+        padding: 2px 4px !important;
+        border-radius: 3px !important;
+        font-weight: bold !important;
+      }
+
+      #article-container {
+        padding: 1.5rem 1.8rem !important;
+        font-size: 18px !important;
+        line-height: 1.5 !important;
+      }
+    `;
+
+    // ==============================================
+    // V2 毛玻璃主题（深色文字完整修复 + 舒适遮罩 + 页脚强化）
+    // ==============================================
+    const V2_THEME_CSS = `
+      /* V2 背景：日间必应壁纸，夜间壁纸+舒适遮罩 */
+      html[data-theme="light"] #web_bg {
+        background: url("/onionsnotebook.github.io/img/globalbackgound/V2_light_orign.webp") center/cover no-repeat fixed !important;
+      }
+      html[data-theme="dark"] #web_bg {
+        background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), 
+                    url("/onionsnotebook.github.io/img/globalbackgound/V2_dack_orign.webp") center/cover no-repeat fixed !important;
+      }
+      #page-header {
+        background: transparent !important;
+      }
+
+      /* 首页文章卡片 */
+      #recent-posts .recent-post-item {
+        border: 1px solid rgba(140, 190, 255, 0.35) !important;
+        border-top: 1px solid rgba(200, 230, 255, 0.7) !important;
+        background: linear-gradient(135deg, 
+          rgba(120, 180, 255, 0.15) 0%, 
+          rgba(100, 160, 255, 0.08) 50%,
+          rgba(80, 140, 255, 0.12) 100%) !important;
+        backdrop-filter: blur(20px) saturate(1.4) !important;
+        -webkit-backdrop-filter: blur(20px) saturate(1.4) !important;
+        border-radius: 16px !important;
+        box-shadow: 
+          0 8px 32px rgba(0, 50, 100, 0.15),
+          0 2px 8px rgba(80, 150, 255, 0.1),
+          inset 0 1px 0 rgba(255, 255, 255, 0.35),
+          inset 0 -1px 0 rgba(0, 0, 0, 0.05) !important;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+        overflow: hidden !important;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: stretch !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 220px !important;
+        margin-bottom: 1.5rem !important;
+        float: none !important;
+        padding: 0 !important;
+        box-sizing: border-box !important;
+        position: relative !important;
+      }
+      #recent-posts .recent-post-item::before {
+        content: "" !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        height: 50% !important;
+        background: linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0.15),
+          rgba(255, 255, 255, 0)
+        ) !important;
+        border-radius: 16px 16px 0 0 !important;
+        pointer-events: none !important;
+        z-index: 3 !important;
+        transition: opacity 0.4s ease !important;
+      }
+      #recent-posts .recent-post-item .post_cover {
+        width: 40% !important;
+        height: 100% !important;
+        min-height: 100% !important;
+        max-height: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        position: absolute !important;
+        top: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        border-radius: 0 !important;
+        overflow: hidden !important;
+        z-index: 1 !important;
+      }
+      #recent-posts .recent-post-item .post_cover img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        object-position: center !important;
+        transform: scale(1.01) !important;
+      }
+      #recent-posts .recent-post-item .recent-post-info {
+        position: relative !important;
+        z-index: 2 !important;
+        flex: 1 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        padding: 1.2rem 1.8rem !important;
+        background: transparent !important;
+      }
+      #recent-posts .recent-post-item:has(.post_cover) .recent-post-info {
+        padding-right: 42% !important;
+      }
+      #recent-posts .recent-post-item:hover {
+        border-color: rgba(100, 180, 255, 0.6) !important;
+        border-top-color: rgba(220, 240, 255, 0.9) !important;
+        background: linear-gradient(135deg, 
+          rgba(140, 200, 255, 0.22) 0%, 
+          rgba(120, 180, 255, 0.12) 50%,
+          rgba(100, 160, 255, 0.18) 100%) !important;
+        box-shadow: 
+          0 15px 50px rgba(30, 100, 200, 0.25),
+          0 5px 15px rgba(80, 150, 255, 0.2),
+          0 0 30px rgba(100, 180, 255, 0.15),
+          inset 0 1px 0 rgba(255, 255, 255, 0.5),
+          inset 0 -1px 0 rgba(0, 0, 0, 0.05) !important;
+        transform: translateY(-6px) scale(1.01) !important;
+      }
+      #recent-posts .recent-post-item:hover::before {
+        opacity: 0.6 !important;
+      }
+
+      /* 侧边栏卡片 */
+      #aside-content .card-widget {
+        border: 1px solid rgba(140, 190, 255, 0.35) !important;
+        border-top: 1px solid rgba(200, 230, 255, 0.7) !important;
+        background: linear-gradient(145deg, 
+          rgba(120, 180, 255, 0.18) 0%, 
+          rgba(100, 160, 255, 0.1) 100%) !important;
+        backdrop-filter: blur(20px) saturate(1.4) !important;
+        -webkit-backdrop-filter: blur(20px) saturate(1.4) !important;
+        border-radius: 16px !important;
+        box-shadow: 
+          0 8px 32px rgba(0, 50, 100, 0.15),
+          0 2px 8px rgba(80, 150, 255, 0.1),
+          inset 0 1px 0 rgba(255, 255, 255, 0.35),
+          inset 0 -1px 0 rgba(0, 0, 0, 0.05) !important;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+        overflow: hidden !important;
+        position: relative !important;
+      }
+      #aside-content .card-widget::before {
+        content: "" !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        height: 45% !important;
+        background: linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0.18),
+          rgba(255, 255, 255, 0)
+        ) !important;
+        border-radius: 16px 16px 0 0 !important;
+        pointer-events: none !important;
+        z-index: 10 !important;
+      }
+      #aside-content .card-widget:hover {
+        border-color: rgba(100, 180, 255, 0.6) !important;
+        border-top-color: rgba(220, 240, 255, 0.9) !important;
+        background: linear-gradient(145deg, 
+          rgba(140, 200, 255, 0.25) 0%, 
+          rgba(120, 180, 255, 0.15) 100%) !important;
+        box-shadow: 
+          0 15px 50px rgba(30, 100, 200, 0.25),
+          0 5px 15px rgba(80, 150, 255, 0.2),
+          0 0 30px rgba(100, 180, 255, 0.15),
+          inset 0 1px 0 rgba(255, 255, 255, 0.5),
+          inset 0 -1px 0 rgba(0, 0, 0, 0.05) !important;
+        transform: translateY(-6px) scale(1.02) !important;
+      }
+
+      /* 文章详情页/独立页面 */
+      #content-inner #post.post,
+      #content-inner #page.page {
+        border: 1px solid rgba(140, 190, 255, 0.35) !important;
+        border-top: 1px solid rgba(200, 230, 255, 0.7) !important;
+        background: linear-gradient(135deg, 
+          rgba(120, 180, 255, 0.16) 0%, 
+          rgba(100, 160, 255, 0.09) 50%,
+          rgba(80, 140, 255, 0.14) 100%) !important;
+        backdrop-filter: blur(20px) saturate(1.4) !important;
+        -webkit-backdrop-filter: blur(20px) saturate(1.4) !important;
+        border-radius: 18px !important;
+        box-shadow: 
+          0 10px 40px rgba(0, 50, 100, 0.18),
+          0 3px 10px rgba(80, 150, 255, 0.12),
+          inset 0 1px 0 rgba(255, 255, 255, 0.35),
+          inset 0 -1px 0 rgba(0, 0, 0, 0.05) !important;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+        overflow: hidden !important;
+        position: relative !important;
+      }
+      #content-inner #post.post::before,
+      #content-inner #page.page::before {
+        content: "" !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        height: 40% !important;
+        background: linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0.15),
+          rgba(255, 255, 255, 0)
+        ) !important;
+        border-radius: 18px 18px 0 0 !important;
+        pointer-events: none !important;
+        z-index: 1 !important;
+      }
+      #post.post > *,
+      #page.page > *,
+      #article-container {
+        background: transparent !important;
+        position: relative !important;
+        z-index: 2 !important;
+      }
+
+      /* 分类/归档页面 */
+      #content-inner #category,
+      #content-inner #archive {
+        border: 1px solid rgba(140, 190, 255, 0.35) !important;
+        border-top: 1px solid rgba(200, 230, 255, 0.7) !important;
+        background: linear-gradient(135deg, 
+          rgba(120, 180, 255, 0.16) 0%, 
+          rgba(100, 160, 255, 0.1) 100%) !important;
+        backdrop-filter: blur(20px) saturate(1.4) !important;
+        -webkit-backdrop-filter: blur(20px) saturate(1.4) !important;
+        border-radius: 16px !important;
+        box-shadow: 
+          0 8px 32px rgba(0, 50, 100, 0.15),
+          0 2px 8px rgba(80, 150, 255, 0.1),
+          inset 0 1px 0 rgba(255, 255, 255, 0.35) !important;
+        padding: 1.5rem 2rem !important;
+        overflow: hidden !important;
+        position: relative !important;
+      }
+
+      /* 标题样式 */
+      #article-container h1, #article-container h2, #article-container h3, #article-container h4, #article-container h5, #article-container h6 {
+        position: relative;
+        padding-left: 16px !important;
+        margin-top: 0.8em !important;
+        margin-bottom: 0.4em !important;
+        font-weight: 600 !important;
+        color: #2c3e50 !important;
+      }
+      #article-container h1::before, #article-container h2::before, #article-container h3::before, #article-container h4::before, #article-container h5::before, #article-container h6::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 3px;
+        height: 22px;
+        border-radius: 2px;
+      }
+      #article-container h1 { font-size: 2.0em !important; }
+      #article-container h1::before { background-color: #ff4d4f; height: 24px; }
+      #article-container h2 { font-size: 1.8em !important; }
+      #article-container h2::before { background-color: #fa7c00; }
+      #article-container h3 { font-size: 1.6em !important; }
+      #article-container h3::before { background-color: #1677ff; }
+      #article-container h4 { font-size: 1.4em !important; }
+      #article-container h4::before { background-color: #722ed1; height: 20px; }
+      #article-container h5 { font-size: 1.3em !important; }
+      #article-container h5::before { background-color: #722ed1; }
+      #article-container h6 { font-size: 1.2em !important; }
+      #article-container h6::before { background-color: #722ed1; }
+
+      /* 文字颜色 */
+      #recent-posts .recent-post-info .article-title {
+        color: #2c3e50 !important;
+        font-size: 1.4rem !important;
+        font-weight: 600 !important;
+        margin-bottom: 0.8rem !important;
+      }
+      #recent-posts .recent-post-info .article-title:hover {
+        color: #4080ff !important;
+      }
+      #recent-posts .recent-post-info .article-meta-wrap,
+      #recent-posts .recent-post-info .content {
+        color: #555555 !important;
+        opacity: 0.85;
+        font-size: 1.05rem !important;
+      }
+      #recent-posts .recent-post-info .article-meta-wrap a {
+        color: #555555 !important;
+      }
+      #recent-posts .recent-post-info .article-meta-wrap a:hover {
+        color: #4080ff !important;
+      }
+      #article-container,
+      #article-container p {
+        color: #2c3e50 !important;
+        font-size: 18px !important;
+        line-height: 1.7 !important;
+        font-weight:500 !important;
+      }
+      strong {
+        color: #ff4d4f !important;
+        font-weight: 600 !important;
+      }
+
+      /* 标签云 */
+      .card-tag-cloud a {
+        color: #2c3e50 !important;
+        background: rgba(120, 180, 255, 0.2) !important;
+        border-radius: 8px !important;
+        padding: 2px 8px !important;
+        transition: all 0.2s !important;
+      }
+      .card-tag-cloud a:hover {
+        color: #4080ff !important;
+        background: rgba(64, 128, 255, 0.2) !important;
+      }
+
+      /* 深色模式（完整文字修复） */
+      html[data-theme="dark"] #recent-posts .recent-post-item {
+        background: linear-gradient(135deg, 
+          rgba(20, 60, 120, 0.35) 0%, 
+          rgba(10, 40, 80, 0.25) 50%,
+          rgba(0, 20, 60, 0.3) 100%) !important;
+        border-color: rgba(80, 140, 220, 0.35) !important;
+        border-top-color: rgba(120, 180, 255, 0.5) !important;
+        box-shadow: 
+          0 8px 32px rgba(0, 0, 0, 0.4),
+          0 2px 8px rgba(0, 50, 150, 0.2),
+          inset 0 1px 0 rgba(100, 150, 220, 0.25),
+          inset 0 -1px 0 rgba(0, 0, 0, 0.1) !important;
+      }
+      html[data-theme="dark"] #aside-content .card-widget {
+        background: linear-gradient(145deg, 
+          rgba(20, 60, 120, 0.38) 0%, 
+          rgba(10, 40, 80, 0.28) 100%) !important;
+        border-color: rgba(80, 140, 220, 0.35) !important;
+        border-top-color: rgba(120, 180, 255, 0.5) !important;
+        box-shadow: 
+          0 8px 32px rgba(0, 0, 0, 0.4),
+          0 2px 8px rgba(0, 50, 150, 0.2),
+          inset 0 1px 0 rgba(100, 150, 220, 0.25),
+          inset 0 -1px 0 rgba(0, 0, 0, 0.1) !important;
+      }
+      html[data-theme="dark"] #content-inner #post.post,
+      html[data-theme="dark"] #content-inner #page.page {
+        background: linear-gradient(135deg, 
+          rgba(20, 60, 120, 0.35) 0%, 
+          rgba(10, 40, 80, 0.25) 50%,
+          rgba(0, 20, 60, 0.3) 100%) !important;
+        border-color: rgba(80, 140, 220, 0.35) !important;
+        border-top-color: rgba(120, 180, 255, 0.5) !important;
+        box-shadow: 
+          0 10px 40px rgba(0, 0, 0, 0.45),
+          0 3px 10px rgba(0, 50, 150, 0.25),
+          inset 0 1px 0 rgba(100, 150, 220, 0.25),
+          inset 0 -1px 0 rgba(0, 0, 0, 0.1) !important;
+      }
+      html[data-theme="dark"] #content-inner #category,
+      html[data-theme="dark"] #content-inner #archive {
+        background: linear-gradient(135deg, 
+          rgba(20, 60, 120, 0.35) 0%, 
+          rgba(10, 40, 80, 0.25) 100%) !important;
+        border-color: rgba(80, 140, 220, 0.35) !important;
+        border-top-color: rgba(120, 180, 255, 0.5) !important;
+      }
+      html[data-theme="dark"] #category .article-sort-item.year,
+      html[data-theme="dark"] #archive .article-sort-item.year {
+        color: #80b0ff !important;
+        border-bottom-color: rgba(255, 255, 255, 0.2) !important;
+      }
+      html[data-theme="dark"] #category .article-sort-item-title,
+      html[data-theme="dark"] #archive .article-sort-item-title,
+      html[data-theme="dark"] #category .article-sort-item-time,
+      html[data-theme="dark"] #archive .article-sort-item-time {
+        color: #f0f0f0 !important;
+      }
+      /* 深色模式下的首页文章文字 */
+      html[data-theme="dark"] #recent-posts .recent-post-info .article-title,
+      html[data-theme="dark"] #recent-posts .recent-post-info .article-meta-wrap,
+      html[data-theme="dark"] #recent-posts .recent-post-info .article-meta-wrap a,
+      html[data-theme="dark"] #recent-posts .recent-post-info .article-meta-wrap .article-meta__categories,
+      html[data-theme="dark"] #recent-posts .recent-post-info .content {
+        color: #f0f0f0 !important;
+      }
+      html[data-theme="dark"] #recent-posts .recent-post-info .article-title:hover {
+        color: #80b0ff !important;
+      }
+      html[data-theme="dark"] #recent-posts .recent-post-info .article-meta-wrap a:hover {
+        color: #80b0ff !important;
+      }
+      html[data-theme="dark"] #article-container h1,
+      html[data-theme="dark"] #article-container h2,
+      html[data-theme="dark"] #article-container h3,
+      html[data-theme="dark"] #article-container h4,
+      html[data-theme="dark"] #article-container h5,
+      html[data-theme="dark"] #article-container h6 {
+        color: #f0f0f0 !important;
+      }
+      html[data-theme="dark"] #article-container,
+      html[data-theme="dark"] #article-container p {
+        color: #e0e0e0 !important;
+      }
+      html[data-theme="dark"] strong {
+        color: #ff8787 !important;
+      }
+      html[data-theme="dark"] #article-container h1::before { background-color: #ff6b6b; }
+      html[data-theme="dark"] #article-container h2::before { background-color: #ffa94d; }
+      html[data-theme="dark"] #article-container h3::before { background-color: #4dabf7; }
+      html[data-theme="dark"] #article-container h4::before,
+      html[data-theme="dark"] #article-container h5::before,
+      html[data-theme="dark"] #article-container h6::before { background-color: #b197fc; }
+
+      /* 深色标签云 */
+      html[data-theme="dark"] .card-tag-cloud a {
+        color: #f0f0f0 !important;
+        background: rgba(100, 150, 220, 0.3) !important;
+      }
+      html[data-theme="dark"] .card-tag-cloud a:hover {
+        color: #80b0ff !important;
+        background: rgba(128, 176, 255, 0.3) !important;
+      }
+
+      /* 页脚（日间/夜间已全局覆盖，此处再强化一次） */
+      html body #footer {
+        background: rgba(180, 210, 255, 0.4) !important;
+        backdrop-filter: blur(10px) !important;
+        -webkit-backdrop-filter: blur(10px) !important;
+        border: 2px solid #c0d1eb !important;
+        border-radius: 0 !important;
+        box-shadow: 0 -4px 20px rgba(102, 163, 255, 0.15) !important;
+        padding: 1.5rem !important;
+        transition: all 0.3s ease !important;
+      }
+      html body #footer,
+      html body #footer * {
+        color: #2c3e50 !important;
+      }
+      html body #footer a {
+        color: #0066cc !important;
+      }
+
+      html[data-theme="dark"] body #footer {
+        background: #0a1a2f !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+        border-radius: 0 !important;
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.35) !important;
+      }
+      html[data-theme="dark"] body #footer,
+      html[data-theme="dark"] body #footer * {
+        color: #f0f0f0 !important;
+      }
+      html[data-theme="dark"] body #footer a {
+        color: #80b0ff !important;
+      }
+
+      /* 移动端 */
+      @media screen and (max-width: 768px) {
+        #recent-posts .recent-post-item {
+          flex-direction: column !important;
+          min-height: auto !important;
+        }
+        #recent-posts .recent-post-item .post_cover {
+          position: relative !important;
+          width: 100% !important;
+          height: 180px !important;
+          border-radius: 14px 14px 0 0 !important;
+        }
+        #recent-posts .recent-post-item:has(.post_cover) .recent-post-info {
+          padding: 1.2rem !important;
+          padding-right: 1.2rem !important;
+        }
+        #article-container {
+          padding: 1rem !important;
+          font-size: 11px !important;
+          line-height: 1.6 !important;
+        }
+        #content-inner #category,
+        #content-inner #archive {
+          padding: 1rem !important;
+          margin: 0 0.5rem !important;
+        }
+        #category .article-sort-item-img,
+        #archive .article-sort-item-img {
+          width: 80px !important;
+          height: 60px !important;
+          margin-right: 0.8rem !important;
+        }
+        #aside-content .card-widget {
+          margin: 0 0.5rem 1rem 0.5rem !important;
+        }
+      }
+    `;
+
+    // ==============================================
+    // 【工具函数】
+    // ==============================================
+    function injectThemeCSS(themeVersion) {
+      const oldStyle = document.getElementById(THEME_STYLE_ID);
+      if (oldStyle) oldStyle.remove();
+      const styleTag = document.createElement('style');
+      styleTag.id = THEME_STYLE_ID;
+      styleTag.textContent = themeVersion === 'v2' ? V2_THEME_CSS : V1_THEME_CSS;
+      document.head.appendChild(styleTag);
+      document.body.offsetHeight;
+    }
+
+    function ensureWebBg() {
+      if (!document.getElementById('web_bg')) {
+        const webBg = document.createElement('div');
+        webBg.id = 'web_bg';
+        document.body.insertBefore(webBg, document.body.firstChild);
+      }
+      const webBg = document.getElementById('web_bg');
+      if (webBg) {
+        webBg.style.display = 'none';
+        webBg.offsetHeight;
+        webBg.style.display = 'block';
+      }
+    }
+
+    function toggleTheme() {
+      const currentTheme = localStorage.getItem(STORAGE_KEY) || DEFAULT_THEME;
+      const newTheme = currentTheme === 'v1' ? 'v2' : 'v1';
+      localStorage.setItem(STORAGE_KEY, newTheme);
+      injectThemeCSS(newTheme);
+      ensureWebBg();
+    }
+
+    function insertSwitchBtn() {
+      if (document.getElementById('theme-switch-btn')) return;
+      const rightside = document.getElementById('rightside');
+      if (!rightside) return;
+      const switchBtn = document.createElement('div');
+      switchBtn.id = 'theme-switch-btn';
+      switchBtn.innerHTML = '<i class="fas fa-palette"></i>';
+      switchBtn.title = '切换主题版本';
+      switchBtn.addEventListener('click', toggleTheme);
+      const settingBtn = document.getElementById('setting');
+      if (settingBtn && settingBtn.parentNode === rightside) {
+        rightside.insertBefore(switchBtn, settingBtn);
+      } else {
+        rightside.appendChild(switchBtn);
+      }
+    }
+
+    // ==============================================
+    // 【初始化】
+    // ==============================================
+    (function init() {
+      const currentTheme = localStorage.getItem(STORAGE_KEY) || DEFAULT_THEME;
+      ensureWebBg();
+      injectThemeCSS(currentTheme);
+    })();
+
+    document.addEventListener('DOMContentLoaded', () => {
+      insertSwitchBtn();
+      ensureWebBg();
+      const darkModeBtn = document.getElementById('darkmode');
+      if (darkModeBtn) {
+        darkModeBtn.addEventListener('click', () => {
+          setTimeout(() => {
+            const currentTheme = localStorage.getItem(STORAGE_KEY) || DEFAULT_THEME;
+            injectThemeCSS(currentTheme);
+            ensureWebBg();
+          }, 50);
+        });
+      }
+      const rightside = document.getElementById('rightside');
+      if (rightside) {
+        const observer = new MutationObserver(() => {
+          insertSwitchBtn();
+        });
+        observer.observe(rightside, { childList: true, subtree: true });
+      }
+    });
+
+    document.addEventListener('pjax:complete', () => {
+      const currentTheme = localStorage.getItem(STORAGE_KEY) || DEFAULT_THEME;
+      ensureWebBg();
+      injectThemeCSS(currentTheme);
+      insertSwitchBtn();
+    });
+
+    window.addEventListener('load', () => {
+      ensureWebBg();
+    });
+  })();
+</script>
+<script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
