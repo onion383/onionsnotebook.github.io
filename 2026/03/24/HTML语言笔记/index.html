@@ -1,0 +1,2453 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>HTML语言笔记 | 小洋葱的笔记本</title><meta name="author" content="无聊的小洋葱"><meta name="copyright" content="无聊的小洋葱"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="该笔记主要介绍了HTML的组成，HTML元素，还有HTML5新的内容。拓展了HTML里面的CSS与JavaScript。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML语言笔记">
+<meta property="og:url" content="https://onion383.github.io/2026/03/24/HTML%E8%AF%AD%E8%A8%80%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="小洋葱的笔记本">
+<meta property="og:description" content="该笔记主要介绍了HTML的组成，HTML元素，还有HTML5新的内容。拓展了HTML里面的CSS与JavaScript。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://cdn.jsdelivr.net/gh/onion383/onionsnotebook-blog-images@main/img/postbackground/HTML%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B%E8%83%8C%E6%99%AF%E5%9B%BE.jpg">
+<meta property="article:published_time" content="2026-03-24T10:00:00.000Z">
+<meta property="article:modified_time" content="2026-04-16T16:30:08.157Z">
+<meta property="article:author" content="无聊的小洋葱">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="大学">
+<meta property="article:tag" content="计算机">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://cdn.jsdelivr.net/gh/onion383/onionsnotebook-blog-images@main/img/postbackground/HTML%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B%E8%83%8C%E6%99%AF%E5%9B%BE.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "HTML语言笔记",
+  "url": "https://onion383.github.io/2026/03/24/HTML%E8%AF%AD%E8%A8%80%E7%AC%94%E8%AE%B0/",
+  "image": "http://cdn.jsdelivr.net/gh/onion383/onionsnotebook-blog-images@main/img/postbackground/HTML语言教程背景图.jpg",
+  "datePublished": "2026-03-24T10:00:00.000Z",
+  "dateModified": "2026-04-16T16:30:08.157Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "无聊的小洋葱",
+      "url": "https://onion383.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="http://cdn.jsdelivr.net/gh/onion383/onionsnotebook-blog-images@main/img/avatar.png"><link rel="canonical" href="https://onion383.github.io/2026/03/24/HTML%E8%AF%AD%E8%A8%80%E7%AC%94%E8%AE%B0/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/onionsnotebook.github.io/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.1.9/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/onionsnotebook.github.io/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'HTML语言笔记',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><style>
+  /* 可爱的全屏加载遮罩 */
+  #cute-loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+  }
+
+  /* 浅色模式背景（默认） */
+  #cute-loading-screen {
+    background: #ffffff;
+  }
+  #cute-loading-screen .cute-loading-text {
+    color: #6b8cae;
+  }
+
+  /* 深色模式背景 */
+  html[data-theme="dark"] #cute-loading-screen {
+    background: #1a1e2a;
+  }
+  html[data-theme="dark"] #cute-loading-screen .cute-loading-text {
+    color: #b0c7e9;
+  }
+
+  #cute-loading-bar-container {
+    width: 260px;
+    height: 16px;
+    background: rgba(0, 102, 204, 0.08);
+    border-radius: 30px;
+    padding: 3px;
+    box-shadow: inset 0 1px 4px rgba(0,0,0,0.02);
+  }
+  html[data-theme="dark"] #cute-loading-bar-container {
+    background: rgba(80, 140, 220, 0.15);
+  }
+
+  #cute-loading-bar {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #66b1ff, #0066cc, #409eff);
+    border-radius: 30px;
+    box-shadow: 0 0 12px rgba(0, 102, 204, 0.5);
+    transition: width 0.2s cubic-bezier(0.2, 0.9, 0.4, 1);
+    position: relative;
+    overflow: hidden;
+  }
+  html[data-theme="dark"] #cute-loading-bar {
+    background: linear-gradient(90deg, #7cb8ff, #4090e0, #6aabff);
+    box-shadow: 0 0 12px rgba(100, 160, 255, 0.7);
+  }
+
+  #cute-loading-bar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -30%;
+    width: 30%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+    animation: shimmer 1.2s infinite;
+  }
+  html[data-theme="dark"] #cute-loading-bar::after {
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+  }
+  /* 深色模式下文字变亮 */
+  html[data-theme="dark"] #cute-loading-text {
+    color: #b0c8e0 !important;
+  }
+
+  @keyframes shimmer {
+    0% { left: -30%; }
+    100% { left: 130%; }
+  }
+
+  #cute-loading-screen.finish {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.6s, visibility 0.6s;
+  }
+
+  .cute-loading-text {
+    margin-top: 18px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    letter-spacing: 1px;
+    font-weight: 400;
+    opacity: 0.8;
+  }
+</style>
+<script>
+  (function() {
+    function createLoadingScreen() {
+      if (document.getElementById('cute-loading-screen')) return;
+      var screen = document.createElement('div');
+      screen.id = 'cute-loading-screen';
+      var container = document.createElement('div');
+      container.id = 'cute-loading-bar-container';
+      var bar = document.createElement('div');
+      bar.id = 'cute-loading-bar';
+      var text = document.createElement('div');
+      text.id = 'cute-loading-text';
+      text.textContent = '✨ 小洋葱的笔记本 ✨';
+      container.appendChild(bar);
+      screen.appendChild(container);
+      screen.appendChild(text);
+      document.documentElement.appendChild(screen);
+    }
+
+    var progressTimer = null;
+    var fallbackTimer = null;
+
+    function showLoading() {
+      var screen = document.getElementById('cute-loading-screen');
+      if (!screen) {
+        createLoadingScreen();
+        screen = document.getElementById('cute-loading-screen');
+      }
+      var bar = document.getElementById('cute-loading-bar');
+      screen.classList.remove('finish');
+      bar.style.width = '0%';
+      
+      if (progressTimer) clearTimeout(progressTimer);
+      if (fallbackTimer) clearTimeout(fallbackTimer);
+      
+      var width = 0;
+      function fastProgress() {
+        if (width < 95) {
+          width += Math.floor(Math.random() * 8) + 5;
+          if (width > 95) width = 95;
+          bar.style.width = width + '%';
+          progressTimer = setTimeout(fastProgress, 30 + Math.random() * 40);
+        }
+      }
+      fastProgress();
+      
+      fallbackTimer = setTimeout(function() {
+        finishLoading();
+      }, 2500);
+    }
+
+    function finishLoading() {
+      var screen = document.getElementById('cute-loading-screen');
+      var bar = document.getElementById('cute-loading-bar');
+      if (!screen || !bar) return;
+      
+      if (progressTimer) clearTimeout(progressTimer);
+      if (fallbackTimer) clearTimeout(fallbackTimer);
+      
+      bar.style.width = '100%';
+      setTimeout(function() {
+        screen.classList.add('finish');
+      }, 150);
+    }
+
+    window.showLoading = showLoading;
+    window.finishLoading = finishLoading;
+
+    createLoadingScreen();
+    showLoading();
+
+    window.addEventListener('load', function() {
+      finishLoading();
+    });
+  })();
+</script>
+<style>
+  /* 全局固定样式 */
+
+  /* ==============================================
+     强制移除深色模式下的所有背景变暗效果（V1/V2通用）
+     ============================================== */
+  html[data-theme="dark"] #web_bg {
+    background: url("https://bing.img.run/1920x1080.php") center/cover no-repeat fixed !important;
+    background-color: transparent !important;
+    filter: brightness(1) !important;
+    opacity: 1 !important;
+  }
+
+  html[data-theme="dark"],
+  html[data-theme="dark"] body {
+    background-color: transparent !important;
+  }
+
+  html[data-theme="dark"] #web_bg::before,
+  html[data-theme="dark"] #web_bg::after {
+    display: none !important;
+  }
+  html, body, #layout, #body-wrap, #page-header:before {
+    background: transparent !important;
+  }
+  #web_bg {
+    position: fixed !important;
+    width: 100% !important;
+    height: 100% !important;
+    top: 0 !important;
+    left: 0 !important;
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important;
+    transition: background 0.3s ease !important;
+    z-index: -999 !important;
+  }
+  #theme-switch-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: var(--btn-bg);
+    color: var(--font-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 6px 0;
+    border: none;
+    box-shadow: var(--card-box-shadow);
+  }
+  #theme-switch-btn:hover {
+    background: var(--btn-hover-color);
+    color: var(--white);
+    transform: scale(1.05);
+  }
+  #rightside .fa-cog.fa-spin {
+    animation: none !important;
+    transform: rotate(0deg) !important;
+  }
+  .search-highlight {
+    background: #0066ff !important;
+    color: white !important;
+    padding: 2px 4px !important;
+    border-radius: 3px !important;
+    font-weight: bold !important;
+  }
+  #article-container {
+    padding: 1.5rem 1.8rem !important;
+  }
+
+  /* ==============================================
+     强制背景填满屏幕（cover），无任何覆盖
+     ============================================== */
+  html body #web_bg {
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important;
+  }
+
+  @media screen and (max-width: 768px) {
+    html body #web_bg {
+      background-attachment: scroll !important;
+    }
+  }
+
+  /* V2 深色页脚强化覆盖 */
+  html[data-theme="dark"] body #footer {
+    background: #0a1a2f !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.35) !important;
+  }
+  html[data-theme="dark"] body #footer,
+  html[data-theme="dark"] body #footer * {
+    color: #f0f0f0 !important;
+  }
+  html[data-theme="dark"] body #footer a {
+    color: #80b0ff !important;
+  }
+  #mobile-search-btn {
+    color: #ffffff !important;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.15);
+  }
+  html[data-theme="dark"] #mobile-search-btn {
+    color: #f5f5f5 !important;
+  }
+  /* ---------- 思维导图深色模式文字颜色修复 ---------- */
+  html[data-theme="dark"] .markmap-node text,
+  html[data-theme="dark"] .markmap-node p,
+  html[data-theme="dark"] .markmap-node span,
+  html[data-theme="dark"] .markmap foreignObject div {
+    color: #f0f0f0 !important;
+  }
+  html[data-theme="dark"] .markmap-node path,
+  html[data-theme="dark"] .markmap-node line {
+    stroke: #aaa !important;
+  }
+  html[data-theme="dark"] .markmap-node circle {
+    stroke: #aaa !important;
+  }
+  /* 如有链接颜色需调整，可额外添加 */
+  html[data-theme="dark"] .markmap-node a {
+    color: #80b0ff !important;
+  }
+</style>
+<!-- hexo injector head_end start -->
+  <!-- 稳定版 KaTeX 样式 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+  <!-- KaTeX 核心渲染库 -->
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"></script>
+  <!-- 自动识别公式的脚本 -->
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {
+    delimiters: [
+      {left: '$$', right: '$$', display: true},
+      {left: '$', right: '$', display: false}
+    ],
+    ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+    throwOnError: false,
+    strict: false
+  });"></script>
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.1"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://cdn.jsdelivr.net/gh/onion383/onionsnotebook-blog-images@main/img/globalbackgound/加载中.gif" data-lazy-src="/onionsnotebook.github.io/img/avatar.png" onerror="this.onerror=null;this.src='/onionsnotebook.github.io/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/onionsnotebook.github.io/archives/"><div class="headline">文章</div><div class="length-num">14</div></a><a href="/onionsnotebook.github.io/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/onionsnotebook.github.io/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/search/"><i class="fa-fw fas fa-search"></i><span> 搜索</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/categories/%E9%AB%98%E4%B8%AD%E7%9F%A5%E8%AF%86/"><i class="fa-fw fas fa-graduation-cap"></i><span> 高中知识</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/categories/%E5%A4%A7%E5%AD%A6%E5%9F%BA%E7%A1%80%E8%AF%BE%E7%A8%8B/"><i class="fa-fw fas fa-book"></i><span> 大学基础课程</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%BE%E7%A8%8B/"><i class="fa-fw fas fa-laptop-code"></i><span> 计算机课程</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/categories/%E8%B7%A8%E9%A2%86%E5%9F%9F%E6%8B%93%E5%B1%95/"><i class="fa-fw fas fa-project-diagram"></i><span> 跨领域拓展</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/categories/%E5%85%B6%E4%BB%96/"><i class="fa-fw fas fa-ellipsis-h"></i><span> 其他</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(http://cdn.jsdelivr.net/gh/onion383/onionsnotebook-blog-images@main/img/postbackground/HTML语言教程背景图.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/onionsnotebook.github.io/"><img class="site-icon" src="https://cdn.jsdelivr.net/gh/onion383/onionsnotebook-blog-images@main/img/globalbackgound/加载中.gif" data-lazy-src="http://cdn.jsdelivr.net/gh/onion383/onionsnotebook-blog-images@main/img/avatar.png" alt="Logo"><span class="site-name">小洋葱的笔记本</span></a><a class="nav-page-title" href="/onionsnotebook.github.io/"><span class="site-name">HTML语言笔记</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/search/"><i class="fa-fw fas fa-search"></i><span> 搜索</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/categories/%E9%AB%98%E4%B8%AD%E7%9F%A5%E8%AF%86/"><i class="fa-fw fas fa-graduation-cap"></i><span> 高中知识</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/categories/%E5%A4%A7%E5%AD%A6%E5%9F%BA%E7%A1%80%E8%AF%BE%E7%A8%8B/"><i class="fa-fw fas fa-book"></i><span> 大学基础课程</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%BE%E7%A8%8B/"><i class="fa-fw fas fa-laptop-code"></i><span> 计算机课程</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/categories/%E8%B7%A8%E9%A2%86%E5%9F%9F%E6%8B%93%E5%B1%95/"><i class="fa-fw fas fa-project-diagram"></i><span> 跨领域拓展</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/categories/%E5%85%B6%E4%BB%96/"><i class="fa-fw fas fa-ellipsis-h"></i><span> 其他</span></a></div><div class="menus_item"><a class="site-page" href="/onionsnotebook.github.io/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">HTML语言笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-03-24T10:00:00.000Z" title="发表于 2026-03-24 18:00:00">2026-03-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-04-16T16:30:08.157Z" title="更新于 2026-04-17 00:30:08">2026-04-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/onionsnotebook.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%BE%E7%A8%8B/">计算机课程</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">3.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>16分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="HTML语言笔记"><a href="#HTML语言笔记" class="headerlink" title="HTML语言笔记"></a>HTML语言笔记</h1><div class="note success flat"><ol>
+<li>HTML内容繁杂且细碎，这里只是列举常见的内容</li>
+<li>Markdown也支持部分网页效果，该笔记在说明格式的符号后会有显示效果，方便看到显示效果。</li>
+</ol>
+</div>
+
+<hr>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><h3 id="HTML介绍"><a href="#HTML介绍" class="headerlink" title="HTML介绍"></a>HTML介绍</h3><h3 id="HTML-5-基本组成"><a href="#HTML-5-基本组成" class="headerlink" title="HTML(5)基本组成"></a>HTML(5)基本组成</h3><h3 id="HTML元素"><a href="#HTML元素" class="headerlink" title="HTML元素"></a>HTML元素</h3><h3 id="HTML5新元素（简要介绍）"><a href="#HTML5新元素（简要介绍）" class="headerlink" title="HTML5新元素（简要介绍）"></a>HTML5新元素（简要介绍）</h3><h3 id="HTML-CSS-（简要介绍"><a href="#HTML-CSS-（简要介绍" class="headerlink" title="HTML CSS （简要介绍)"></a>HTML CSS （简要介绍)</h3><h3 id="HTML里的JavaScript-（简要介绍"><a href="#HTML里的JavaScript-（简要介绍" class="headerlink" title="HTML里的JavaScript （简要介绍)"></a>HTML里的JavaScript （简要介绍)</h3><hr>
+<h3 id="HTML介绍-1"><a href="#HTML介绍-1" class="headerlink" title="HTML介绍"></a>HTML介绍</h3><ul>
+<li>当你在浏览器的网页右键打开检查时，你会不会好奇网页是什么内容？<img src="https://cdn.jsdelivr.net/gh/onion383/onionsnotebook-blog-images@main/img/globalbackgound/加载中.gif" data-lazy-src="http://cdn.jsdelivr.net/gh/onion383/onionsnotebook-blog-images@main/img/post_img/HTML%E8%AF%AD%E8%A8%80%E7%AC%94%E8%AE%B0/%E9%9D%92%E6%9F%A0%E8%B5%B7%E5%A7%8B%E9%A1%B5.png" alt="青柠起始页.png"><br>  （来自青柠起始页的网页界面）（对了这个起始页非常好用）</li>
+<li>HTML全称为<code>超文本标记语言</code>。大部分网页用HTML显示内容，而且不只是在浏览器的网页，甚至在一些手机上的app都能看到HTML的身影。</li>
+<li>虽然现在AI可以很容易的生成一个网页，但是学习HTML可以方便修改AI生成的网页，并对后面<code>JavaScript</code>,<code>网页爬虫</code> 等等的学习很有帮助。</li>
+</ul>
+<hr>
+<h3 id="HTML（5）基本组成"><a href="#HTML（5）基本组成" class="headerlink" title="HTML（5）基本组成"></a>HTML（5）基本组成</h3><h6 id="html基本概念"><a href="#html基本概念" class="headerlink" title="html基本概念"></a>html基本概念</h6><ol>
+<li><strong>元素</strong>： 为网页的基本组成单元 格式为<code>&lt;标签内容&gt;我是元素内容&lt;/后标签内容&gt;</code></li>
+<li><strong>属性</strong>： 元素的一些选项和设置，组合可以实现不同功能 <code>元素属性名=&quot;属性值&quot;</code></li>
+</ol>
+<div class="note success flat"><p>在后面有较为详细的介绍</p>
+</div>
+
+<h6 id="网页的基本组成"><a href="#网页的基本组成" class="headerlink" title="网页的基本组成"></a>网页的基本组成</h6><ol>
+<li><strong>声明</strong>：声明为<code>HTML5</code>文档  <code>&lt;!DOCTYPE html&gt;</code></li>
+<li><strong><code>HTML</code>文档主要内容</strong>  <code>&lt;html&gt;&lt;/html&gt;</code><ul>
+<li><strong>头部元素</strong> 用于网页的一些格式化定义<ul>
+<li><strong>标题元素</strong> <code>&lt;head&gt;我是标题 &lt;/head&gt;</code> </li>
+<li><strong>文件编码</strong></li>
+</ul>
+</li>
+<li><strong>身体元素</strong> 网页的主要内容 <code>&lt;body&gt;我是主要内容&lt;/body&gt;</code><ul>
+<li><strong>小标题</strong></li>
+<li>等等</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span> (声明为`HTML5`文档)</span><br><span class="line">|----------------网页主要内容---------------|</span><br><span class="line">|<span class="tag">&lt;<span class="name">html</span>&gt;</span>                                   |</span><br><span class="line">| |---------------头部元素---------------| |</span><br><span class="line">| | <span class="tag">&lt;<span class="name">head</span>&gt;</span>                              | |</span><br><span class="line">| |  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span>             | |</span><br><span class="line">| |  <span class="tag">&lt;<span class="name">title</span>&gt;</span>我是标题<span class="tag">&lt;/<span class="name">title</span>&gt;</span>             | |</span><br><span class="line">| | <span class="tag">&lt;/<span class="name">head</span>&gt;</span>                             | |</span><br><span class="line">| |-------------------------------------| |</span><br><span class="line">| |---------------身体元素---------------| |</span><br><span class="line">| | <span class="tag">&lt;<span class="name">body</span>&gt;</span>                              | |</span><br><span class="line">| | <span class="tag">&lt;<span class="name">h1</span>&gt;</span>我是标题<span class="tag">&lt;/<span class="name">h1</span>&gt;</span>                    | |</span><br><span class="line">| | <span class="tag">&lt;<span class="name">p</span>&gt;</span>我是段落<span class="tag">&lt;/<span class="name">p</span>&gt;</span>                      | |</span><br><span class="line">| | <span class="tag">&lt;/<span class="name">body</span>&gt;</span>                             | |</span><br><span class="line">| |-------------------------------------| |</span><br><span class="line">|<span class="tag">&lt;/<span class="name">html</span>&gt;</span>                                | |</span><br><span class="line">|---------------------------------------| |</span><br></pre></td></tr></table></figure>
+
+<h3 id="HTML属性"><a href="#HTML属性" class="headerlink" title="HTML属性"></a>HTML属性</h3><div class="note success flat"><p>元素属性需要搭配元素一起发挥作用，但是为了让学习层层递进，这个章节先集中展示元素一般的作用，作为了解即可，下个”HTML元素“章节会将元素和属性结合起来展示共同的作用。</p>
+</div>
+
+<ul>
+<li><strong>属性的基本格式：</strong> &#96;元素属性名&#x3D;”属性值”</li>
+</ul>
+<ol>
+<li><strong>全局属性</strong> <em><strong>在任意元素几乎都可使用</strong></em><ul>
+<li><strong><code>id</code>属性</strong> 给一个标签取一个独一无二的名字 <code>&lt;div id=&quot;header&quot;&gt;我是头部&lt;/div&gt;</code></li>
+<li><strong><code>class</code>属性</strong> 指定一个类名，方便将同类的东西标记成以内，一遍后续筛选 &#96;<p class="text highlight">This is a highlighted text.</p></li>
+<li><strong><code>style</code>属性</strong> 在元素上应用CSS</li>
+<li><strong><code>title</code>属性</strong> 补充说明元素的内容，在鼠标悬停时候会显示 <code>&lt;abbr title=&quot;这是网页的英文&quot;&gt;HTML&lt;/abbr&gt;</code></li>
+</ul>
+</li>
+<li><strong>特定元素的属性</strong><ul>
+<li><mark style="background-color: rgba(255, 235, 59, 0.4); padding: 0 3px; border-radius: 2px;">将会与元素一起介绍</mark></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="HTML元素-1"><a href="#HTML元素-1" class="headerlink" title="HTML元素"></a>HTML元素</h3><h4 id="HTML元素基本概念"><a href="#HTML元素基本概念" class="headerlink" title="HTML元素基本概念"></a>HTML元素基本概念</h4><ol>
+<li><strong>标签</strong><ul>
+<li><strong>前标签</strong> <code>&lt;标签内容&gt;</code></li>
+<li><strong>后标签</strong> <code>&lt;/后标签内容&gt;</code></li>
+</ul>
+</li>
+<li><strong>元素组成</strong> HTML元素由标标签表示 ，一对就组成了元素<code>&lt;标签内容&gt;我是元素内容&lt;/后标签内容&gt;</code></li>
+<li><strong>元素属性</strong> <code>&lt;标签内容 元素属性&gt;</code> 元素属性的格式一般为 <code>&lt;标签内容 元素属性名=&quot;属性值&quot;&gt;</code><br>&#96;</li>
+</ol>
+<h3 id="各种元素"><a href="#各种元素" class="headerlink" title="各种元素"></a>各种元素</h3><h4 id="头部元素"><a href="#头部元素" class="headerlink" title="头部元素"></a>头部元素</h4><ol>
+<li><strong>网页标题</strong> <code>&lt;title&gt;</code> <code>&lt;title&gt;我是标题&lt;/title&gt;</code><br> 内容会显示在浏览器的标签页</li>
+<li><strong>链接资源</strong> <code>&lt;link&gt;</code><br> <code>&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;mystyle.css&quot;&gt;</code><ul>
+<li><strong>属性</strong><ul>
+<li><strong>链接类型属性</strong> <code>rel</code><ul>
+<li><strong>值</strong><ul>
+<li><code>stylesheet</code> 引入外部CSS</li>
+<li><code>icon</code> 引入网页图标</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>元数据元素</strong> <code>mate</code>  描述网页核心数据<ul>
+<li>如防止网页乱码设置编码为UTF-8<br>  <code>&lt;meta charset=&quot;UTF-8&quot;&gt;</code></li>
+</ul>
+</li>
+<li><strong>导入javascript</strong> <mark style="background-color: rgba(255, 235, 59, 0.4); padding: 0 3px; border-radius: 2px;">后文有详细解释</mark></li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset=&quot;UTF-8&quot;&gt;  </span><br><span class="line">  &lt;!-- 字符编码（必写） --&gt;</span><br><span class="line">  &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;  </span><br><span class="line">  &lt;!-- 引入外部CSS --&gt;</span><br><span class="line">  &lt;title&gt;极简示例页&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;  </span><br><span class="line">  &lt;!-- 引入外部JS --&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h4><ol>
+<li><strong>HTML标题</strong> : <code>&lt;H1&gt;我是标题&lt;/H1&gt;</code> 数字越大，标题越小 最大为6 <H1>我是标题</H1></li>
+<li><strong>HTML水平线</strong>；<code>&lt;hr</code>&gt;</li>
+</ol>
+<hr>
+
+<ol start="3">
+<li><strong>HTML注释</strong> <code><!-- 我是一个注释 --></code><br> <!-- 我是一个注释 --></li>
+</ol>
+<h4 id="段落"><a href="#段落" class="headerlink" title="段落"></a>段落</h4><ol>
+<li><strong>HTML段落</strong>：<code>&lt;p&gt;我是段落&lt;/p&gt;</code><br> <p>我是段落</p></li>
+<li><strong>段落换行</strong> ：<code>&lt;br&gt;</code></li>
+</ol>
+<br>
+
+<h4 id="文本格式化"><a href="#文本格式化" class="headerlink" title="文本格式化"></a>文本格式化</h4><ol>
+<li><strong>常见文本格式化</strong></li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="center">标签</th>
+<th align="center">描述</th>
+<th align="center">效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>&lt;b&gt;</code></td>
+<td align="center">粗体</td>
+<td align="center"><b>我是示例</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;em&gt;</code></td>
+<td align="center">着重文字</td>
+<td align="center"><em>我是示例</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;i&gt;</code></td>
+<td align="center">斜体</td>
+<td align="center"><i>我是示例</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;small&gt;</code></td>
+<td align="center">小号字</td>
+<td align="center"><small>我是示例</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;strong&gt;</code></td>
+<td align="center">加重语气</td>
+<td align="center"><strong>我是示例</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;sub&gt;</code></td>
+<td align="center">下标</td>
+<td align="center"><sub>我是示例</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;sup&gt;</code></td>
+<td align="center">上标</td>
+<td align="center"><sup>我是示例</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;ins&gt;</code></td>
+<td align="center">插入字</td>
+<td align="center"><ins>我是示例</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;del&gt;</code></td>
+<td align="center">删除字</td>
+<td align="center"><del>我是示例</td>
+</tr>
+</tbody></table>
+<ol start="2">
+<li><strong>计算机输出标签</strong></li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="center">标签</th>
+<th align="center">描述</th>
+<th align="center">效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>&lt;code&gt;</code></td>
+<td align="center">计算机代码</td>
+<td align="center"><code>我是示例</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;kbd&gt;</code></td>
+<td align="center">键盘码</td>
+<td align="center"><kbd>我是示例</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;samp&gt;</code></td>
+<td align="center">计算机代码样本</td>
+<td align="center"><samp>我是示例</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;var&gt;</code></td>
+<td align="center">变量</td>
+<td align="center"><var>我是示例</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;pre&gt;</code></td>
+<td align="center">预格式文本</td>
+<td align="center"><pre>我是示例</td>
+</tr>
+</tbody></table>
+<ol start="3">
+<li><strong>引文</strong></li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="center">标签</th>
+<th align="center">描述</th>
+<th align="center">效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>&lt;abbr&gt;</code></td>
+<td align="center">缩写</td>
+<td align="center"><abbr>我是示例</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;address&gt;</code></td>
+<td align="center">地址</td>
+<td align="center"><address>我是示例</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;bdo&gt;</code></td>
+<td align="center">文字方向</td>
+<td align="center"><bdo>我是示例</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;blockqute&gt;</code></td>
+<td align="center">长的引用</td>
+<td align="center"><blockqute>我是示例</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;q&gt;</code></td>
+<td align="center">短的引用</td>
+<td align="center"><q>我是示例</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;dif&gt;</code></td>
+<td align="center">定义项目</td>
+<td align="center"><dif>我是示例</td>
+</tr>
+</tbody></table>
+<h4 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h4><ol>
+<li><strong>基本标签</strong> <code>&lt;a&gt;</code></li>
+<li><strong>链接属性</strong><ul>
+<li><strong>链接目标（网址 文件 js)</strong> <code>href</code> <code>&lt;a href=&quot;https://www.example.com&quot;&gt;&lt;/a&gt;</code></li>
+<li><strong>链接的打开方式</strong> <code>target</code> <code>&lt;a href=&quot;https://www.example.com&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;新窗口打开 Example&lt;/a&gt;</code><ul>
+<li><code>_blank</code>: 在新窗口或新标签页中打开链接。</li>
+<li><code>_self</code>: 在当前窗口或标签页中打开链接（默认）。</li>
+<li><code>_parent</code>: 在父框架中打开链接。</li>
+<li><code>_top</code>: 在整个窗口中打开链接，取消任何框架。</li>
+</ul>
+</li>
+<li><strong>下载链接目标</strong><code>download</code><br>  <code>&lt;a href=&quot;file.pdf&quot; download=&quot;example.pdf&quot;&gt;下载文件&lt;/a&gt;</code></li>
+<li><strong>链接锚点（点击跳转指定位置 ）</strong> <code>id</code> </li>
+<li><strong>类名（与CSS有关）</strong><code>class</code><br>  <code>&lt;a href=&quot;https://www.example.com&quot; class=&quot;external-link&quot;&gt;外部链接&lt;/a&gt;</code></li>
+<li><code>style</code> <em><strong>直接定义CSS样式</strong></em><br>  <code>&lt;a href=&quot;https://www.example.com&quot; class=&quot;external-link&quot;&gt;外部链接&lt;/a&gt;</code></li>
+</ul>
+</li>
+<li><strong>空链接</strong><ul>
+<li><strong>导航到顶部</strong>  <code>href=&quot;#&quot;</code> </li>
+<li><strong>刷新页面</strong> <code>href=&quot;&quot;</code></li>
+<li><strong>打开空白页面</strong> <code>href=&quot;about:blank&quot;</code></li>
+<li><strong>按钮（需配合js）</strong> <code>role=&quot;button&quot;</code></li>
+<li><strong>阻止跳转</strong> <code>href=&quot;javascript:void(0)&quot;</code></li>
+</ul>
+</li>
+</ol>
+<h4 id="图像"><a href="#图像" class="headerlink" title="图像"></a>图像</h4><ol>
+<li><strong>插入图像的标签</strong> <code>&lt;img&gt;</code></li>
+<li><strong>属性</strong><ul>
+<li><strong>源属性</strong> <code>src</code> <em><strong>定位资源在哪里</strong></em></li>
+<li><strong>替换文本属性</strong>*<code>alt</code> <em><strong>图片没有加载出来显示的文字</strong></em></li>
+<li><strong>图片的高度和宽度</strong> <code>height</code> <code>width</code> <em><strong>默认单位为像素</strong></em></li>
+</ul>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=&quot;pulpit.jpg&quot; alt=&quot;Pulpit rock&quot; width=&quot;304&quot; height=&quot;228&quot;&gt;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h4 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h4><pre><code>表格靠一些标签排列组合表示
+</code></pre>
+<ul>
+<li><strong>表格标签</strong> <code>&lt;table&gt;</code></li>
+<li><strong>行标签</strong> <code>&lt;tr&gt;</code></li>
+<li><strong>数据单元格标签</strong> <code>&lt;td&gt;</code></li>
+<li><strong>表头单元格标签</strong> <code>&lt;th&gt;</code></li>
+<li><strong>边框属性</strong> <code>border</code></li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">thead</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">th</span>&gt;</span>列标题1<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">th</span>&gt;</span>列标题2<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">th</span>&gt;</span>列标题3<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">thead</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">tbody</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>行1，列1<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>行1，列2<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>行1，列3<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>行2，列1<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>行2，列2<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>行2，列3<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<table>
+  <thead>
+    <tr>
+      <th>列标题1</th>
+      <th>列标题2</th>
+      <th>列标题3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>行1，列1</td>
+      <td>行1，列2</td>
+      <td>行1，列3</td>
+    </tr>
+    <tr>
+      <td>行2，列1</td>
+      <td>行2，列2</td>
+      <td>行2，列3</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h4><ol>
+<li><strong>无序列表</strong> <ul>
+<li><strong>无序列表标签</strong><code>&lt;ul&gt;</code></li>
+<li><strong>无序列表内容</strong><code>&lt;li&gt;</code></li>
+</ul>
+</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span>  </span><br><span class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>水<span class="tag">&lt;/<span class="name">li</span>&gt;</span>  </span><br><span class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>茶<span class="tag">&lt;/<span class="name">li</span>&gt;</span>  </span><br><span class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>冰红茶<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>  
+<li>水</li>  
+<li>茶</li>  
+<li>冰红茶</li>
+</ul>
+
+<ol start="2">
+<li><strong>有序列表</strong><ul>
+<li><strong>有序列表标签</strong><code>&lt;ol&gt;</code></li>
+<li><strong>有序列表内容</strong><code>&lt;li&gt;</code></li>
+</ul>
+</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span>  ///有序列表标签</span><br><span class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>哇哈哈<span class="tag">&lt;/<span class="name">li</span>&gt;</span>  </span><br><span class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>可乐<span class="tag">&lt;/<span class="name">li</span>&gt;</span>  ///有序列表内容</span><br><span class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>雪碧<span class="tag">&lt;/<span class="name">li</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol>  
+	<li>哇哈哈</li>  
+	<li>可乐</li>  
+	<li>雪碧</li> 
+</ol>
+
+<h4 id="区块"><a href="#区块" class="headerlink" title="区块"></a>区块</h4><pre><code>区块将网页分成一个个层级，方便规定样式和更改
+</code></pre>
+<ol>
+<li><strong>区块元素</strong> <code>&lt;div&gt;</code>  <em><strong>通常会新开一行来表示</strong></em></li>
+<li><strong>内联元素</strong> <code>&lt;span&gt;</code> <em><strong>通常会在一行后接着来表示</strong></em></li>
+</ol>
+<div class="note success flat"><p>这两个东西似乎现在代替了前面大多数的标签，前面有关样式的定义的标签似乎大部分被区块加上CSS所代替</p>
+</div>
+
+<h4 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h4><ol>
+<li><strong>表单标识标签</strong> <code>&lt;from&gt;</code></li>
+<li><strong>表单输入标签</strong> <code>&lt;input&gt;</code><ul>
+<li><strong>文本域</strong> 一种属性 表示输入框输入或者显示的内容 <ul>
+<li><em><strong>输入框输入文本</strong></em> <code>text</code></li>
+<li>***输入框输入密码 <code>password</code></li>
+<li><em><strong>单选按钮</strong></em>  <code>radio</code></li>
+<li><em><strong>多选按钮</strong></em> <code>checkbox</code></li>
+<li><em><strong>提交按钮</strong></em>  <code>submit</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>创建下拉列表</strong> <code>&lt;select&gt;</code><ul>
+<li><strong>下拉列表的选择</strong> <code>&lt;option&gt;</code></li>
+</ul>
+</li>
+<li><strong>文本标签</strong> <code>&lt;label&gt;</code> 提高可读性</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;/&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 文本输入框 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;name&quot;</span>&gt;</span>用户名:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;name&quot;</span> <span class="attr">name</span>=<span class="string">&quot;name&quot;</span> <span class="attr">required</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 密码输入框 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;password&quot;</span>&gt;</span>密码:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;password&quot;</span> <span class="attr">id</span>=<span class="string">&quot;password&quot;</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">required</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 单选按钮 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span>&gt;</span>性别:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">id</span>=<span class="string">&quot;male&quot;</span> <span class="attr">name</span>=<span class="string">&quot;gender&quot;</span> <span class="attr">value</span>=<span class="string">&quot;male&quot;</span> <span class="attr">checked</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;male&quot;</span>&gt;</span>男<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">id</span>=<span class="string">&quot;female&quot;</span> <span class="attr">name</span>=<span class="string">&quot;gender&quot;</span> <span class="attr">value</span>=<span class="string">&quot;female&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;female&quot;</span>&gt;</span>女<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 复选框 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">id</span>=<span class="string">&quot;subscribe&quot;</span> <span class="attr">name</span>=<span class="string">&quot;subscribe&quot;</span> <span class="attr">checked</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;subscribe&quot;</span>&gt;</span>订阅推送信息<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 下拉列表 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;country&quot;</span>&gt;</span>国家:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;country&quot;</span> <span class="attr">name</span>=<span class="string">&quot;country&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;cn&quot;</span>&gt;</span>CN<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;usa&quot;</span>&gt;</span>USA<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;uk&quot;</span>&gt;</span>UK<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 提交按钮 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;提交&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<form action="/" method="post">
+    <!-- 文本输入框 -->
+    <label for="name">用户名:</label>
+    <input type="text" id="name" name="name" required>
+
+<pre><code>&lt;br&gt;
+
+<!-- 密码输入框 -->
+&lt;label for=&quot;password&quot;&gt;密码:&lt;/label&gt;
+&lt;input type=&quot;password&quot; id=&quot;password&quot; name=&quot;password&quot; required&gt;
+
+&lt;br&gt;
+
+<!-- 单选按钮 -->
+&lt;label&gt;性别:&lt;/label&gt;
+&lt;input type=&quot;radio&quot; id=&quot;male&quot; name=&quot;gender&quot; value=&quot;male&quot; checked&gt;
+&lt;label for=&quot;male&quot;&gt;男&lt;/label&gt;
+&lt;input type=&quot;radio&quot; id=&quot;female&quot; name=&quot;gender&quot; value=&quot;female&quot;&gt;
+&lt;label for=&quot;female&quot;&gt;女&lt;/label&gt;
+
+&lt;br&gt;
+
+<!-- 复选框 -->
+&lt;input type=&quot;checkbox&quot; id=&quot;subscribe&quot; name=&quot;subscribe&quot; checked&gt;
+&lt;label for=&quot;subscribe&quot;&gt;订阅推送信息&lt;/label&gt;
+
+&lt;br&gt;
+
+<!-- 下拉列表 -->
+&lt;label for=&quot;country&quot;&gt;国家:&lt;/label&gt;
+&lt;select id=&quot;country&quot; name=&quot;country&quot;&gt;
+    &lt;option value=&quot;cn&quot;&gt;CN&lt;/option&gt;
+    &lt;option value=&quot;usa&quot;&gt;USA&lt;/option&gt;
+    &lt;option value=&quot;uk&quot;&gt;UK&lt;/option&gt;
+&lt;/select&gt;
+
+&lt;br&gt;
+
+<!-- 提交按钮 -->
+&lt;input type=&quot;submit&quot; value=&quot;提交&quot;&gt;
+</code></pre>
+</form>
+
+<hr>
+<h4 id="HTML5新元素"><a href="#HTML5新元素" class="headerlink" title="HTML5新元素"></a>HTML5新元素</h4><div class="note info flat"><p>HTML5的新元素应用了很多其他新知识，由于精力有限，这里只选择了和旧版HTML相似的元素，并只做简单展示</p>
+</div>
+
+<ol>
+<li><strong>SVG矢量图</strong><ul>
+<li><strong>概念：</strong> SVG通过<code>xml</code> 来定义图形，可以无损的放大和缩小</li>
+<li><strong>内嵌SVG标签</strong> <code>&lt;svg&gt;</code></li>
+</ul>
+</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.w3.org/2000/svg&quot;</span> <span class="attr">version</span>=<span class="string">&quot;1.1&quot;</span> <span class="attr">height</span>=<span class="string">&quot;190&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">polygon</span> <span class="attr">points</span>=<span class="string">&quot;100,10 40,180 190,60 10,60 160,180&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">style</span>=<span class="string">&quot;fill:lime;stroke:purple;stroke-width:5;fill-rule:evenodd;&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><strong>数学公式</strong><ul>
+<li><strong>概念</strong> ：与markdown一样，HTML可以插入数学公式</li>
+<li><strong>内嵌公式标签</strong> <code>&lt;math&gt;</code></li>
+</ul>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">   &lt;head&gt;</span><br><span class="line">      &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">      &lt;title&gt;菜鸟教程(runoob.com)&lt;/title&gt;</span><br><span class="line">   &lt;/head&gt;</span><br><span class="line">        </span><br><span class="line">   &lt;body&gt;</span><br><span class="line">        </span><br><span class="line">      &lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;</span><br><span class="line">                </span><br><span class="line">         &lt;mrow&gt;</span><br><span class="line">            &lt;msup&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msup&gt;</span><br><span class="line">            &lt;mo&gt;+&lt;/mo&gt;</span><br><span class="line">                                </span><br><span class="line">            &lt;msup&gt;&lt;mi&gt;b&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msup&gt;</span><br><span class="line">            &lt;mo&gt;=&lt;/mo&gt;</span><br><span class="line">                                </span><br><span class="line">            &lt;msup&gt;&lt;mi&gt;c&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msup&gt;</span><br><span class="line">         &lt;/mrow&gt;</span><br><span class="line">                        </span><br><span class="line">      &lt;/math&gt;</span><br><span class="line">                </span><br><span class="line">   &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<html>
+   <head>
+      <meta charset="UTF-8">
+      <title>菜鸟教程(runoob.com)</title>
+   </head>
+        
+   <body>
+        
+<pre><code>  &lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;
+            
+     &lt;mrow&gt;
+        &lt;msup&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msup&gt;
+        &lt;mo&gt;+&lt;/mo&gt;
+                            
+        &lt;msup&gt;&lt;mi&gt;b&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msup&gt;
+        &lt;mo&gt;=&lt;/mo&gt;
+                            
+        &lt;msup&gt;&lt;mi&gt;c&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msup&gt;
+     &lt;/mrow&gt;
+                    
+  &lt;/math&gt;
+            
+</code></pre>
+   </body>
+</html>
+
+<ol start="3">
+<li><strong>视频</strong><ul>
+<li><strong>视频嵌入标签</strong> <code>&lt;vidio&gt;</code></li>
+<li><strong>属性</strong> <ul>
+<li><strong>来源属性</strong> <code>&lt;source&gt;</code><em><strong>类似于前面图片的资源定位属性</strong></em></li>
+<li><strong>文件类型</strong> <code>type</code> </li>
+<li><strong>宽度与高度</strong> 与前面的图片相似</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">width</span>=<span class="string">&quot;320&quot;</span> <span class="attr">height</span>=<span class="string">&quot;240&quot;</span> <span class="attr">controls</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">&quot;movie.mp4&quot;</span> <span class="attr">type</span>=<span class="string">&quot;video/mp4&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<video width="320" height="240" controls>
+  <source src="movie.mp4" type="video/mp4">
+  <source src="movie.ogg" type="video/ogg">
+您的浏览器不支持Video标签。
+</video>
+
+<ol start="4">
+<li><strong>音频</strong><ul>
+<li><strong>音频标签</strong> <code>&lt;audio&gt;</code></li>
+<li><em><strong>与视频一样存在<code>&lt;source&gt;</code>标签</strong></em> ，</li>
+<li><em><strong>同样可以在<code>&lt;source&gt;</code>添加<code>type</code>属性来补充说明文件格式</strong></em></li>
+</ul>
+</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">audio</span> <span class="attr">controls</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">&quot;horse.ogg&quot;</span> <span class="attr">type</span>=<span class="string">&quot;audio/ogg&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">audio</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<audio controls>
+  <source src="horse.ogg" type="audio/ogg">
+</audio>
+
+<hr>
+<h3 id="HTML-CSS样式"><a href="#HTML-CSS样式" class="headerlink" title="HTML CSS样式"></a>HTML CSS样式</h3><div class="note info flat"><p>CSS内容繁多且复杂，这里仅仅只介绍基本格式和插入方法以便后续专门学习CSS</p>
+</div>
+
+<ol>
+<li><strong>概念：</strong> CSS可以设置文本的字体颜色等等内容，可以让网页变得更加美观，文件拓展名为<code>.css</code></li>
+<li><strong>基本格式</strong></li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">p(选择器，选择网页中的元素应用这个样式)</span><br><span class="line">&#123;</span><br><span class="line">	样式属性1:值;</span><br><span class="line">	样式属性2:值;</span><br><span class="line">	样式属性3:值;</span><br><span class="line">	······</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><strong>插入方式</strong><ul>
+<li><strong>行间插入</strong> 可直接使用<code>style</code>属性插入<br>  <code>&lt;p style=&quot;color:red;&quot;&gt;文字&lt;/p&gt;</code><br>      <p style="color:red;">文字</p></li>
+<li><strong>内部样式表</strong> 可以在头元素<code>&lt;head&gt;</code> 里面插入</li>
+</ul>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">		<span class="selector-tag">body</span> &#123;<span class="attribute">background-color</span>:yellow;&#125;</span></span><br><span class="line"><span class="language-css">		<span class="selector-tag">p</span> &#123;<span class="attribute">color</span>:blue;&#125;</span></span><br><span class="line"><span class="language-css">	</span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>外部样式表</strong> 可以在头元素<code>&lt;head&gt;</code>从外部导入CSS</li>
+</ul>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span> <span class="attr">href</span>=<span class="string">&quot;mystyle.css&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h3 id="HTML里的JavaScript"><a href="#HTML里的JavaScript" class="headerlink" title="HTML里的JavaScript"></a>HTML里的JavaScript</h3><ol>
+<li><strong>概念：</strong> JavaScript可以实现一些动画，交互，让网页可以动起来，文件拓展名为<code>.js</code></li>
+<li><strong>插入方式</strong>：<ul>
+<li>直接插入  直接插入到<code>&lt;script&gt;</code>标签里面</li>
+</ul>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;我是直接写进去的 JS&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>外部导入</strong>  在头元素<code>&lt;head&gt;</code> 导入<code>&lt;script&gt;</code>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;script src=&quot;xxx.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br></pre></td></tr></table></figure></li>
+<li><strong>在<code>&lt;body&gt;</code>标签导入</strong></li>
+</ul>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt; </span><br><span class="line">	&lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">	&lt;!-- 引入外部JS（body末尾更优） --&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<blockquote>
+<p>版本信息：2026.3.22 （第一版）<br>已经通过网页核对 2026.4.11<br>@小洋葱的笔记本</p>
+</blockquote>
+<link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/markmap-toolbar@0.18.10/dist/style.css"><script src="https://fastly.jsdelivr.net/npm/d3@7"></script><script src="https://fastly.jsdelivr.net/npm/markmap-view@0.18.10"></script><script src="https://fastly.jsdelivr.net/npm/markmap-toolbar@0.18.10"></script>
+<link rel="stylesheet" href="/onionsnotebook.github.io/css/markmap.css">
+
+<script src="/onionsnotebook.github.io/js/markmap.js"></script>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://onion383.github.io">无聊的小洋葱</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://onion383.github.io/2026/03/24/HTML%E8%AF%AD%E8%A8%80%E7%AC%94%E8%AE%B0/">https://onion383.github.io/2026/03/24/HTML%E8%AF%AD%E8%A8%80%E7%AC%94%E8%AE%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://onion383.github.io" target="_blank">小洋葱的笔记本</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/onionsnotebook.github.io/tags/%E5%A4%A7%E5%AD%A6/">大学</a><a class="post-meta__tags" href="/onionsnotebook.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a><a class="post-meta__tags" href="/onionsnotebook.github.io/tags/%E5%89%8D%E7%AB%AF/">前端</a></div><div class="post-share"><div class="social-share" data-image="http://cdn.jsdelivr.net/gh/onion383/onionsnotebook-blog-images@main/img/postbackground/HTML语言教程背景图.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="http://cdn.jsdelivr.net/gh/onion383/onionsnotebook-blog-images@main/img/pay_img/wechat.png" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/onion383/onionsnotebook-blog-images@main/img/globalbackgound/加载中.gif" data-lazy-src="http://cdn.jsdelivr.net/gh/onion383/onionsnotebook-blog-images@main/img/pay_img/wechat.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="http://cdn.jsdelivr.net/gh/onion383/onionsnotebook-blog-images@main/img/pay_img/alipay.png" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/onion383/onionsnotebook-blog-images@main/img/globalbackgound/加载中.gif" data-lazy-src="http://cdn.jsdelivr.net/gh/onion383/onionsnotebook-blog-images@main/img/pay_img/alipay.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/onionsnotebook.github.io/2026/03/25/%E8%8B%B1%E8%AF%AD%E5%9B%9B%E7%BA%A7%E7%AC%94%E8%AE%B0/" title="英语四级笔记"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">英语四级笔记</div></div><div class="info-2"><div class="info-item-1">先导课四级考试试卷结构   试卷结构 测试内容 测试题型 题目数量 分值比例 每小题分值 部分小计    写作 写作 短文写作 1 15% 106.5 106.5   听力理解 短篇新闻 选择题（单选题） 7 7% 7.1 248.5    长对话 选择题（单选题） 8 8% 7.1 —    听力篇章 选择题（单选题） 10 20% 14.2 —   阅读理解 词汇理解 选词填空 10 5% 3.55 248.5    长篇阅读 匹配 10 10% 7.1 —    仔细阅读 选择题（单选题） 10 20% 14.2 —   翻译 汉译英 段落翻译 1 15% 106.5 106.5   总计 - - 57 100% 710 710   考核方式   考核形式 评价标准 权重    考勤（百分制） 无故旷课（无法提供辅导员签字的请假条）1次扣10分，迟到和早退1次扣5分；无故旷课累计3次以上取消期末考试资格 0.05   课堂表现（百分制） 积极完成课堂活动 0.10   听力（百分制） 《新视野大学英语视听说教程》听力练习正确率（校园，8单元，每个单元做5篇，取最高成绩） 0...</div></div></div></a><a class="pagination-related" href="/onionsnotebook.github.io/2026/03/24/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B0/" title="高等数学笔记"><img class="cover" src="https://cdn.jsdelivr.net/gh/onion383/onionsnotebook-blog-images@main/img/globalbackgound/加载中.gif" data-lazy-src="http://cdn.jsdelivr.net/gh/onion383/onionsnotebook-blog-images@main/img/postbackground/高等数学笔记背景图.jpg" onerror="onerror=null;src='/onionsnotebook.github.io/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">高等数学笔记</div></div><div class="info-2"><div class="info-item-1">高等数学（下）教程 (第八章） 该笔记适用于 高等数学 第八版 下册（高等教育出版社9787040588682）其他教材相可能会有细微的差别 该笔记目前更新到第八章，其他章节会逐步更新，可在文章合集中查看      考核标准   考核项目 分值(%) 备注    平时作业 20 迟交分数最高为69   期中考试 15    思政考核 5    期末考试 60 分数要大于45,否则成绩无效    第八章 向量代数与空间几何第一节 向量及其线性运算向量的基础概念1.各种向量 向量 ： 大小+方向 自由向量 ：方向可改变 相等向量 ：大小方向相同 单位向量 ：模长为1 零向量 ：模长为0 方向任意 共面向量 ：共起点  2. 向量的夹角 范围 $0\leq x\leq\pi$ 共线向量 夹角为 0 或者$\pi$   向量的运算1. 运算 加法 ：三角形法则 首尾相接 $\overrightarrow{AB}+\overrightarrow{BC}=\overrightarrow{AC}$  平行四边形法则 同起点，以两向量为邻边作平行四边形，对角线为和 减法 ：三角形逆法则  $\o...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/onionsnotebook.github.io/2026/03/24/Markdown%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" title="Markdown极简使用方法"><img class="cover" src="https://cdn.jsdelivr.net/gh/onion383/onionsnotebook-blog-images@main/img/globalbackgound/加载中.gif" data-lazy-src="http://cdn.jsdelivr.net/gh/onion383/onionsnotebook-blog-images@main/img/postbackground/Markdown使用教程背景图.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-24</div><div class="info-item-2">Markdown极简使用方法</div></div><div class="info-2"><div class="info-item-1">Markdown使用方法 该笔记内容主要适用于Obsidian笔记软件，其他Markdown笔记软件的写法可能会有细微的差别。 该笔记在说明格式的符号后会有显示效果，方便看到显示效果。       目录Markdown介绍Markdown基本用法Mermaid 图表拓展：Markdown数学公式拓展：Markdown简单的化学式 Markdown介绍 Markdown是一种轻量化标记语言，它旨在通过一些简单的符号来快速排版文本，减少频繁设置格式的情况来提升写作的专注度，非常适合作为笔记格式使用。 Markdown的文件拓展名为.md 在输入符号时，都需要切换到英文符号输入。   Markdown基本用法行内排版 斜体 *我是示例* 我是示例 粗体 **我是示例**  我是示例 删除线 ~~我是示例~~  我是示例 斜体+粗体 ***我是示例***   我是示例 标黄 &lt;mark style=&quot;background-color: rgba(255, 235, 59, 0.4); padding: 0 3px; border-radius: 2px;&quot;&gt...</div></div></div></a><a class="pagination-related" href="/onionsnotebook.github.io/2026/03/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0/" title="数据结构笔记"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-26</div><div class="info-item-2">数据结构笔记</div></div><div class="info-2"><div class="info-item-1">先导课考核要求   考核方法 评价标准 权重（%）    期中考试 参考答案及评分标准 13   平时作业 独立按时完成作业，根据作业参考答案评定成绩。 12   实验报告 能够分析问题，设计算法，独立实现程序，运行结果正确，按照要求完成实验报告。实验报告须有详细的设计说明和代码注释，根据实验报告规范性和完成质量评定成绩。 15   闭卷 参考答案及评分标准 60     第一章 概论1.1 数据结构概述数据结构的概念 基础概念   数据：计算机可识别、存储和加工的信息载体  文字、表格、图像等  *数据的组成（从大到小） 数据项：具有独立意义的不可分割最小单位 学生记录中的“姓名”字段 数据元素：数据的基本单位，作为整体处理  如学生记录 数据对象：相同类型数据元素的集合。   数据结构组成：   数据逻辑结构：从逻辑关系描述数据 数据存储结构：逻辑结构在储存（映像）。 数据运算：对数据施加的操作（检索、插入、删除等）。  数据结构的组成1.数据逻辑结构 常见的逻辑  集合：元素同属一个集合，无其他关系。 线性结构：元素间一对一关系  如学生成绩表 树形结构：元素间一对多关系 ...</div></div></div></a><a class="pagination-related" href="/onionsnotebook.github.io/2026/04/11/Express%20%E6%A1%86%E6%9E%B6%E7%AC%94%E8%AE%B0/" title="Express框架笔记"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-04-11</div><div class="info-item-2">Express框架笔记</div></div><div class="info-2"><div class="info-item-1">前期基本准备 新建文件夹，初始化项目  1234# 初始化项目，生成package.json npm init -y# 安装express npm install express  编程基本流程很像一个店装修-开业-服务的过程 1234graph LRA( **准备操作** &lt;br&gt; **引入框架** &lt;br&gt;&lt;br&gt; 购买装修材料 ) --&gt; B( **请求和响应函数** &lt;br&gt; **中间件** &lt;br&gt;&lt;br&gt; 装修店铺 )B --&gt; C( **监听端口** &lt;br&gt;&lt;br&gt; 开张营业 )   准备操作 引入Express框架 const 自定义框架名字 = require(&#39;express&#39;) //引入express框架   const express &#x3D; require(‘express’)&#96;  require 在node.js里面引入框架 const js 变量声明   创建一个服务对象  const 自定义服务对象名 = 自定...</div></div></div></a><a class="pagination-related" href="/onionsnotebook.github.io/2026/03/27/JavaScript%E7%AC%94%E8%AE%B0/" title="JavaScirpt语言笔记"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-27</div><div class="info-item-2">JavaScirpt语言笔记</div></div><div class="info-2"><div class="info-item-1">JavaScirpt 输出 警告框 window.alert() window.alert(5 + 6); 写入到HTML文档 document.write document.getElementById(&quot;demo&quot;).innerHTML = &quot;段落已修改。&quot; 写入到控制台 console.log()  console.log(c);  JS变量(字面量) 声明 var 声明 var 变量名=变量值   可以用tpyedef 查看数据类型   分类   数字（number） ：支持整数、小数、科学计数法 &#96;3.14 1001 33e10   字符串（String）* ：可以使用单引号或双引号 &quot;你好&quot;  你好&#96;&#96; 表达式 ：用于计算 22+223 数组（Array） ：用[]包裹数组 , 分开数组中的元素 [2,4,9,8] 布尔类型 ： 只有真（true）和假 （false）  对象（Object） ：用&#123;&#125;  包裹对象 属性名=&quot;属性值&quot;  12345...</div></div></div></a><a class="pagination-related" href="/onionsnotebook.github.io/2026/03/24/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B0/" title="高等数学笔记"><img class="cover" src="https://cdn.jsdelivr.net/gh/onion383/onionsnotebook-blog-images@main/img/globalbackgound/加载中.gif" data-lazy-src="http://cdn.jsdelivr.net/gh/onion383/onionsnotebook-blog-images@main/img/postbackground/高等数学笔记背景图.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-24</div><div class="info-item-2">高等数学笔记</div></div><div class="info-2"><div class="info-item-1">高等数学（下）教程 (第八章） 该笔记适用于 高等数学 第八版 下册（高等教育出版社9787040588682）其他教材相可能会有细微的差别 该笔记目前更新到第八章，其他章节会逐步更新，可在文章合集中查看      考核标准   考核项目 分值(%) 备注    平时作业 20 迟交分数最高为69   期中考试 15    思政考核 5    期末考试 60 分数要大于45,否则成绩无效    第八章 向量代数与空间几何第一节 向量及其线性运算向量的基础概念1.各种向量 向量 ： 大小+方向 自由向量 ：方向可改变 相等向量 ：大小方向相同 单位向量 ：模长为1 零向量 ：模长为0 方向任意 共面向量 ：共起点  2. 向量的夹角 范围 $0\leq x\leq\pi$ 共线向量 夹角为 0 或者$\pi$   向量的运算1. 运算 加法 ：三角形法则 首尾相接 $\overrightarrow{AB}+\overrightarrow{BC}=\overrightarrow{AC}$  平行四边形法则 同起点，以两向量为邻边作平行四边形，对角线为和 减法 ：三角形逆法则  $\o...</div></div></div></a><a class="pagination-related" href="/onionsnotebook.github.io/2026/03/25/%E8%8B%B1%E8%AF%AD%E5%9B%9B%E7%BA%A7%E7%AC%94%E8%AE%B0/" title="英语四级笔记"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-25</div><div class="info-item-2">英语四级笔记</div></div><div class="info-2"><div class="info-item-1">先导课四级考试试卷结构   试卷结构 测试内容 测试题型 题目数量 分值比例 每小题分值 部分小计    写作 写作 短文写作 1 15% 106.5 106.5   听力理解 短篇新闻 选择题（单选题） 7 7% 7.1 248.5    长对话 选择题（单选题） 8 8% 7.1 —    听力篇章 选择题（单选题） 10 20% 14.2 —   阅读理解 词汇理解 选词填空 10 5% 3.55 248.5    长篇阅读 匹配 10 10% 7.1 —    仔细阅读 选择题（单选题） 10 20% 14.2 —   翻译 汉译英 段落翻译 1 15% 106.5 106.5   总计 - - 57 100% 710 710   考核方式   考核形式 评价标准 权重    考勤（百分制） 无故旷课（无法提供辅导员签字的请假条）1次扣10分，迟到和早退1次扣5分；无故旷课累计3次以上取消期末考试资格 0.05   课堂表现（百分制） 积极完成课堂活动 0.10   听力（百分制） 《新视野大学英语视听说教程》听力练习正确率（校园，8单元，每个单元做5篇，取最高成绩） 0...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://cdn.jsdelivr.net/gh/onion383/onionsnotebook-blog-images@main/img/globalbackgound/加载中.gif" data-lazy-src="/onionsnotebook.github.io/img/avatar.png" onerror="this.onerror=null;this.src='/onionsnotebook.github.io/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">无聊的小洋葱</div><div class="author-info-description">这里会分享一些我学过的东西</div><div class="site-data"><a href="/onionsnotebook.github.io/archives/"><div class="headline">文章</div><div class="length-num">14</div></a><a href="/onionsnotebook.github.io/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/onionsnotebook.github.io/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" href="https://github.com/onion383" target="_blank" rel="noopener"><span>点我跳转</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">最近更新 <br> 
+ V 2.4 2026.4.23 <br> 
+新增 新增对思维导图的支持 <br> 
+修复 修复了搜索数学和思维导图的时候导致的乱码问题 <br> 
+改进 适配了思维导图的夜间模式 <br> 
+</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#HTML%E8%AF%AD%E8%A8%80%E7%AC%94%E8%AE%B0"><span class="toc-number">1.</span> <span class="toc-text">HTML语言笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95"><span class="toc-number">1.1.</span> <span class="toc-text">目录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.1.1.</span> <span class="toc-text">HTML介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML-5-%E5%9F%BA%E6%9C%AC%E7%BB%84%E6%88%90"><span class="toc-number">1.1.2.</span> <span class="toc-text">HTML(5)基本组成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML%E5%85%83%E7%B4%A0"><span class="toc-number">1.1.3.</span> <span class="toc-text">HTML元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML5%E6%96%B0%E5%85%83%E7%B4%A0%EF%BC%88%E7%AE%80%E8%A6%81%E4%BB%8B%E7%BB%8D%EF%BC%89"><span class="toc-number">1.1.4.</span> <span class="toc-text">HTML5新元素（简要介绍）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML-CSS-%EF%BC%88%E7%AE%80%E8%A6%81%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.1.5.</span> <span class="toc-text">HTML CSS （简要介绍)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML%E9%87%8C%E7%9A%84JavaScript-%EF%BC%88%E7%AE%80%E8%A6%81%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.1.6.</span> <span class="toc-text">HTML里的JavaScript （简要介绍)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML%E4%BB%8B%E7%BB%8D-1"><span class="toc-number">1.1.7.</span> <span class="toc-text">HTML介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML%EF%BC%885%EF%BC%89%E5%9F%BA%E6%9C%AC%E7%BB%84%E6%88%90"><span class="toc-number">1.1.8.</span> <span class="toc-text">HTML（5）基本组成</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#html%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">1.1.8.1.</span> <span class="toc-text">html基本概念</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E7%BD%91%E9%A1%B5%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%84%E6%88%90"><span class="toc-number">1.1.8.2.</span> <span class="toc-text">网页的基本组成</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML%E5%B1%9E%E6%80%A7"><span class="toc-number">1.1.9.</span> <span class="toc-text">HTML属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML%E5%85%83%E7%B4%A0-1"><span class="toc-number">1.1.10.</span> <span class="toc-text">HTML元素</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#HTML%E5%85%83%E7%B4%A0%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">1.1.10.1.</span> <span class="toc-text">HTML元素基本概念</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%84%E7%A7%8D%E5%85%83%E7%B4%A0"><span class="toc-number">1.1.11.</span> <span class="toc-text">各种元素</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%B4%E9%83%A8%E5%85%83%E7%B4%A0"><span class="toc-number">1.1.11.1.</span> <span class="toc-text">头部元素</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%87%E9%A2%98"><span class="toc-number">1.1.11.2.</span> <span class="toc-text">标题</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">我是标题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AE%B5%E8%90%BD"><span class="toc-number">2.1.</span> <span class="toc-text">段落</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="toc-number">2.2.</span> <span class="toc-text">文本格式化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5"><span class="toc-number">2.3.</span> <span class="toc-text">链接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F"><span class="toc-number">2.4.</span> <span class="toc-text">图像</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A1%A8%E6%A0%BC"><span class="toc-number">2.5.</span> <span class="toc-text">表格</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%97%E8%A1%A8"><span class="toc-number">2.6.</span> <span class="toc-text">列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8C%BA%E5%9D%97"><span class="toc-number">2.7.</span> <span class="toc-text">区块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A1%A8%E5%8D%95"><span class="toc-number">2.8.</span> <span class="toc-text">表单</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTML5%E6%96%B0%E5%85%83%E7%B4%A0"><span class="toc-number">2.9.</span> <span class="toc-text">HTML5新元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML-CSS%E6%A0%B7%E5%BC%8F"><span class="toc-number">2.10.</span> <span class="toc-text">HTML CSS样式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML%E9%87%8C%E7%9A%84JavaScript"><span class="toc-number">2.11.</span> <span class="toc-text">HTML里的JavaScript</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/onionsnotebook.github.io/2026/04/23/%E9%AB%98%E4%B8%AD%E5%8C%96%E5%AD%A6%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/" title="高中化学思维导图">高中化学思维导图</a><time datetime="2026-04-23T10:00:00.000Z" title="发表于 2026-04-23 18:00:00">2026-04-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/onionsnotebook.github.io/2026/04/23/%E9%AB%98%E4%B8%AD%E6%95%B0%E5%AD%A6%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/" title="高中数学思维导图">高中数学思维导图</a><time datetime="2026-04-23T10:00:00.000Z" title="发表于 2026-04-23 18:00:00">2026-04-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/onionsnotebook.github.io/2026/04/23/%E9%AB%98%E4%B8%AD%E7%94%9F%E7%89%A9%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/" title="高中生物思维导图">高中生物思维导图</a><time datetime="2026-04-23T10:00:00.000Z" title="发表于 2026-04-23 18:00:00">2026-04-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/onionsnotebook.github.io/2026/04/23/%E9%AB%98%E4%B8%AD%E7%89%A9%E7%90%86%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/" title="高中物理思维导图">高中物理思维导图</a><time datetime="2026-04-23T10:00:00.000Z" title="发表于 2026-04-23 18:00:00">2026-04-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/onionsnotebook.github.io/2026/04/23/%E9%AB%98%E4%B8%AD%E8%AF%AD%E6%96%87%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/" title="高中语文思维导图">高中语文思维导图</a><time datetime="2026-04-23T10:00:00.000Z" title="发表于 2026-04-23 18:00:00">2026-04-23</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2026 By 无聊的小洋葱</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/onionsnotebook.github.io/js/utils.js?v=5.5.4"></script><script src="/onionsnotebook.github.io/js/main.js?v=5.5.4"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.1.9/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@19.1.3/dist/lazyload.iife.min.js"></script><div class="js-pjax"><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://purple-thunder-5d98.smallboringonion.workers.dev/',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = (el = document, path = location.pathname) => {
+    twikoo.init({
+      el: el.querySelector('#twikoo-wrap'),
+      envId: 'https://purple-thunder-5d98.smallboringonion.workers.dev/',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      },
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || path
+    })
+
+    GLOBAL_CONFIG_SITE.pageType === 'post' && getCount()
+
+    isShuoshuo && (window.shuoshuoComment.destroyTwikoo = () => {
+      if (el.children.length) {
+        el.innerHTML = ''
+        el.classList.add('no-comment')
+      }
+    })
+  }
+
+  const loadTwikoo = (el, path) => {
+    if (typeof twikoo === 'object') setTimeout(() => init(el, path), 0)
+    else btf.getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.44/dist/twikoo.all.min.js').then(() => init(el, path))
+  }
+
+  if (isShuoshuo) {
+    'Twikoo' === 'Twikoo'
+      ? window.shuoshuoComment = { loadComment: loadTwikoo }
+      : window.loadOtherComment = loadTwikoo
+    return
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script src="/onionsnotebook.github.io/js/global.js"></script><script src="/onionsnotebook.github.io/js/runtime.js"></script><script>
+  (function() {
+    const STORAGE_KEY = 'blog-theme-version';
+    const THEME_STYLE_ID = 'blog-dynamic-theme-style';
+    const DEFAULT_THEME = 'v1';
+
+    // ==============================================
+    // V1 经典原版（100%还原旧版，修正日间背景为渐变，恢复封面）
+    // ==============================================
+    const V1_THEME_CSS = `
+      /* V1 背景：日间渐变 / 夜间纯黑 */
+      html[data-theme="light"] #web_bg {
+        background: linear-gradient(135deg, #f0f7ff 0%, #e6f0ff 100%) !important;
+      }
+      html[data-theme="dark"] #web_bg {
+        background: #0d0d0d !important;
+      }
+      
+     
+
+      html body #body-wrap {
+        background: transparent !important;
+      }
+
+      /* 首页文章卡片 */
+      html body #recent-posts .recent-post-item {
+        border: 2px solid #c0d1eb !important;
+        background: rgba(180, 210, 255, 0.35) !important;
+        backdrop-filter: blur(10px) !important;
+        -webkit-backdrop-filter: blur(10px) !important;
+        border-radius: 12px !important;
+        box-shadow: 0 4px 20px rgba(102, 163, 255, 0.15) !important;
+        transition: all 0.3s ease !important;
+        overflow: hidden !important;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: stretch !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 220px !important;
+        margin-bottom: 1.5rem !important;
+        float: none !important;
+        padding: 0 !important;
+        box-sizing: border-box !important;
+      }
+
+      html body #recent-posts .recent-post-item .post_cover,
+      html body #recent-posts .recent-post-item .post_cover.right {
+        width: 40% !important;
+        height: 100% !important;
+        min-height: 100% !important;
+        max-height: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        position: absolute !important;
+        top: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        border-radius: 0 !important;
+        overflow: hidden !important;
+        z-index: 1 !important;
+      }
+
+      html body #recent-posts .recent-post-item .post_cover img,
+      html body #recent-posts .recent-post-item .post_cover.right img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        object-position: center !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: none !important;
+        display: block !important;
+        transform: scale(1.01) !important;
+      }
+
+      html body #recent-posts .recent-post-item {
+        position: relative !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+      }
+
+      html body #recent-posts .recent-post-item .recent-post-info {
+        position: relative !important;
+        z-index: 2 !important;
+      }
+
+      /* 侧边栏卡片 */
+      html body #aside-content .card-widget {
+        border: 2px solid #c0d1eb !important;
+        background: rgba(180, 210, 255, 0.35) !important;
+        backdrop-filter: blur(10px) !important;
+        -webkit-backdrop-filter: blur(10px) !important;
+        border-radius: 12px !important;
+        box-shadow: 0 4px 20px rgba(102, 163, 255, 0.15) !important;
+        transition: all 0.3s ease !important;
+        overflow: hidden !important;
+      }
+
+      /* 文章详情页+独立页面 */
+      html body #content-inner #post.post,
+      html body #content-inner #page.page {
+        border: 2px solid #c0d1eb !important;
+        background: rgba(180, 210, 255, 0.35) !important;
+        backdrop-filter: blur(10px) !important;
+        -webkit-backdrop-filter: blur(10px) !important;
+        border-radius: 12px !important;
+        box-shadow: 0 4px 20px rgba(102, 163, 255, 0.15) !important;
+        transition: all 0.3s ease !important;
+        overflow: hidden !important;
+      }
+
+      /* 悬浮效果 */
+      html body #recent-posts .recent-post-item:hover,
+      html body #aside-content .card-widget:hover,
+      html body #content-inner #post.post:hover,
+      html body #content-inner #page.page:hover {
+        border-color: #4080ff !important;
+        background: rgba(180, 210, 255, 0.5) !important;
+        box-shadow: 0 0 16px rgba(64,128,255,0.6), 0 8px 30px rgba(102, 163, 255, 0.25) !important;
+        transform: translateY(-2px) !important;
+      }
+
+      #post.post > *,
+      #page.page > *,
+      #article-container,
+      .post-header,
+      .post-content,
+      .post-copyright,
+      .post-footer {
+        background: transparent !important;
+      }
+
+      #article-container {
+        padding: 1.5rem 1.8rem !important;
+      }
+
+      /* 首页文章信息区域 */
+      html body #recent-posts .recent-post-item .recent-post-info {
+        flex: 1 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        padding: 1.2rem 1.8rem !important;
+        background: transparent !important;
+      }
+
+      html body #recent-posts .recent-post-item:has(.post_cover) .recent-post-info {
+        padding-right: 42% !important;
+      }
+
+      html body #recent-posts .recent-post-item .recent-post-info .article-title {
+        color: #2c3e50 !important;
+        font-size: 1.4rem !important;
+        font-weight: 600 !important;
+        margin-bottom: 0.8rem !important;
+      }
+
+      html body #recent-posts .recent-post-item .recent-post-info .article-title:hover {
+        color: #4080ff !important;
+      }
+
+      html body #recent-posts .recent-post-item .recent-post-info .article-meta-wrap,
+      html body #recent-posts .recent-post-item .recent-post-info .content {
+        color: #555555 !important;
+        opacity: 0.85;
+        font-size: 1.05rem !important;
+      }
+
+      /* 分类/归档页面 */
+      html body #content-inner #category,
+      html body #content-inner #archive {
+        border: 2px solid #c0d1eb !important;
+        background: rgba(180, 210, 255, 0.35) !important;
+        backdrop-filter: blur(10px) !important;
+        -webkit-backdrop-filter: blur(10px) !important;
+        border-radius: 12px !important;
+        box-shadow: 0 4px 20px rgba(102, 163, 255, 0.15) !important;
+        padding: 1.5rem 2rem !important;
+        overflow: hidden !important;
+      }
+
+      html body #category .article-sort-item,
+      html body #archive .article-sort-item {
+        border: none !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        display: flex !important;
+        flex-direction: row !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 100px !important;
+        margin-bottom: 1rem !important;
+        padding: 0.8rem 0 !important;
+        align-items: center !important;
+        border-bottom: 1px dashed rgba(102, 163, 255, 0.3) !important;
+      }
+
+      html body #category .article-sort-item:last-child,
+      html body #archive .article-sort-item:last-child {
+        border-bottom: none !important;
+      }
+
+      html body #category .article-sort-item-img,
+      html body #archive .article-sort-item-img {
+        width: 120px !important;
+        flex-shrink: 0 !important;
+        height: 90px !important;
+        margin-right: 1.2rem !important;
+        overflow: hidden !important;
+        border-radius: 8px !important;
+      }
+
+      html body #category .article-sort-item-img img,
+      html body #archive .article-sort-item-img img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+      }
+
+      html body #category .article-sort-item-info,
+      html body #archive .article-sort-item-info {
+        flex: 1 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        background: transparent !important;
+      }
+
+      html body #category .article-sort-item-title,
+      html body #archive .article-sort-item-title {
+        color: #2c3e50 !important;
+        font-size: 1.25rem !important;
+        font-weight: 600 !important;
+        margin-bottom: 0.4rem !important;
+      }
+
+      html body #category .article-sort-item-title:hover,
+      html body #archive .article-sort-item-title:hover {
+        color: #4080ff !important;
+      }
+
+      html body #category .article-sort-item-time,
+      html body #archive .article-sort-item-time {
+        color: #555555 !important;
+        font-size: 0.95rem !important;
+        opacity: 0.8;
+      }
+
+      html body #category .article-sort-item.year,
+      html body #archive .article-sort-item.year {
+        font-size: 1.5rem !important;
+        font-weight: 700 !important;
+        color: #4080ff !important;
+        padding-bottom: 0.5rem !important;
+        border-bottom: 2px solid #c0d1eb !important;
+        margin-bottom: 1.2rem !important;
+      }
+
+      /* 标题样式 */
+      #article-container h1, #article-container h2, #article-container h3, #article-container h4, #article-container h5, #article-container h6 {
+        position: relative;
+        padding-left: 16px !important;
+        margin-top: 0.8em !important;
+        margin-bottom: 0.4em !important;
+        font-weight: 600 !important;
+        color: #2c3e50 !important;
+      }
+
+      #article-container h1::before, #article-container h2::before, #article-container h3::before, #article-container h4::before, #article-container h5::before, #article-container h6::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 3px;
+        height: 22px;
+        border-radius: 2px;
+      }
+
+      #article-container h1 { font-size: 2.0em !important; }
+      #article-container h1::before { background-color: #ff4d4f; height: 24px; }
+      #article-container h2 { font-size: 1.8em !important; }
+      #article-container h2::before { background-color: #fa7c00; }
+      #article-container h3 { font-size: 1.6em !important; }
+      #article-container h3::before { background-color: #1677ff; }
+      #article-container h4 { font-size: 1.4em !important; }
+      #article-container h4::before { background-color: #722ed1; height: 20px; }
+      #article-container h5 { font-size: 1.3em !important; }
+      #article-container h5::before { background-color: #722ed1; }
+      #article-container h6 { font-size: 1.2em !important; }
+      #article-container h6::before { background-color: #722ed1; }
+
+      strong {
+        color: #ff4d4f !important;
+        font-weight: 600 !important;
+      }
+
+      /* 深色模式 */
+      html[data-theme="dark"] #web_bg {
+        background: #0d0d0d !important;
+      }
+
+      html[data-theme="dark"] #recent-posts .recent-post-item {
+        background: rgba(0, 30, 60, 0.85) !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35) !important;
+      }
+
+      html[data-theme="dark"] #recent-posts .recent-post-item:hover,
+      html[data-theme="dark"] #aside-content .card-widget:hover,
+      html[data-theme="dark"] #content-inner #post.post:hover,
+      html[data-theme="dark"] #content-inner #page.page:hover {
+        background: rgba(0, 30, 60, 0.85) !important;
+        box-shadow: 0 0 16px rgba(128,170,255,0.6), 0 8px 30px rgba(0,0,0,0.45) !important;
+        transform: translateY(-2px) !important;
+      }
+
+      html[data-theme="dark"] #aside-content .card-widget {
+        background: rgba(0, 30, 60, 0.85) !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35) !important;
+        color: #e0e0e0 !important;
+      }
+
+      html[data-theme="dark"] #content-inner #post.post,
+      html[data-theme="dark"] #content-inner #page.page {
+        background: rgba(0, 30, 60, 0.85) !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35) !important;
+      }
+
+      html[data-theme="dark"] #recent-posts .recent-post-item .recent-post-info .article-title,
+      html[data-theme="dark"] #recent-posts .recent-post-item .recent-post-info .article-meta-wrap,
+      html[data-theme="dark"] #recent-posts .recent-post-item .recent-post-info .article-meta-wrap a,
+      html[data-theme="dark"] #recent-posts .recent-post-item .recent-post-info .content,
+      html[data-theme="dark"] #article-container h1, 
+      html[data-theme="dark"] #article-container h2, 
+      html[data-theme="dark"] #article-container h3, 
+      html[data-theme="dark"] #article-container h4, 
+      html[data-theme="dark"] #article-container h5, 
+      html[data-theme="dark"] #article-container h6 {
+        color: #f0f0f0 !important;
+      }
+
+      html[data-theme="dark"] #recent-posts .recent-post-item .recent-post-info .article-title:hover {
+        color: #80b0ff !important;
+      }
+
+      html[data-theme="dark"] #content-inner #category,
+      html[data-theme="dark"] #content-inner #archive {
+        background: rgba(20, 20, 35, 0.7) !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35) !important;
+      }
+
+      html[data-theme="dark"] #category .article-sort-item-title,
+      html[data-theme="dark"] #archive .article-sort-item-title,
+      html[data-theme="dark"] #category .article-sort-item-time,
+      html[data-theme="dark"] #archive .article-sort-item-time {
+        color: #f0f0f0 !important;
+      }
+
+      html[data-theme="dark"] #category .article-sort-item.year,
+      html[data-theme="dark"] #archive .article-sort-item.year {
+        color: #80b0ff !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+      }
+
+      html[data-theme="dark"] #article-container h1,
+      html[data-theme="dark"] #article-container h2,
+      html[data-theme="dark"] #article-container h3,
+      html[data-theme="dark"] #article-container h4,
+      html[data-theme="dark"] #article-container h5,
+      html[data-theme="dark"] #article-container h6 {
+        color: #e8e8e8 !important;
+      }
+      html[data-theme="dark"] #article-container h1::before { background-color: #ff6b6b; }
+      html[data-theme="dark"] #article-container h2::before { background-color: #ffa94d; }
+      html[data-theme="dark"] #article-container h3::before { background-color: #4dabf7; }
+      html[data-theme="dark"] #article-container h4::before { background-color: #b197fc; }
+      html[data-theme="dark"] strong {
+        color: #ff8787 !important;
+      }
+
+      /* 页脚 */
+      html body #footer {
+        background: rgba(180, 210, 255, 0.4) !important;
+        backdrop-filter: blur(10px) !important;
+        -webkit-backdrop-filter: blur(10px) !important;
+        border: 2px solid #c0d1eb !important;
+        border-radius: 0 !important;
+        box-shadow: 0 -4px 20px rgba(102, 163, 255, 0.15) !important;
+        padding: 1.5rem !important;
+        transition: all 0.3s ease !important;
+      }
+      html body #footer,
+      html body #footer * {
+        color: #2c3e50 !important;
+      }
+      html body #footer a {
+        color: #0066cc !important;
+      }
+
+      html[data-theme="dark"] body #footer {
+        background: #0a1a2f !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+        border-radius: 0 !important;
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.35) !important;
+      }
+      html[data-theme="dark"] body #footer,
+      html[data-theme="dark"] body #footer * {
+        color: #f0f0f0 !important;
+      }
+      html[data-theme="dark"] body #footer a {
+        color: #80b0ff !important;
+      }
+
+      /* 移动端字体统一调小（V1基准） */
+      @media screen and (max-width: 768px) {
+        html body #recent-posts .recent-post-item {
+          flex-direction: column !important;
+          min-height: auto !important;
+          height: auto !important;
+          padding: 0 !important;
+          margin-bottom: 1.2rem !important;
+        }
+        html body #recent-posts .recent-post-item .post_cover,
+        html body #recent-posts .recent-post-item .post_cover.right {
+          position: relative !important;
+          width: 100% !important;
+          height: 180px !important;
+          max-height: 180px !important;
+          right: auto !important;
+          top: auto !important;
+          border-radius: 8px 8px 0 0 !important;
+        }
+        html body #recent-posts .recent-post-item .post_cover img {
+          width: 100% !important;
+          height: 100% !important;
+          object-fit: cover !important;
+        }
+        html body #recent-posts .recent-post-item:has(.post_cover) .recent-post-info {
+          padding: 1.0rem !important;
+          padding-right: 1.0rem !important;
+        }
+        html body #recent-posts .recent-post-item .recent-post-info .article-title {
+          font-size: 1.1rem !important;
+        }
+        html body #recent-posts .recent-post-item .recent-post-info .article-meta-wrap,
+        html body #recent-posts .recent-post-item .recent-post-info .content {
+          font-size: 0.85rem !important;
+        }
+
+        #rightside {
+          right: 10px !important;
+          bottom: 15px !important;
+        }
+        #rightside > div {
+          margin: 6px 0 !important;
+          position: static !important;
+          float: none !important;
+        }
+        #rightside-config {
+          right: 50px !important;
+          bottom: 0 !important;
+          z-index: 9999 !important;
+        }
+        #rightside-config.show {
+          display: flex !important;
+          flex-direction: column !important;
+          gap: 6px !important;
+        }
+
+        #article-container {
+          padding: 0.8rem !important;
+          font-size: 10px !important;
+          line-height: 1.55 !important;
+        }
+        #article-container h1 { font-size: 1.3em !important; }
+        #article-container h2 { font-size: 1.2em !important; }
+        #article-container h3 { font-size: 1.1em !important; }
+        #article-container h4 { font-size: 1.0em !important; }
+        #article-container h5 { font-size: 0.9em !important; }
+        #article-container h6 { font-size: 0.8em !important; }
+
+        #article-container h1::before,
+        #article-container h2::before,
+        #article-container h3::before,
+        #article-container h4::before,
+        #article-container h5::before,
+        #article-container h6::before {
+          width: 2px !important;
+          height: 12px !important;
+        }
+
+        html body #content-inner #category,
+        html body #content-inner #archive {
+          padding: 0.8rem !important;
+          margin: 0 0.5rem !important;
+        }
+        html body #category .article-sort-item-img,
+        html body #archive .article-sort-item-img {
+          width: 70px !important;
+          height: 55px !important;
+          margin-right: 0.8rem !important;
+        }
+        html body #category .article-sort-item-title,
+        html body #archive .article-sort-item-title {
+          font-size: 1.1rem !important;
+        }
+        html body #category .article-sort-item-time,
+        html body #archive .article-sort-item-time {
+          font-size: 0.8rem !important;
+        }
+        html body #aside-content .card-widget {
+          margin: 0 0.5rem 1rem 0.5rem !important;
+          font-size: 0.9rem !important;
+        }
+      }
+
+      .search-highlight {
+        background: #007bff !important;
+        color: white !important;
+        padding: 2px 4px !important;
+        border-radius: 3px !important;
+        font-weight: bold !important;
+      }
+
+      #article-container {
+        padding: 1.5rem 1.8rem !important;
+        font-size: 18px !important;
+        line-height: 1.5 !important;
+      }
+    `;
+
+    // ==============================================
+    // V2 毛玻璃主题（深色文字完整修复 + 舒适遮罩 + 页脚强化）
+    // ==============================================
+    const V2_THEME_CSS = `
+      /* V2 背景：日间必应壁纸，夜间壁纸+舒适遮罩 */
+      html[data-theme="light"] #web_bg {
+        background: url("http://cdn.jsdelivr.net/gh/onion383/onionsnotebook-blog-images@main/img/globalbackgound/V2_light_orign.webp") center/cover no-repeat fixed !important;
+      }
+      html[data-theme="dark"] #web_bg {
+        background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), 
+                    url("http://cdn.jsdelivr.net/gh/onion383/onionsnotebook-blog-images@main/img/globalbackgound/V2_dack_orign.webp") center/cover no-repeat fixed !important;
+      }
+      #page-header {
+        background: transparent !important;
+      }
+
+      /* ========== 日间模式标题与元信息修复 ========== */
+      html[data-theme="light"] #post-info .post-title {
+        color: #1e293b !important;
+        text-shadow: 0 1px 3px rgba(0,0,0,0.08) !important;
+      }
+      html[data-theme="light"] #post-info #post-meta,
+      html[data-theme="light"] #post-info .post-meta-label,
+      html[data-theme="light"] #post-info .post-meta-icon,
+      html[data-theme="light"] #post-info .post-meta-categories,
+      html[data-theme="light"] #post-info time,
+      html[data-theme="light"] #post-info .post-meta-pv-cv {
+        color: #334155 !important;
+      }
+      html[data-theme="light"] #post-info a {
+        color: #1e4a7a !important;
+      }
+      html[data-theme="light"] #post-info a:hover {
+        color: #0b2a4a !important;
+      }
+      html[data-theme="light"] #nav #blog-info a {
+        color: #1e293b !important;
+        text-shadow: 0 1px 2px rgba(255,255,255,0.5) !important;
+      }
+      html[data-theme="light"] #nav .menus_item .site-page:hover {
+        color: #0066cc !important;
+      }
+      html[data-theme="light"] #site-title {
+        color: #2d3748 !important;
+        text-shadow: none !important;
+      }
+
+      /* 首页文章卡片 */
+      #recent-posts .recent-post-item {
+        border: 1px solid rgba(140, 190, 255, 0.35) !important;
+        border-top: 1px solid rgba(200, 230, 255, 0.7) !important;
+        background: linear-gradient(135deg, 
+          rgba(120, 180, 255, 0.15) 0%, 
+          rgba(100, 160, 255, 0.08) 50%,
+          rgba(80, 140, 255, 0.12) 100%) !important;
+        backdrop-filter: blur(20px) saturate(1.4) !important;
+        -webkit-backdrop-filter: blur(20px) saturate(1.4) !important;
+        border-radius: 16px !important;
+        box-shadow: 
+          0 8px 32px rgba(0, 50, 100, 0.15),
+          0 2px 8px rgba(80, 150, 255, 0.1),
+          inset 0 1px 0 rgba(255, 255, 255, 0.35),
+          inset 0 -1px 0 rgba(0, 0, 0, 0.05) !important;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+        overflow: hidden !important;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: stretch !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 220px !important;
+        margin-bottom: 1.5rem !important;
+        float: none !important;
+        padding: 0 !important;
+        box-sizing: border-box !important;
+        position: relative !important;
+      }
+      #recent-posts .recent-post-item::before {
+        content: "" !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        height: 50% !important;
+        background: linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0.15),
+          rgba(255, 255, 255, 0)
+        ) !important;
+        border-radius: 16px 16px 0 0 !important;
+        pointer-events: none !important;
+        z-index: 3 !important;
+        transition: opacity 0.4s ease !important;
+      }
+      #recent-posts .recent-post-item .post_cover {
+        width: 40% !important;
+        height: 100% !important;
+        min-height: 100% !important;
+        max-height: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        position: absolute !important;
+        top: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        border-radius: 0 !important;
+        overflow: hidden !important;
+        z-index: 1 !important;
+      }
+      #recent-posts .recent-post-item .post_cover img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        object-position: center !important;
+        transform: scale(1.01) !important;
+      }
+      #recent-posts .recent-post-item .recent-post-info {
+        position: relative !important;
+        z-index: 2 !important;
+        flex: 1 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        padding: 1.2rem 1.8rem !important;
+        background: transparent !important;
+      }
+      #recent-posts .recent-post-item:has(.post_cover) .recent-post-info {
+        padding-right: 42% !important;
+      }
+      #recent-posts .recent-post-item:hover {
+        border-color: rgba(100, 180, 255, 0.6) !important;
+        border-top-color: rgba(220, 240, 255, 0.9) !important;
+        background: linear-gradient(135deg, 
+          rgba(140, 200, 255, 0.22) 0%, 
+          rgba(120, 180, 255, 0.12) 50%,
+          rgba(100, 160, 255, 0.18) 100%) !important;
+        box-shadow: 
+          0 15px 50px rgba(30, 100, 200, 0.25),
+          0 5px 15px rgba(80, 150, 255, 0.2),
+          0 0 30px rgba(100, 180, 255, 0.15),
+          inset 0 1px 0 rgba(255, 255, 255, 0.5),
+          inset 0 -1px 0 rgba(0, 0, 0, 0.05) !important;
+        transform: translateY(-6px) scale(1.01) !important;
+      }
+      #recent-posts .recent-post-item:hover::before {
+        opacity: 0.6 !important;
+      }
+
+      /* 侧边栏卡片 */
+      #aside-content .card-widget {
+        border: 1px solid rgba(140, 190, 255, 0.35) !important;
+        border-top: 1px solid rgba(200, 230, 255, 0.7) !important;
+        background: linear-gradient(145deg, 
+          rgba(120, 180, 255, 0.18) 0%, 
+          rgba(100, 160, 255, 0.1) 100%) !important;
+        backdrop-filter: blur(20px) saturate(1.4) !important;
+        -webkit-backdrop-filter: blur(20px) saturate(1.4) !important;
+        border-radius: 16px !important;
+        box-shadow: 
+          0 8px 32px rgba(0, 50, 100, 0.15),
+          0 2px 8px rgba(80, 150, 255, 0.1),
+          inset 0 1px 0 rgba(255, 255, 255, 0.35),
+          inset 0 -1px 0 rgba(0, 0, 0, 0.05) !important;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+        overflow: hidden !important;
+        position: relative !important;
+      }
+      #aside-content .card-widget::before {
+        content: "" !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        height: 45% !important;
+        background: linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0.18),
+          rgba(255, 255, 255, 0)
+        ) !important;
+        border-radius: 16px 16px 0 0 !important;
+        pointer-events: none !important;
+        z-index: 10 !important;
+      }
+      #aside-content .card-widget:hover {
+        border-color: rgba(100, 180, 255, 0.6) !important;
+        border-top-color: rgba(220, 240, 255, 0.9) !important;
+        background: linear-gradient(145deg, 
+          rgba(140, 200, 255, 0.25) 0%, 
+          rgba(120, 180, 255, 0.15) 100%) !important;
+        box-shadow: 
+          0 15px 50px rgba(30, 100, 200, 0.25),
+          0 5px 15px rgba(80, 150, 255, 0.2),
+          0 0 30px rgba(100, 180, 255, 0.15),
+          inset 0 1px 0 rgba(255, 255, 255, 0.5),
+          inset 0 -1px 0 rgba(0, 0, 0, 0.05) !important;
+        transform: translateY(-6px) scale(1.02) !important;
+      }
+
+      /* 文章详情页/独立页面 */
+      #content-inner #post.post,
+      #content-inner #page.page {
+        border: 1px solid rgba(140, 190, 255, 0.35) !important;
+        border-top: 1px solid rgba(200, 230, 255, 0.7) !important;
+        background: linear-gradient(135deg, 
+          rgba(120, 180, 255, 0.16) 0%, 
+          rgba(100, 160, 255, 0.09) 50%,
+          rgba(80, 140, 255, 0.14) 100%) !important;
+        backdrop-filter: blur(20px) saturate(1.4) !important;
+        -webkit-backdrop-filter: blur(20px) saturate(1.4) !important;
+        border-radius: 18px !important;
+        box-shadow: 
+          0 10px 40px rgba(0, 50, 100, 0.18),
+          0 3px 10px rgba(80, 150, 255, 0.12),
+          inset 0 1px 0 rgba(255, 255, 255, 0.35),
+          inset 0 -1px 0 rgba(0, 0, 0, 0.05) !important;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+        overflow: hidden !important;
+        position: relative !important;
+      }
+      #content-inner #post.post::before,
+      #content-inner #page.page::before {
+        content: "" !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        height: 40% !important;
+        background: linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0.15),
+          rgba(255, 255, 255, 0)
+        ) !important;
+        border-radius: 18px 18px 0 0 !important;
+        pointer-events: none !important;
+        z-index: 1 !important;
+      }
+      #post.post > *,
+      #page.page > *,
+      #article-container {
+        background: transparent !important;
+        position: relative !important;
+        z-index: 2 !important;
+      }
+
+      /* 分类/归档页面 */
+      #content-inner #category,
+      #content-inner #archive {
+        border: 1px solid rgba(140, 190, 255, 0.35) !important;
+        border-top: 1px solid rgba(200, 230, 255, 0.7) !important;
+        background: linear-gradient(135deg, 
+          rgba(120, 180, 255, 0.16) 0%, 
+          rgba(100, 160, 255, 0.1) 100%) !important;
+        backdrop-filter: blur(20px) saturate(1.4) !important;
+        -webkit-backdrop-filter: blur(20px) saturate(1.4) !important;
+        border-radius: 16px !important;
+        box-shadow: 
+          0 8px 32px rgba(0, 50, 100, 0.15),
+          0 2px 8px rgba(80, 150, 255, 0.1),
+          inset 0 1px 0 rgba(255, 255, 255, 0.35) !important;
+        padding: 1.5rem 2rem !important;
+        overflow: hidden !important;
+        position: relative !important;
+      }
+
+      /* 标题样式 */
+      #article-container h1, #article-container h2, #article-container h3, #article-container h4, #article-container h5, #article-container h6 {
+        position: relative;
+        padding-left: 16px !important;
+        margin-top: 0.8em !important;
+        margin-bottom: 0.4em !important;
+        font-weight: 600 !important;
+        color: #2c3e50 !important;
+      }
+      #article-container h1::before, #article-container h2::before, #article-container h3::before, #article-container h4::before, #article-container h5::before, #article-container h6::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 3px;
+        height: 22px;
+        border-radius: 2px;
+      }
+      #article-container h1 { font-size: 2.0em !important; }
+      #article-container h1::before { background-color: #ff4d4f; height: 24px; }
+      #article-container h2 { font-size: 1.8em !important; }
+      #article-container h2::before { background-color: #fa7c00; }
+      #article-container h3 { font-size: 1.6em !important; }
+      #article-container h3::before { background-color: #1677ff; }
+      #article-container h4 { font-size: 1.4em !important; }
+      #article-container h4::before { background-color: #722ed1; height: 20px; }
+      #article-container h5 { font-size: 1.3em !important; }
+      #article-container h5::before { background-color: #722ed1; }
+      #article-container h6 { font-size: 1.2em !important; }
+      #article-container h6::before { background-color: #722ed1; }
+
+      /* 文字颜色 */
+      #recent-posts .recent-post-info .article-title {
+        color: #2c3e50 !important;
+        font-size: 1.4rem !important;
+        font-weight: 600 !important;
+        margin-bottom: 0.8rem !important;
+      }
+      #recent-posts .recent-post-info .article-title:hover {
+        color: #4080ff !important;
+      }
+      #recent-posts .recent-post-info .article-meta-wrap,
+      #recent-posts .recent-post-info .content {
+        color: #555555 !important;
+        opacity: 0.85;
+        font-size: 1.05rem !important;
+      }
+      #recent-posts .recent-post-info .article-meta-wrap a {
+        color: #555555 !important;
+      }
+      #recent-posts .recent-post-info .article-meta-wrap a:hover {
+        color: #4080ff !important;
+      }
+      #article-container,
+      #article-container p {
+        color: #2c3e50 !important;
+        font-size: 18px !important;
+        line-height: 1.7 !important;
+        font-weight:500 !important;
+      }
+      strong {
+        color: #ff4d4f !important;
+        font-weight: 600 !important;
+      }
+
+      /* 标签云 */
+      .card-tag-cloud a {
+        color: #2c3e50 !important;
+        background: rgba(120, 180, 255, 0.2) !important;
+        border-radius: 8px !important;
+        padding: 2px 8px !important;
+        transition: all 0.2s !important;
+      }
+      .card-tag-cloud a:hover {
+        color: #4080ff !important;
+        background: rgba(64, 128, 255, 0.2) !important;
+      }
+
+      /* 深色模式（完整文字修复） */
+      html[data-theme="dark"] #recent-posts .recent-post-item {
+        background: linear-gradient(135deg, 
+          rgba(20, 60, 120, 0.35) 0%, 
+          rgba(10, 40, 80, 0.25) 50%,
+          rgba(0, 20, 60, 0.3) 100%) !important;
+        border-color: rgba(80, 140, 220, 0.35) !important;
+        border-top-color: rgba(120, 180, 255, 0.5) !important;
+        box-shadow: 
+          0 8px 32px rgba(0, 0, 0, 0.4),
+          0 2px 8px rgba(0, 50, 150, 0.2),
+          inset 0 1px 0 rgba(100, 150, 220, 0.25),
+          inset 0 -1px 0 rgba(0, 0, 0, 0.1) !important;
+      }
+      html[data-theme="dark"] #aside-content .card-widget {
+        background: linear-gradient(145deg, 
+          rgba(20, 60, 120, 0.38) 0%, 
+          rgba(10, 40, 80, 0.28) 100%) !important;
+        border-color: rgba(80, 140, 220, 0.35) !important;
+        border-top-color: rgba(120, 180, 255, 0.5) !important;
+        box-shadow: 
+          0 8px 32px rgba(0, 0, 0, 0.4),
+          0 2px 8px rgba(0, 50, 150, 0.2),
+          inset 0 1px 0 rgba(100, 150, 220, 0.25),
+          inset 0 -1px 0 rgba(0, 0, 0, 0.1) !important;
+      }
+      html[data-theme="dark"] #content-inner #post.post,
+      html[data-theme="dark"] #content-inner #page.page {
+        background: linear-gradient(135deg, 
+          rgba(20, 60, 120, 0.35) 0%, 
+          rgba(10, 40, 80, 0.25) 50%,
+          rgba(0, 20, 60, 0.3) 100%) !important;
+        border-color: rgba(80, 140, 220, 0.35) !important;
+        border-top-color: rgba(120, 180, 255, 0.5) !important;
+        box-shadow: 
+          0 10px 40px rgba(0, 0, 0, 0.45),
+          0 3px 10px rgba(0, 50, 150, 0.25),
+          inset 0 1px 0 rgba(100, 150, 220, 0.25),
+          inset 0 -1px 0 rgba(0, 0, 0, 0.1) !important;
+      }
+      html[data-theme="dark"] #content-inner #category,
+      html[data-theme="dark"] #content-inner #archive {
+        background: linear-gradient(135deg, 
+          rgba(20, 60, 120, 0.35) 0%, 
+          rgba(10, 40, 80, 0.25) 100%) !important;
+        border-color: rgba(80, 140, 220, 0.35) !important;
+        border-top-color: rgba(120, 180, 255, 0.5) !important;
+      }
+      html[data-theme="dark"] #category .article-sort-item.year,
+      html[data-theme="dark"] #archive .article-sort-item.year {
+        color: #80b0ff !important;
+        border-bottom-color: rgba(255, 255, 255, 0.2) !important;
+      }
+      html[data-theme="dark"] #category .article-sort-item-title,
+      html[data-theme="dark"] #archive .article-sort-item-title,
+      html[data-theme="dark"] #category .article-sort-item-time,
+      html[data-theme="dark"] #archive .article-sort-item-time {
+        color: #f0f0f0 !important;
+      }
+      html[data-theme="dark"] #recent-posts .recent-post-info .article-title,
+      html[data-theme="dark"] #recent-posts .recent-post-info .article-meta-wrap,
+      html[data-theme="dark"] #recent-posts .recent-post-info .article-meta-wrap a,
+      html[data-theme="dark"] #recent-posts .recent-post-info .article-meta-wrap .article-meta__categories,
+      html[data-theme="dark"] #recent-posts .recent-post-info .content {
+        color: #f0f0f0 !important;
+      }
+      html[data-theme="dark"] #recent-posts .recent-post-info .article-title:hover {
+        color: #80b0ff !important;
+      }
+      html[data-theme="dark"] #recent-posts .recent-post-info .article-meta-wrap a:hover {
+        color: #80b0ff !important;
+      }
+      html[data-theme="dark"] #article-container h1,
+      html[data-theme="dark"] #article-container h2,
+      html[data-theme="dark"] #article-container h3,
+      html[data-theme="dark"] #article-container h4,
+      html[data-theme="dark"] #article-container h5,
+      html[data-theme="dark"] #article-container h6 {
+        color: #f0f0f0 !important;
+      }
+      html[data-theme="dark"] #article-container,
+      html[data-theme="dark"] #article-container p {
+        color: #e0e0e0 !important;
+      }
+      html[data-theme="dark"] strong {
+        color: #ff8787 !important;
+      }
+      html[data-theme="dark"] #article-container h1::before { background-color: #ff6b6b; }
+      html[data-theme="dark"] #article-container h2::before { background-color: #ffa94d; }
+      html[data-theme="dark"] #article-container h3::before { background-color: #4dabf7; }
+      html[data-theme="dark"] #article-container h4::before,
+      html[data-theme="dark"] #article-container h5::before,
+      html[data-theme="dark"] #article-container h6::before { background-color: #b197fc; }
+
+      html[data-theme="dark"] .card-tag-cloud a {
+        color: #f0f0f0 !important;
+        background: rgba(100, 150, 220, 0.3) !important;
+      }
+      html[data-theme="dark"] .card-tag-cloud a:hover {
+        color: #80b0ff !important;
+        background: rgba(128, 176, 255, 0.3) !important;
+      }
+
+      html body #footer {
+        background: rgba(180, 210, 255, 0.4) !important;
+        backdrop-filter: blur(10px) !important;
+        -webkit-backdrop-filter: blur(10px) !important;
+        border: 2px solid #c0d1eb !important;
+        border-radius: 0 !important;
+        box-shadow: 0 -4px 20px rgba(102, 163, 255, 0.15) !important;
+        padding: 1.5rem !important;
+        transition: all 0.3s ease !important;
+      }
+      html body #footer,
+      html body #footer * {
+        color: #2c3e50 !important;
+      }
+      html body #footer a {
+        color: #0066cc !important;
+      }
+
+      html[data-theme="dark"] body #footer {
+        background: #0a1a2f !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+        border-radius: 0 !important;
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.35) !important;
+      }
+      html[data-theme="dark"] body #footer,
+      html[data-theme="dark"] body #footer * {
+        color: #f0f0f0 !important;
+      }
+      html[data-theme="dark"] body #footer a {
+        color: #80b0ff !important;
+      }
+
+      /* 移动端字体与V1统一 */
+      @media screen and (max-width: 768px) {
+        #recent-posts .recent-post-item {
+          flex-direction: column !important;
+          min-height: auto !important;
+        }
+        #recent-posts .recent-post-item .post_cover {
+          position: relative !important;
+          width: 100% !important;
+          height: 180px !important;
+          border-radius: 14px 14px 0 0 !important;
+        }
+        #recent-posts .recent-post-item:has(.post_cover) .recent-post-info {
+          padding: 1.0rem !important;
+          padding-right: 1.0rem !important;
+        }
+        #recent-posts .recent-post-info .article-title {
+          font-size: 1.1rem !important;
+        }
+        #recent-posts .recent-post-info .article-meta-wrap,
+        #recent-posts .recent-post-info .content {
+          font-size: 0.85rem !important;
+        }
+        #article-container {
+          padding: 0.8rem !important;
+          font-size: 10px !important;
+          line-height: 1.55 !important;
+        }
+        #article-container h1 { font-size: 1.3em !important; }
+        #article-container h2 { font-size: 1.2em !important; }
+        #article-container h3 { font-size: 1.1em !important; }
+        #article-container h4 { font-size: 1.0em !important; }
+        #article-container h5 { font-size: 0.9em !important; }
+        #article-container h6 { font-size: 0.8em !important; }
+        #content-inner #category,
+        #content-inner #archive {
+          padding: 0.8rem !important;
+          margin: 0 0.5rem !important;
+        }
+        #category .article-sort-item-img,
+        #archive .article-sort-item-img {
+          width: 70px !important;
+          height: 55px !important;
+          margin-right: 0.8rem !important;
+        }
+        #category .article-sort-item-title,
+        #archive .article-sort-item-title {
+          font-size: 1.1rem !important;
+        }
+        #category .article-sort-item-time,
+        #archive .article-sort-item-time {
+          font-size: 0.8rem !important;
+        }
+        #aside-content .card-widget {
+          margin: 0 0.5rem 1rem 0.5rem !important;
+          font-size: 0.9rem !important;
+        }
+      }
+    `;
+
+    // ... 后续工具函数和初始化代码保持不变（与之前提供的相同）...
+    function injectThemeCSS(themeVersion) {
+      const oldStyle = document.getElementById(THEME_STYLE_ID);
+      if (oldStyle) oldStyle.remove();
+      const styleTag = document.createElement('style');
+      styleTag.id = THEME_STYLE_ID;
+      styleTag.textContent = themeVersion === 'v2' ? V2_THEME_CSS : V1_THEME_CSS;
+      document.head.appendChild(styleTag);
+      document.body.offsetHeight;
+    }
+
+    function ensureWebBg() {
+      if (!document.getElementById('web_bg')) {
+        const webBg = document.createElement('div');
+        webBg.id = 'web_bg';
+        document.body.insertBefore(webBg, document.body.firstChild);
+      }
+      const webBg = document.getElementById('web_bg');
+      if (webBg) {
+        webBg.style.display = 'none';
+        webBg.offsetHeight;
+        webBg.style.display = 'block';
+      }
+    }
+
+    function toggleTheme() {
+      const currentTheme = localStorage.getItem(STORAGE_KEY) || DEFAULT_THEME;
+      const newTheme = currentTheme === 'v1' ? 'v2' : 'v1';
+      localStorage.setItem(STORAGE_KEY, newTheme);
+      injectThemeCSS(newTheme);
+      ensureWebBg();
+    }
+
+    function insertSwitchBtn() {
+      if (document.getElementById('theme-switch-btn')) return;
+      const rightside = document.getElementById('rightside');
+      if (!rightside) return;
+      const switchBtn = document.createElement('div');
+      switchBtn.id = 'theme-switch-btn';
+      switchBtn.innerHTML = '<i class="fas fa-palette"></i>';
+      switchBtn.title = '切换主题版本';
+      switchBtn.addEventListener('click', toggleTheme);
+      const settingBtn = document.getElementById('setting');
+      if (settingBtn && settingBtn.parentNode === rightside) {
+        rightside.insertBefore(switchBtn, settingBtn);
+      } else {
+        rightside.appendChild(switchBtn);
+      }
+    }
+
+    (function init() {
+      const currentTheme = localStorage.getItem(STORAGE_KEY) || DEFAULT_THEME;
+      ensureWebBg();
+      injectThemeCSS(currentTheme);
+    })();
+
+    document.addEventListener('DOMContentLoaded', () => {
+      insertSwitchBtn();
+      ensureWebBg();
+      const darkModeBtn = document.getElementById('darkmode');
+      if (darkModeBtn) {
+        darkModeBtn.addEventListener('click', () => {
+          setTimeout(() => {
+            const currentTheme = localStorage.getItem(STORAGE_KEY) || DEFAULT_THEME;
+            injectThemeCSS(currentTheme);
+            ensureWebBg();
+          }, 50);
+        });
+      }
+      const rightside = document.getElementById('rightside');
+      if (rightside) {
+        const observer = new MutationObserver(() => {
+          insertSwitchBtn();
+        });
+        observer.observe(rightside, { childList: true, subtree: true });
+      }
+    });
+
+    document.addEventListener('pjax:complete', () => {
+      const currentTheme = localStorage.getItem(STORAGE_KEY) || DEFAULT_THEME;
+      ensureWebBg();
+      injectThemeCSS(currentTheme);
+      insertSwitchBtn();
+    });
+
+    window.addEventListener('load', () => {
+      ensureWebBg();
+    });
+  })();
+</script>
+<script>
+  (function() {
+    function bindCardClick() {
+      const cards = document.querySelectorAll('.recent-post-item');
+      cards.forEach(card => {
+        if (card.dataset.cardClickEnabled === 'true') return;
+        card.dataset.cardClickEnabled = 'true';
+        
+        const titleLink = card.querySelector('.article-title');
+        if (!titleLink) return;
+        
+        card.style.cursor = 'pointer';
+        
+        card.addEventListener('click', function(e) {
+          const target = e.target;
+          const link = target.closest('a');
+          if (link) return;
+          titleLink.click();
+        });
+      });
+    }
+    
+    window.bindCardClick = bindCardClick;
+    
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', bindCardClick);
+    } else {
+      bindCardClick();
+    }
+    
+    document.addEventListener('pjax:complete', bindCardClick);
+  })();
+</script>
+<script>
+  (function() {
+    function addMobileSearchBtn() {
+      if (window.innerWidth > 768) return;
+      const navMenus = document.querySelector('#nav #menus');
+      if (!navMenus) return;
+      if (document.getElementById('mobile-search-btn')) return;
+      
+      const searchUrl = '/onionsnotebook.github.io/search/';
+      
+      const searchLink = document.createElement('a');
+      searchLink.id = 'mobile-search-btn';
+      searchLink.href = searchUrl;
+      searchLink.setAttribute('aria-label', '搜索');
+      searchLink.style.cssText = `
+        display: flex;
+        align-items: center;
+        margin-right: 12px;
+        color: var(--font-color);
+        font-size: 1.2rem;
+        order: 1;
+      `;
+      
+      const icon = document.createElement('i');
+      icon.className = 'fas fa-search';
+      searchLink.appendChild(icon);
+      
+      const toggleMenu = document.getElementById('toggle-menu');
+      if (toggleMenu) {
+        navMenus.insertBefore(searchLink, toggleMenu);
+      } else {
+        navMenus.appendChild(searchLink);
+      }
+      
+      navMenus.style.display = 'flex';
+      navMenus.style.alignItems = 'center';
+      if (toggleMenu) toggleMenu.style.order = '2';
+    }
+    
+    function removeMobileSearchBtn() {
+      const btn = document.getElementById('mobile-search-btn');
+      if (btn) btn.remove();
+    }
+    
+    function handleResize() {
+      if (window.innerWidth <= 768) {
+        addMobileSearchBtn();
+      } else {
+        removeMobileSearchBtn();
+      }
+    }
+    
+    window.addMobileSearchBtn = addMobileSearchBtn;
+    window.handleResize = handleResize;
+    
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', handleResize);
+    } else {
+      handleResize();
+    }
+    
+    window.addEventListener('resize', handleResize);
+    document.addEventListener('pjax:complete', handleResize);
+  })();
+</script>
+<script>
+  (function() {
+    // 加载动画控制
+    document.addEventListener('pjax:send', function() {
+      if (window.showLoading) window.showLoading();
+    });
+    document.addEventListener('pjax:complete', function() {
+      if (window.finishLoading) window.finishLoading();
+    });
+    document.addEventListener('pjax:error', function() {
+      if (window.finishLoading) window.finishLoading();
+    });
+    
+    // 统一重新初始化
+    function reinitAll() {
+      if (typeof window.bindCardClick === 'function') window.bindCardClick();
+      if (typeof window.handleResize === 'function') window.handleResize();
+      if (window.initManualSearch) window.initManualSearch();
+      if (window.applySearchHighlight) window.applySearchHighlight();
+      if (window.initRuntime) window.initRuntime();
+    }
+    
+    document.addEventListener('pjax:complete', reinitAll);
+    
+    if (document.readyState === 'complete') {
+      reinitAll();
+    } else {
+      window.addEventListener('load', reinitAll);
+    }
+  })();
+</script>
+<script>
+  (function() {
+    // 全局重新渲染函数
+    function reRenderKatex() {
+      // 如果 KaTeX 已初始化且存在渲染函数
+      if (typeof renderMathInElement !== 'undefined') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+          ],
+          throwOnError: false
+        });
+      }
+    }
+    window.reRenderKatex = reRenderKatex;
+
+    // 监听 Pjax 完成事件
+    document.addEventListener('pjax:complete', function() {
+      reRenderKatex();
+    });
+  })();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js" defer="defer"></script><script>document.addEventListener('DOMContentLoaded', () => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => {
+      try {
+        fn()
+      } catch (err) {
+        console.debug('Pjax callback failed:', err)
+      }
+    })
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      true
+        ? pjax.loadUrl('/onionsnotebook.github.io/404.html')
+        : window.location.href = e.request.responseURL
+    }
+  })
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
